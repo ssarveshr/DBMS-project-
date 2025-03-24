@@ -1,3 +1,2 @@
-const PORT = 5000 
-
-export default PORT 
+export const PORT = 5000
+export const MongoDB=""
