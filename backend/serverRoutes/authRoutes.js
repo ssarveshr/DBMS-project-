@@ -36,8 +36,81 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// ✅ LOGIN Route
-router.post("/login", async (req, res) => {
+// ✅ LOGIN Route page for Student Loging 
+// email password 
+router.post("/login/Student", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ message: "Invalid email or password" });
+
+    // Compare hashed passwords
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    } else {
+      const PayLoad = {
+        User_id: user._id,
+        User_email: user.email,
+        User_password: user.password
+      }
+      const token = jwt.sign(PayLoad, JWT_SECRET, { expiresIn: "1h" });
+      if (token) {
+        return res.status(200).send({
+          success: true,
+          message: "Login successful",
+          token: 'Bearer ' + token
+        })
+      }
+    }
+
+    // Generate JWT token
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// ✅ LOGIN Route page for Faculty Loging 
+// email password 
+router.post("/login/Faculty", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ message: "Invalid email or password" });
+
+    // Compare hashed passwords
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    } else {
+      const PayLoad = {
+        User_id: user._id,
+        User_email: user.email,
+        User_password: user.password
+      }
+      const token = jwt.sign(PayLoad, JWT_SECRET, { expiresIn: "1h" });
+      if (token) {
+        return res.status(200).send({
+          success: true,
+          message: "Login successful",
+          token: 'Bearer ' + token
+        })
+      }
+    }
+
+    // Generate JWT token
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// ✅ LOGIN Route page for organiser Loging 
+// email password 
+router.post("/login/organiser", async (req, res) => {
   try {
     const { email, password } = req.body;
 
