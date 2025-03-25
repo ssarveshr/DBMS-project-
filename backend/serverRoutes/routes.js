@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 
 const router = express.Router()
 
-// This is testing page
 
 router.get('/getApi' , (req,res) => {
     console.log(`Hi From The Server Side`)
@@ -12,7 +11,6 @@ router.get('/getApi' , (req,res) => {
     })
 })
 
-// This is main page
 
 router.get('/' , (req,res) => {
     console.log(`This is Main page`)
