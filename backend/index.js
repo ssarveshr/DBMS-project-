@@ -1,13 +1,19 @@
-import express from 'express'
-import PORT from './config.js'
-import routes from './serverRoutes/routes.js'
+import express from "express";
+import cors from "cors";
+import { PORT } from "./config.js"; // Import PORT
+import connectDB from "./serverRoutes/mongo_connect.js"; // Import DB connection
+import routes from "./serverRoutes/routes.js"; // Import routes
 
-const app = express()
+// Connect to MongoDB
+connectDB();
 
-app.use(express.json())
+const app = express();
 
-app.use('/' , routes)
+app.use(express.json());
+app.use(cors());
 
-app.listen(PORT , () => {
-    console.log(`The server is running at PORT : ${PORT}`)
-})
+app.use("/", routes);
+
+app.listen(PORT, () => {
+  console.log(`The server is running at PORT: ${PORT}`);
+});
