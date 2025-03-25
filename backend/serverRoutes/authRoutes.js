@@ -9,7 +9,7 @@ const router = express.Router();
 // ✅ SIGNUP Route page to create a Account
 router.post("/signup", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
     // Check if user already exists
     let user = await User.findOne({ email });
@@ -43,13 +43,13 @@ router.post("/login/Student", async (req, res) => {
     const { email, password } = req.body;
 
     // Check if user exists
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email });
     if (!user) return res.status(400).json({ message: "Invalid email or password" });
 
     // Compare hashed passwords
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid email or password" });
+      return res.status(400).json({ message: "Password incorrect" });
     } else {
       const PayLoad = {
         User_id: user._id,
@@ -58,7 +58,7 @@ router.post("/login/Student", async (req, res) => {
       }
       const token = jwt.sign(PayLoad, JWT_SECRET, { expiresIn: "1h" });
       if (token) {
-        return res.status(200).send({
+        return res.status(201).send({
           success: true,
           message: "Login successful",
           token: 'Bearer ' + token
