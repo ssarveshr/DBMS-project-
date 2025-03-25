@@ -1,10 +1,9 @@
 import express from "express";
 import cors from "cors";
-import { PORT } from "./config.js";
-import connectDB from "./serverRoutes/mongo_connect.js";
+import { PORT, MongoDB } from "./config.js";
 import authRoutes from "./serverRoutes/authRoutes.js";
+import mongoose from "mongoose";
 
-connectDB(); // Connect to MongoDB
 
 const app = express();
 
@@ -13,6 +12,17 @@ app.use(cors());
 
 app.use("/api/auth", authRoutes); // Use authentication routes
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+
+mongoose.connect(MongoDB).then(() => {
+	try {
+		console.log(` MongoDB connected succefully `),
+  		app.listen(PORT, () => {
+    	console.log(`🚀 Server running on port ${PORT}`);
+  })
+	} catch (error) {
+		console.log(error)
+	}
+})
+
+
+
