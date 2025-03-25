@@ -6,7 +6,7 @@ import { JWT_SECRET } from "../config.js";
 
 const router = express.Router();
 
-// ✅ SIGNUP Route
+// ✅ SIGNUP Route page to create a Account
 router.post("/signup", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -16,13 +16,21 @@ router.post("/signup", async (req, res) => {
     if (user) return res.status(400).json({ message: "User already exists" });
 
     // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create new user
+    const hashedPassword = await bcrypt.hash(password, 10)
+    if (hashedPassword == password) {
+      return res.status(400).send({
+        message: 'not created succussfully'
+      })
+    }
     user = new User({ email, password: hashedPassword });
     await user.save();
 
     res.status(201).json({ message: "User registered successfully" });
+    return res.status(200).send({
+      message: 'created succussfully'
+    })
+    // Create new user
+
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -39,12 +47,25 @@ router.post("/login", async (req, res) => {
 
     // Compare hashed passwords
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid email or password" });
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    } else {
+      const PayLoad = {
+        User_id: user._id,
+        User_email: user.email,
+        User_password: user.password
+      }
+      const token = jwt.sign(PayLoad, JWT_SECRET, { expiresIn: "1h" });
+      if (token) {
+        return res.status(200).send({
+          success: true,
+          message: "Login successful",
+          token: 'Bearer ' + token
+        })
+      }
+    }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1h" });
-
-    res.json({ message: "Login successful", token });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
