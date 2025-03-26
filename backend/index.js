@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/auth", Studentrouter); // Use authentication routes
+app.use("/api/auth/student", Studentrouter); // Use authentication routes
 
 
 mongoose.connect(MongoDB).then(() => {
