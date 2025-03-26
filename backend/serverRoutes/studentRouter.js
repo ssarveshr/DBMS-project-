@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import { JWT_SECRET } from "../config.js";
 
+
 const Studentrouter = express.Router()
 
 // ✅ SIGNUP Route page to create a Account
@@ -52,7 +53,7 @@ Studentrouter.post("/signup", async (req, res) => {
 
 // ✅ LOGIN Route page for Student Loging 
 // email password 
-Studentrouter.post("/login/Student", async (req, res) => {
+Studentrouter.post("/login", async (req, res) => {
 	try {
 		const { email, password } = req.body;
 
@@ -79,7 +80,6 @@ Studentrouter.post("/login/Student", async (req, res) => {
 				})
 			}
 		}
-
 		// Generate JWT token
 	} catch (error) {
 		res.status(500).json({ error: "Internal Server Error" });

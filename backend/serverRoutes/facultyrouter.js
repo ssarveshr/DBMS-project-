@@ -1,19 +1,57 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import Faculty from "../models/faculty.js";
 import { JWT_SECRET } from "../config.js";
 
-const router = express.Router();
+const Facultyrouter = express.Router();
+
+Facultyrouter.post("/signup", async (req, res) => {
+	const Data = req.body
+	try {
+		console.log(Data.email)
+		const Exist_user = await User.findOne({ email: Data.email })
+		console.log(Exist_user)
+		if (Exist_user) {
+			return res.status(400).send({
+				message: 'User already Exists'
+			})
+		}
+
+		console.log(Data.password)
+		const NewUser = await User.create({
+			name: Data.name,
+      department: Data.department,
+			email: Data.email,
+			password: Data.password
+		})
+
+		const HashPassword = await bcrypt.hash(Data.password, 10)
+
+		if (HashPassword) {
+			NewUser.password = HashPassword
+			NewUser.save()
+			console.log(NewUser.password)
+			return res.status(201).send({
+				message: 'User successfully created'
+			})
+		}
+	} catch (error) {
+		return res.status(500).send({
+			message: "Internal Server Error"
+		});
+	}
+});
+
 
 // ✅ LOGIN Route page for Faculty Loging 
 // email password 
-router.post("/login/Faculty", async (req, res) => {
+Facultyrouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
     // Check if user exists
-    const user = await User.findOne({ email });
+    const user = await Faculty.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid email or password" });
 
     // Compare hashed passwords
@@ -44,7 +82,7 @@ router.post("/login/Faculty", async (req, res) => {
 
 
 // ✅ FORGOT PASSWORD Route (Placeholder)
-router.post("/forgot-password", async (req, res) => {
+Facultyrouter.post("/forgot-password", async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
@@ -63,4 +101,4 @@ router.post("/forgot-password", async (req, res) => {
 //     res.json({ message: `Received: Name=${req.body.name}, Email=${req.body.email}` });
 //   });
 
-export default router;
+export default Facultyrouter;

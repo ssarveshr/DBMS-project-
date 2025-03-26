@@ -1,40 +1,48 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import Organizer from "../models/organizer.js";
 import { JWT_SECRET } from "../config.js";
 
-const router = express.Router();
+const OrganizerRouter = express.Router();
 
 // ✅ SIGNUP Route page to create a Account
-router.post("/signup", async (req, res) => {
+OrganizerRouter.post("/signup", async (req, res) => {
+  const Data = req.body
   try {
-    const { name, email, password } = req.body;
-
-    // Check if user already exists
-    let user = await User.findOne({ email });
-    if (user) return res.status(400).json({ message: "User already exists" });
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10)
-    if (hashedPassword == password) {
+    console.log(Data.email)
+    const Exist_user = await Organizer.findOne({ email: Data.email })
+    console.log(Exist_user)
+    if (Exist_user) {
       return res.status(400).send({
-        message: 'not created succussfully'
+        message: 'User already Exists'
       })
     }
-    user = new User({ name,email, password: hashedPassword });
-    await user.save();
 
-    res.status(201).json({ message: "User registered successfully" });
-    return res.status(200).send({
-      message: 'created succussfully'
+    console.log(Data.password)
+    const NewUser = await Organizer.create({
+      name: Data.name,
+      email: Data.email,
+      password: Data.password
     })
-    // Create new user
 
+    const HashPassword = await bcrypt.hash(Data.password, 10)
+
+    if (HashPassword) {
+      NewUser.password = HashPassword
+      NewUser.save()
+      console.log(NewUser.password)
+      return res.status(201).send({
+        message: 'User successfully created'
+      })
+    }
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
+    return res.status(500).send({
+      message: "Internal Server Error"
+    });
   }
 });
+
 
 // ✅ LOGIN Route page for Student Loging 
 // email password 
@@ -42,12 +50,12 @@ router.post("/signup", async (req, res) => {
 
 // ✅ LOGIN Route page for organiser Loging 
 // email password 
-router.post("/login/organiser", async (req, res) => {
+OrganizerRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
     // Check if user exists
-    const user = await User.findOne({ email });
+    const user = await Organizer.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid email or password" });
 
     // Compare hashed passwords
@@ -77,7 +85,7 @@ router.post("/login/organiser", async (req, res) => {
 });
 
 // ✅ FORGOT PASSWORD Route (Placeholder)
-router.post("/forgot-password", async (req, res) => {
+OrganizerRouter.post("/forgot-password", async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
@@ -96,4 +104,4 @@ router.post("/forgot-password", async (req, res) => {
 //     res.json({ message: `Received: Name=${req.body.name}, Email=${req.body.email}` });
 //   });
 
-export default router;
+export default OrganizerRouter;
