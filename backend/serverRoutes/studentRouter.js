@@ -106,4 +106,8 @@ Studentrouter.post("/forgot-password", async (req, res) => {
 //     res.json({ message: `Received: Name=${req.body.name}, Email=${req.body.email}` });
 //   });
 
+// Post request to access Student Dashboard 
+// private router
+Studentrouter.post
+
 export default Studentrouter;
