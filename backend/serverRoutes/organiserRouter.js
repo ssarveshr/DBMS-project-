@@ -42,12 +42,6 @@ OrganizerRouter.post("/signup", async (req, res) => {
     });
   }
 });
-
-
-// ✅ LOGIN Route page for Student Loging 
-// email password 
-
-
 // ✅ LOGIN Route page for organiser Loging 
 // email password 
 OrganizerRouter.post("/login", async (req, res) => {
