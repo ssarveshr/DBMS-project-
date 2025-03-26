@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import { PORT, MongoDB } from "./config.js";
-import authRoutes from "./serverRoutes/authRoutes.js";
 import mongoose from "mongoose";
+import Studentrouter from "./serverRoutes/studentRoutes.js";
 
 
 const app = express();
@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/auth", authRoutes); // Use authentication routes
+app.use("/api/auth", Studentrouter); // Use authentication routes
 
 
 mongoose.connect(MongoDB).then(() => {

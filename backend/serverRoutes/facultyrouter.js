@@ -6,36 +6,6 @@ import { JWT_SECRET } from "../config.js";
 
 const router = express.Router();
 
-// ✅ SIGNUP Route page to create a Account
-router.post("/signup", async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-
-    // Check if user already exists
-    let user = await User.findOne({ email });
-    if (user) return res.status(400).json({ message: "User already exists" });
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10)
-    if (hashedPassword == password) {
-      return res.status(400).send({
-        message: 'not created succussfully'
-      })
-    }
-    user = new User({ email, password: hashedPassword });
-    await user.save();
-
-    res.status(201).json({ message: "User registered successfully" });
-    return res.status(200).send({
-      message: 'created succussfully'
-    })
-    // Create new user
-
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
 // ✅ LOGIN Route page for Faculty Loging 
 // email password 
 router.post("/login/Faculty", async (req, res) => {
