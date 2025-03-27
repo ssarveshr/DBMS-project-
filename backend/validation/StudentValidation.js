@@ -1,6 +1,5 @@
-import { isEmpty } from './isEmpty'
-import validator from './StudentValidation'
-
+import { isEmpty } from './isEmpty.js'
+import validator from  'validator'
 
 const ValidateStudentData = (DATA) => {
     const errors = {}
@@ -9,20 +8,20 @@ const ValidateStudentData = (DATA) => {
     DATA.email = !isEmpty(DATA.email) ? DATA.email :''
     DATA.password = !isEmpty(DATA.password) ? DATA.password :''
 
+    if(!validator.isEmail(DATA.email)){
+        errors.email2 = 'Enter an valid email ID '
+    }
+    if(!validator.isLength(DATA.password,{min : 2 , max : 15})){
+        errors.password = 'Password must be between 2 and 15 only'
+    }
     if(validator.isEmpty(DATA.name)){
         errors.name = 'Name field is required'
     }
     if(validator.isEmpty(DATA.email)){
-        errors.email = 'Email field is required'
+        errors.email1 = 'Email field is required'
     }
     if(validator.isEmpty(DATA.password)){
-        errors.email = 'Password field is required'
-    }
-    if(validator.isLength(DATA.password,{min : 2 , max : 15})){
-        errors.password = 'Password must be between 2 and 15 only'
-    }
-    if(validator.isEmail(DATA.email)){
-        errors.email = 'Enter an valid email ID '
+        errors.password = 'Password field is required'
     }
 
     return {

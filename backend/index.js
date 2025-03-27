@@ -5,10 +5,11 @@ import mongoose from "mongoose";
 import Studentrouter from "./serverRoutes/studentRouter.js";
 import Facultyrouter from "./serverRoutes/facultyRouter.js";
 import OrganizerRouter from "./serverRoutes/organiserRouter.js";
+import passport from "passport";
 
-
+import authMiddleware from "./middleware/authMiddleware.js";
 const app = express();
-
+authMiddleware(passport)
 app.use(express.json());
 app.use(cors());
 

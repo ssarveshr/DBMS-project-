@@ -3,64 +3,98 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import { JWT_SECRET } from "../config.js";
+import passport, { Passport } from "passport";
+import ValidateStudentData from '../validation/StudentValidation.js'
+// I have added Token for sign up also cause it give UX to not make user to enter the login credentials after signup 
 
 
 const Studentrouter = express.Router()
 
 // ✅ SIGNUP Route page to create a Account
+//* JWT-Auth
+//!public
 Studentrouter.post("/signup", async (req, res) => {
+	const { errors, isValid } = ValidateStudentData(req.body)
+	
 	const Data = req.body
 	try {
+		
+		if (!isValid) {
+			return res.status(400).send(errors)
+		}
 		console.log(Data.email)
 		const Exist_user = await User.findOne({ email: Data.email })
 		console.log(Exist_user)
 		if (Exist_user) {
-			return res.status(400).send({
-				message: 'User already Exists'
-			})
+			errors.noUser = 'User already Exists'
+			return res.status(400).send(errors)
 		}
-
+		const Exist_Name = await User.findOne({ name: Data.name })
+		console.log(Exist_Name)
+		if (Exist_Name) {
+			errors.NameExist = 'username is aleardy exists'
+			return res.status(400).send(errors)
+		}
 		console.log(Data.password)
-		// const Exist_password = await User.findOne({ password: Data.password })
-		// console.log(Exist_password)
-		// if (Exist_password) {
-		// 	return res.status(400).send({
-		// 		message: 'Password already exists'
-		// 	})
-		// }
 		const NewUser = await User.create({
 			name: Data.name,
 			email: Data.email,
 			password: Data.password
 		})
-
+		
 		const HashPassword = await bcrypt.hash(Data.password, 10)
-
+		
 		if (HashPassword) {
 			NewUser.password = HashPassword
 			NewUser.save()
 			console.log(NewUser.password)
-			return res.status(201).send({
-				message: 'User successfully created'
-			})
+			const PayLoad = {
+				User_id: NewUser._id,
+				User_email: NewUser.email,
+				User_password: NewUser.password
+			}
+			const Token = jwt.sign(PayLoad , JWT_SECRET , {expiresIn : '1h'})
+			res.cookie('authToken', Token);
+			if(Token){
+				return res.status(201).send({
+					success : true,
+					message : 'signin successfull',
+					Token : 'Bearer ' + Token
+				})
+			}
+
 		}
 	} catch (error) {
-		return res.status(500).send({
-			message: "Internal Server Error"
-		});
+		console.log(error)
+		errors.InternalServerIssue = "Internal Server Error"
+		return res.status(500).send(errors);
 	}
 });
 
+
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+
+
 // ✅ LOGIN Route page for Student Loging 
+//* JWT-Auth
+//!public
 // email password 
 Studentrouter.post("/login", async (req, res) => {
+	const { errors, isValid } = ValidateStudentData(req.body)
 	try {
+		if (!isValid) {
+			return res.status(400).send(errors)
+		}
 		const { email, password } = req.body;
-
+		
 		// Check if user exists
 		const user = await User.findOne({ email: email });
 		if (!user) return res.status(400).json({ message: "Invalid email or password" });
-
+		
 		// Compare hashed passwords
 		const isMatch = await bcrypt.compare(password, user.password);
 		if (!isMatch) {
@@ -86,7 +120,15 @@ Studentrouter.post("/login", async (req, res) => {
 	}
 });
 
-// ✅ FORGOT PASSWORD Route (Placeholder)
+
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+
+
+// ✅ FORGOT PASSWORD Route (Placeholder) //!UnderDev
 Studentrouter.post("/forgot-password", async (req, res) => {
 	try {
 		const { email } = req.body;
@@ -101,13 +143,27 @@ Studentrouter.post("/forgot-password", async (req, res) => {
 	}
 });
 
-// Studentrouter.post("/test", (req, res) => {
-//     console.log(req.body);  // Debugging
-//     res.json({ message: `Received: Name=${req.body.name}, Email=${req.body.email}` });
-//   });
+
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+//*-------------------------------------------------------------------------------------------------
+
 
 // Post request to access Student Dashboard 
-// private router
-Studentrouter.post
+//! private router
+Studentrouter.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+	try {
+		// res.cookie({
+		// 	NAME : 'samudra',
+		// 	JOB : 'Full Stack dev'
+		// })
+		return res.status(200).send(req.user)
+
+	} catch (error) {
+		console.log(error)
+	}
+})
 
 export default Studentrouter;
