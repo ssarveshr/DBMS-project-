@@ -253,15 +253,14 @@ const LoginPage = () => {
     <div style={{width: 1.72, height: 21.07, left: 377.29, top: 672.19, position: 'absolute', transform: 'rotate(-87deg)', transformOrigin: 'top left', background: '#263238'}} />
     <div style={{width: 32.65, height: 0.51, left: 370.41, top: 681.49, position: 'absolute', background: '#263238'}} />
     <div style={{width: 32.88, height: 0.67, left: 370.57, top: 682.93, position: 'absolute', background: '#263238'}} />
-    <div style={{left: 857, top: 351, position: 'absolute'}}><span style="color: 'white', fontSize: 48, fontFamily: 'Inter', fontWeight: '700', lineHeight: 34, wordWrap: 'break-word'">Login<br/></span><span style="color: 'white', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', lineHeight: 34, wordWrap: 'break-word'">Enter your account details</span></div>
-    <div style={{width: 498, left: 221, top: 281, position: 'absolute'}}><span style="color: 'white', fontSize: 64, fontFamily: 'Inter', fontWeight: '700', lineHeight: 58, wordWrap: 'break-word', textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'">Welcome to<br/></span><span style="color: 'white', fontSize: 49, fontFamily: 'Inter', fontWeight: '400', lineHeight: 58, letterSpacing: 0.98, wordWrap: 'break-word', textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'">student portal</span></div>
+    <div style={{left: 857, top: 351, position: 'absolute'}}><span style={{color: 'white', fontSize: 48, fontFamily: 'Inter', fontWeight: '700', lineHeight: 34, wordWrap: 'break-word'}}>Login<br/></span><span style={{color: 'white', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', lineHeight: 34, wordWrap: 'break-word'}}>Enter your account details</span></div>
+    <div style={{width: 498, left: 221, top: 281, position: 'absolute'}}><span style={{color: 'white', fontSize: 64, fontFamily: 'Inter', fontWeight: '700', lineHeight: 58, wordWrap: 'break-word', textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'}}>Welcome to<br/></span><span style={{color: 'white', fontSize: 49, fontFamily: 'Inter', fontWeight: '400', lineHeight: 58, letterSpacing: 0.98, wordWrap: 'break-word', textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'}}>student portal</span></div>
     <div style={{width: 353.01, height: 0, left: 857, top: 528, position: 'absolute', outline: '1px white solid', outlineOffset: '-0.50px'}}></div>
     <div style={{width: 353.01, height: 0, left: 857, top: 607, position: 'absolute', outline: '1px white solid', outlineOffset: '-0.50px'}}></div>
     <div style={{left: 857, top: 490, position: 'absolute', color: 'white', fontSize: 17, fontFamily: 'Roboto', fontWeight: '300', lineHeight: 34, wordWrap: 'break-word'}}>Username</div>
-    <div style={{width: 317, height: 43, left: 883, top: 712, position: 'absolute', background: '#B9A5FF', borderRadius: 10}} />
+    <div style={{width: 317, height: 43, left: 883, top: 712, position: 'absolute', background: '#B9A5FF', borderRadius: 10}} >1</div>
     <div style={{left: 1018, top: 717, position: 'absolute', color: 'white', fontSize: 20, fontFamily: 'Inter', fontWeight: '700', lineHeight: 34, wordWrap: 'break-word'}}>Login</div>
         </div>
     );
 };
-
 export default LoginPage;
