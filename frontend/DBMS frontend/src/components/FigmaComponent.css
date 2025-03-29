@@ -1,22 +1,80 @@
 .login-container {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
+    flex-direction: column;  
     align-items: center;
-    text-align: center;
+    text-align: end;
     background-color: #1a1a1a; /* Dark background */
     padding: 50px;
     border-radius: 10px;
-    width: 400px;
+    width: 100%;
+    height:70vh;
     margin: auto;
+    background: rgba(185, 165, 255, 0.19);
   }
+.black-box{
+    width: 1253px;
+    align-items: center;
+    flex-direction:column;
+    height:782px;
+    border-radius: 25px;
+    /* flex-shrink: 1; */
+    background: #121212;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.login-right{
+    width: 449px;
+    height: 667px;
+    justify-content: end;
+    flex-shrink: 0;
+    align-self: center;
+    vertical-align:center;
+    border-radius: 23px;
+    background: #2D2020;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+.purple-box{
+    width: 651px;
+    height: 667px;
+    /* flex-shrink: 1; */
+    border-radius: 23px;
+    background: #9B80FF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.fig1{
+    width: 218.198px;
+height: 179px;
+transform: rotate(165.836deg);
+/* flex-shrink: 0; */
+fill: #B9A5FF;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
   
   .welcome-text {
-    color: white;
+    width: 498px;
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Inter;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 58px; /* 90.625% */
+    letter-spacing: -3.2px;
+    /* color: white;
     font-size: 64px;
     font-family: "Inter", sans-serif;
     font-weight: 700;
     line-height: 58px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  }
+  .portalname {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 49px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: 0.98px;
   }
   
   .student-portal {
@@ -26,19 +84,21 @@
   }
   
   .login-title {
-    color: white;
+    color: #FFF;
+    font-family: Inter;
     font-size: 48px;
-    font-family: "Inter", sans-serif;
+    font-style: normal;
     font-weight: 700;
-    line-height: 34px;
+    line-height: 34px; /* 70.833% */
   }
   
   .subtitle {
-    color: white;
+    color: #FFF;
+    font-family: Inter;
     font-size: 20px;
-    font-family: "Inter", sans-serif;
+    font-style: normal;
     font-weight: 400;
-    line-height: 34px;
+    line-height: 34px;  
   }
   
   .label {
@@ -56,8 +116,9 @@
     padding: 10px;
     margin-top: 5px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #020101;
     border-radius: 5px;
+    display: block;
   }
   
   .forgot-password {
