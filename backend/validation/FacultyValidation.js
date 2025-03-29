@@ -15,7 +15,7 @@ const ValidateStudentData = (DATA) => {
     if(!validator.isLength(DATA.password,{min : 2 , max : 15})){
         errors.password = 'Password must be between 2 and 15 only'
     }
-    if(!validator.isLength(DATA.department,{min : 3 , max : 3})){
+    if(!validator.isLength(DATA.department,{min : 3 , max : 4})){
         errors.department = 'Department code must be 3 characters long'
     }
     if(validator.isEmpty(DATA.name)){

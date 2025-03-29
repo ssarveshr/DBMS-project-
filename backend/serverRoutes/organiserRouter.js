@@ -65,8 +65,11 @@ OrganizerRouter.post("/signup", async (req, res) => {
 // email password 
 OrganizerRouter.post("/login", async (req, res) => {
   try {
+		const { errors, isValid } = ValidateOrganizerData(req.body)
     const { email, password } = req.body;
-
+		if (!isValid) {
+			return res.status(400).send(errors)
+    }
     // Check if user exists
     const user = await Organizer.findOne({ email });
     if (!user) return res.status(400).json({ message: "Invalid email or password" });
