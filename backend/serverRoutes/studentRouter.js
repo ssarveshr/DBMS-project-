@@ -32,7 +32,7 @@ Studentrouter.post("/signup", async (req, res) => {
 		const Exist_Name = await User.findOne({ name: Data.name })
 		console.log(Exist_Name)
 		if (Exist_Name) {
-			errors.NameExist = 'username is aleardy exists'
+			errors.NameExist = 'username is already exists'
 			return res.status(400).send(errors)
 		}
 		console.log(Data.password)
