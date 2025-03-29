@@ -1,0 +1,90 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #1a1a1a; /* Dark background */
+    padding: 50px;
+    border-radius: 10px;
+    width: 400px;
+    margin: auto;
+  }
+  
+  .welcome-text {
+    color: white;
+    font-size: 64px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    line-height: 58px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .student-portal {
+    font-size: 49px;
+    font-weight: 400;
+    letter-spacing: 0.98px;
+  }
+  
+  .login-title {
+    color: white;
+    font-size: 48px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    line-height: 34px;
+  }
+  
+  .subtitle {
+    color: white;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    line-height: 34px;
+  }
+  
+  .label {
+    color: white;
+    font-size: 17px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    line-height: 34px;
+    display: block;
+    margin-top: 20px;
+  }
+  
+  .input-field {
+    width: 80%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .forgot-password {
+    color: white;
+    font-size: 17px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    line-height: 34px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .login-button {
+    background-color: #646cff;
+    color: white;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    line-height: 34px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .login-button:hover {
+    background-color: #4a50b7;
+  }
+  
