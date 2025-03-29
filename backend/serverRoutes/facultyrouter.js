@@ -3,14 +3,22 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Faculty from "../models/faculty.js";
 import { JWT_SECRET } from "../config.js";
+import passport, { Passport } from "passport";
+import ValidateFacultyData from '../validation/FacultyValidation.js'
 
 const Facultyrouter = express.Router();
 
 Facultyrouter.post("/signup", async (req, res) => {
+  const { errors, isValid } = ValidateFacultyData(req.body)
+
 	const Data = req.body
 	try {
+
+    if (!isValid) {
+			return res.status(400).send(errors)
+    }
 		console.log(Data.email)
-		const Exist_user = await User.findOne({ email: Data.email })
+		const Exist_user = await Faculty.findOne({ email: Data.email })
 		console.log(Exist_user)
 		if (Exist_user) {
 			return res.status(400).send({
@@ -19,23 +27,38 @@ Facultyrouter.post("/signup", async (req, res) => {
 		}
 
 		console.log(Data.password)
-		const NewUser = await User.create({
+		
+      const NewUser = await Faculty.create({
 			name: Data.name,
       department: Data.department,
 			email: Data.email,
 			password: Data.password
 		})
-
+  
+    
 		const HashPassword = await bcrypt.hash(Data.password, 10)
+  
+    
 
 		if (HashPassword) {
 			NewUser.password = HashPassword
 			NewUser.save()
 			console.log(NewUser.password)
-			return res.status(201).send({
-				message: 'User successfully created'
-			})
-		}
+      const PayLoad = {
+				User_id: NewUser._id,
+				User_email: NewUser.email,
+				User_password: NewUser.password
+      }
+      const Token = jwt.sign(PayLoad , JWT_SECRET , {expiresIn : '1h'})
+      res.cookie('authToken', Token);
+      if(Token){
+        return res.status(201).send({
+          success : true,
+          message : 'signin successfull',
+          Token : 'Bearer ' + Token
+        })
+      }
+    }
 	} catch (error) {
 		return res.status(500).send({
 			message: "Internal Server Error"
