@@ -1,0 +1,232 @@
+.inputField {
+    width: 90%;
+    background-color: #2D2020;
+    padding: 10px;
+    color: #fff;
+    margin: 10px 0;
+    margin-left: 10px;
+    border: 1px solid #fffcfc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+.label {
+    font-size: 20.7px; 
+    font-family:'Roboto', sans-serif ;
+    padding-left: 10px;
+    font-weight: normal;
+    letter-spacing:1px;
+    line-height: 1.2px;
+}
+.black {
+    position: absolute;
+    top: calc(50% - 391px);
+    left: calc(50% - 626px);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    background-color: #121212;
+    width: 1253px;
+    height: 782px;
+}
+.loginPageChild {
+    position: absolute;
+    top: 50px;
+    left: 37px;
+    justify-content:start;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 23px;
+    background-color: #9b80ff;
+    width: 651px;
+    height: 667px;
+}
+.unionIcon {
+    position: absolute;
+    border-radius: 45px;
+    width: 300px;
+    height: 200px;
+    left:10px;
+    top:51px;
+    z-index: 1;
+    display: block;
+}
+.unionIcon1 {
+    border-radius: 89px;
+    position:absolute;
+    width: 300px;
+    height: 500px;
+    display:block;
+    object-fit: contain;
+    float: right;
+    top: -66px;
+    left:386.5px;
+    z-index: 1;
+}
+.unionIcon2 {
+    border-radius: 45px;
+    z-index: 1;
+    position:absolute;
+    width: 300px;
+    height: 500px;
+    left:40px;
+    transform: translateY(305px);
+    object-fit: contain;
+    float: left;
+}
+.loginBox {
+    position: absolute;
+    top: 50px;
+    left: 717px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+    border-radius: 23px;
+    background-color: #2d2020;
+    width: 449px;
+    height: 667px;
+}
+.password {
+    position: absolute;
+    top: 570px;
+    left: 7px;
+    line-height: 34px;
+    font-weight: 300;
+}
+.forgotPassword {
+    position: absolute;
+    top: 613px;
+    left: 857px;
+    line-height: 34px;
+    font-weight: 300;
+}
+.loginPageItem {
+    position: absolute;
+    height: 38.15%;
+    width: 31.87%;
+    top: 4.34%;
+    right: 100.98%;
+    bottom: 17.51%;
+    left: 17.15%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.login {
+    margin: 0;
+    font-family: 'Inter';
+    line-height: normal;
+    font-weight: normal;
+    padding-left: 10px;
+    margin-top: -60px;
+}
+.enterYourAccount {
+    margin: 0;
+    font-size: 20px;
+    font-family: 'Inter';
+    padding-left: 10px;
+    letter-spacing: 1.1px;
+    font-weight: normal;
+    line-height: normal;
+}
+.loginEnterYourContainer {
+    position: absolute;
+    top: 180px;
+    left: 7px;
+    justify-content: end;
+    line-height: 34px;
+    font-size: 48px;
+    font-family: Inter;
+}
+.welcomeTo1 {
+    letter-spacing: -0.02em;
+    position: absolute;
+    left: 54px;
+    top:60px;
+}
+.studentPortal {
+    margin: 0;
+    position:absolute;
+    left: 64px;
+    top: 119px;
+    font-size: 49px;
+    letter-spacing: 0.02em;
+}
+.welcomeToStudentContainer {
+    position: relative;
+    z-index: 1000;
+    top: 50px;
+    line-height: 58px;
+    width: 498px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 64px;
+    font-family: Inter;
+}
+.loginPageInner {
+    position: absolute;
+    top: 08px;
+    left: 57px;
+    width: 300px;
+    height: 2px;
+    object-fit: contain;
+}
+.lineIcon {
+    position: absolute;
+    top: 607px;
+    left: 857px;
+    width: 353px;
+    height: 2px;
+    object-fit: contain;
+}
+.username {
+    position: absolute;
+    top: 490px;
+    padding-left:10px;
+    font-family: 'Inter';
+    left: 857px;
+    font-size: 10px;
+    line-height: 34px;
+    font-weight: 300;
+}
+.rectangleDiv {
+    position: absolute;
+    top: 012px;
+    left: 883px;
+    border-radius: 10px;
+    background-color: #b9a5ff;
+    width: 217px;
+    margin-left: 30px;
+    height: 43px;
+}
+.login1 {
+    position: absolute;
+    top: calc(50% + 205px);
+    right: 367px;
+    font-size: 20px;
+    line-height: 34px;
+    font-family: Inter;
+}
+.loginButton{
+width: 100%; /* Full width */
+  max-width: 233px; /* Optional: Set a max width */
+  padding: 12px 20px;
+  position: center;
+  background-color:  #b9a5ff; /* Blue color */
+  color: white;
+  margin-left: 90px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.loginPage {
+    width: 100%;
+    position: relative;
+    background-color: rgba(185, 165, 255, 0.19);
+    height: 1024px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 17px;
+    color: #fff;
+    font-family: Roboto;
+}
+
