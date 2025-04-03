@@ -92,10 +92,12 @@
 }
 .forgotPassword {
     position: absolute;
-    top: 613px;
-    left: 857px;
-    line-height: 34px;
-    font-weight: 300;
+    top: 293px;
+    left: 12.2px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.1px;
+    font-size: 17px;
+    font-weight: normal;
 }
 .loginPageItem {
     position: absolute;
