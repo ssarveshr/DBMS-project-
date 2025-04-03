@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./LoginPage.module.css";
+import { useNavigate, useParams } from 'react-router-dom'
+import axios from "axios";
+
 
 const LoginPage = () => {
+	const [name, setName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [Loading, setLoading] = useState(false)
+	// const Nav = useNavigate()
+	const HandlerFunction = () => {
+		const Data = {
+			name,
+			email,
+			password
+		}
+		console.log(Data)
+		setLoading(true)
+		axios
+		  .post(`http://localhost:5000/api/auth/Student/login` , Data)
+		  .then(res => {
+				console.log(res)
+				setLoading(false)
+		  })
+		  .catch(err => {
+			console.error(err)
+			setLoading(false) 
+		}
+	);
+	}
   return (
     <div className={styles.loginPage}>
       <div className={styles.black}>
@@ -22,7 +50,7 @@ const LoginPage = () => {
             />
           </p>
           <p>
-            {" "}
+            {Loading ? '' : ''}
             <img
               className={styles.unionIcon1}
               alt="Union Icon 1"
@@ -60,11 +88,20 @@ const LoginPage = () => {
             {/* <img className={styles.loginPageInner} alt="" src="Line 1.svg" />
         				<img className={styles.lineIcon} alt="" src="Line 2.svg" /> */}
             {/* <div className={styles.username}>Username</div> */}
-            <label className={styles.label}>Username</label>
+            <label className={styles.label}>Name</label>
             <input
-              type="username"
+              type="Name"
               className={styles.inputField}
-              placeholder="Enter your username"
+              placeholder="Enter your Name"
+			  onChange={(information) => { setName(information.target.value)}}
+            />
+
+            <label className={styles.label}>Email</label>
+            <input
+              type="Email"
+              className={styles.inputField}
+              placeholder="Enter your Email"
+			  onChange={(information) => { setEmail(information.target.value)}}
             />
             {/* <div className={styles.password}>Password</div> */}
             <label className={styles.label}>Password</label>
@@ -72,13 +109,14 @@ const LoginPage = () => {
               type="password"
               className={styles.inputField}
               placeholder="Enter your password"
+			  onChange={(information) => {setPassword(information.target.value)}}
             />
 
             {/* <div className={styles.rectangleDiv}/> */}
             <br />
             <br />
-            <button className={styles.loginButton}>Login</button>
-            <div className={styles.forgotPassword}>Forgot Password?</div>
+            <button className={styles.loginButton} onClick={HandlerFunction}>Login  inininini</button>
+            {/* <div className={styles.forgotPassword}><br></br>Forgot Password?</div> */}
           </div>
         </div>
       </div>
