@@ -3,8 +3,7 @@ import validator from  'validator'
 
 const ValidateStudentData = (DATA) => {
     const errors = {}
-
-    DATA.name = !isEmpty(DATA.name) ? DATA.name :''
+    
     DATA.email = !isEmpty(DATA.email) ? DATA.email :''
     DATA.password = !isEmpty(DATA.password) ? DATA.password :''
 
@@ -13,9 +12,6 @@ const ValidateStudentData = (DATA) => {
     }
     if(!validator.isLength(DATA.password,{min : 2 , max : 15})){
         errors.password = 'Password must be between 2 and 15 only'
-    }
-    if(validator.isEmpty(DATA.name)){
-        errors.name = 'Name field is required'
     }
     if(validator.isEmpty(DATA.email)){
         errors.email1 = 'Email field is required'

@@ -2,30 +2,29 @@ import React, { useState } from "react";
 import styles from "./LoginPage.module.css";
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from "axios";
+import Spinner from './Spinner.jsx'
 
 
 const LoginPage = () => {
-	const [name, setName] = useState('')
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
 	const [Loading, setLoading] = useState(false)
 	// const Nav = useNavigate()
 	const HandlerFunction = () => {
 		const Data = {
-			name,
 			email,
 			password
 		}
 		console.log(Data)
 		setLoading(true)
 		axios
-		  .post(`http://localhost:5000/api/auth/Student/login` , Data)
+      .post(`http://localhost:5000/api/auth/Student/login` , Data)
 		  .then(res => {
 				console.log(res)
 				setLoading(false)
 		  })
 		  .catch(err => {
-			console.error(err)
+			console.log(err)
 			setLoading(false) 
 		}
 	);
@@ -50,21 +49,21 @@ const LoginPage = () => {
             />
           </p>
           <p>
-            {Loading ? '' : ''}
             <img
               className={styles.unionIcon1}
               alt="Union Icon 1"
               src="/union-2.svg"
-            />
+              />
           </p>
           <p>
             <img
               className={styles.unionIcon2}
               alt="Union Icon 2"
               src="/union-3.svg"
-            />
+              />
           </p>
         </div>
+        {Loading ? <Spinner/>: ''}
         <div className={styles.loginBox}>
           {/* <div className={styles.password}>Password</div>
 				<label className={styles.label}>Password</label>
@@ -88,13 +87,6 @@ const LoginPage = () => {
             {/* <img className={styles.loginPageInner} alt="" src="Line 1.svg" />
         				<img className={styles.lineIcon} alt="" src="Line 2.svg" /> */}
             {/* <div className={styles.username}>Username</div> */}
-            <label className={styles.label}>Name</label>
-            <input
-              type="Name"
-              className={styles.inputField}
-              placeholder="Enter your Name"
-			  onChange={(information) => { setName(information.target.value)}}
-            />
 
             <label className={styles.label}>Email</label>
             <input
@@ -116,7 +108,7 @@ const LoginPage = () => {
             <br />
             <br />
             <button className={styles.loginButton} onClick={HandlerFunction}>Login  inininini</button>
-            {/* <div className={styles.forgotPassword}><br></br>Forgot Password?</div> */}
+            <div className={styles.forgotPassword}><br></br>Forgot Password?</div>
           </div>
         </div>
       </div>
