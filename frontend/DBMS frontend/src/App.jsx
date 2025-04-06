@@ -6,7 +6,6 @@ function App() {
   return (
     <>
       <div class = 'app'>
-        <h1>Welcome</h1>
         <LoginPage />
       </div>
     </>
