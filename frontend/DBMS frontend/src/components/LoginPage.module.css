@@ -19,11 +19,14 @@
   }
 .label {
     font-size: 20.7px; 
-    font-family:'Roboto', sans-serif ;
+    /* font-family:'Roboto', sans-serif ; */
+    font-family: 'Inter',sans-serif;
     padding-left: 10px;
+    font-size: 19.8px;
     font-weight: normal;
     letter-spacing:1px;
     line-height: 1.2px;
+    letter-spacing: 0.0001em;
 }
 .black {
     position: absolute;
@@ -110,7 +113,7 @@
 }
 .forgotPassword {
     position: absolute;
-    top: 279px;
+    top: 283px;
     left: 12.2px;
     font-family: 'Roboto', sans-serif;
     line-height: 1.1px;
@@ -142,7 +145,7 @@
     font-size: 20px;
     font-family: 'Inter';
     padding-left: 10px;
-    letter-spacing: 1.1px;
+    letter-spacing: 0.0001em;
     font-weight: normal;
     line-height: normal;
 }
@@ -156,7 +159,9 @@
     font-family: Inter;
 }
 .welcomeTo1 {
-    letter-spacing: -0.02em;
+    letter-spacing: 0.00001em;
+    font-family: "Inter",sans-serif;
+    font-size: 64px;
     position: absolute;
     left: 54px;
     top:60px;
@@ -164,10 +169,13 @@
 .studentPortal {
     margin: 0;
     position:absolute;
+    font-family: "Inter",sans-serif;
     left: 64px;
     top: 119px;
-    font-size: 49px;
-    letter-spacing: 0.02em;
+    line-height: 1.6;      
+  margin-bottom: 20px;
+    font-size: 42px;
+    letter-spacing: 0.0001em;
 }
 .welcomeToStudentContainer {
     position: relative;
@@ -178,7 +186,7 @@
     width: 498px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-size: 64px;
-    font-family: Inter;
+    font-family: 'Inter';
 }
 .loginPageInner {
     position: absolute;
@@ -222,7 +230,7 @@
     right: 367px;
     font-size: 20px;
     line-height: 34px;
-    font-family: Inter;
+    font-family: 'Inter',sans-serif;
 }
 .loginButton{
 width: 100%; /* Full width */
@@ -232,9 +240,10 @@ width: 100%; /* Full width */
   background-color:  #b9a5ff; /* Blue color */
   color: white;
   margin-left: 120px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   border: none;
+  font-family:'Inter',sans-serif;
   margin-top: 25px;
   border-radius: 10px;
   cursor: pointer;

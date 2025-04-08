@@ -111,7 +111,7 @@ const LoginPage = () => {
             {/* <div className={styles.rectangleDiv}/> */}
             <br />
             <br />
-            <button className={styles.loginButton} onClick={HandlerFunction}>Login  in</button>
+            <button className={styles.loginButton} onClick={HandlerFunction}>Login</button>
             <div className={styles.forgotPassword}><br></br>Forgot Password?</div>
           </div>
         </div>
