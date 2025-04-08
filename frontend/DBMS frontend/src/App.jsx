@@ -1,14 +1,15 @@
+import React from "react";
 import LoginPage from "./components/LoginPage.jsx";
-import FigmaComponent from "./components/FigmaComponent";
+import DashBoard from "./components/DashBoard.jsx";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <div class = 'app'>
-        <LoginPage />
-      </div>
-    </>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/dashboard" element={<DashBoard/>} />
+    </Routes>
   );
 }
 export default App;
