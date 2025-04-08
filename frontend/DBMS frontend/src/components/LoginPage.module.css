@@ -11,6 +11,12 @@
     outline: none;
     transition: border-color 0.3s ease;
   }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+  }
 .label {
     font-size: 20.7px; 
     font-family:'Roboto', sans-serif ;
@@ -21,24 +27,26 @@
 }
 .black {
     position: absolute;
-    top: calc(50% - 391px);
-    left: calc(50% - 626px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
     background-color: #121212;
-    width: 1253px;
-    height: 782px;
+    width: 90vw;
+    max-width: 1253px;
+    height: 684px;
 }
 .loginPageChild {
     position: absolute;
-    top: 50px;
+    top: 30px;
     left: 37px;
-    justify-content:start;
+    justify-content:center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 23px;
     background-color: #9b80ff;
     width: 651px;
-    height: 667px;
+    height: 627px;
 }
 .unionIcon {
     position: absolute;
@@ -47,6 +55,16 @@
     height: 200px;
     left:10px;
     top:51px;
+    z-index: 1;
+    display: block;
+}
+.student {
+    position: absolute;
+    border-radius: 45px;
+    width: 500px;
+    height: 900px;
+    left:110px;
+    top:-6px;
     z-index: 1;
     display: block;
 }
@@ -69,19 +87,19 @@
     width: 300px;
     height: 500px;
     left:40px;
-    transform: translateY(305px);
+    transform: translateY(245px);
     object-fit: contain;
     float: left;
 }
 .loginBox {
     position: absolute;
-    top: 50px;
+    top: 30px;
     left: 717px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
     border-radius: 23px;
     background-color: #2d2020;
-    width: 449px;
-    height: 667px;
+    width: 489px;
+    height: 627px;
 }
 .password {
     position: absolute;
@@ -92,7 +110,7 @@
 }
 .forgotPassword {
     position: absolute;
-    top: 293px;
+    top: 279px;
     left: 12.2px;
     font-family: 'Roboto', sans-serif;
     line-height: 1.1px;
@@ -154,7 +172,8 @@
 .welcomeToStudentContainer {
     position: relative;
     z-index: 1000;
-    top: 50px;
+    top: 60px;
+    left: -20px;
     line-height: 58px;
     width: 498px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -212,23 +231,28 @@ width: 100%; /* Full width */
   position: center;
   background-color:  #b9a5ff; /* Blue color */
   color: white;
-  margin-left: 90px;
+  margin-left: 120px;
   font-size: 16px;
   font-weight: bold;
   border: none;
+  margin-top: 25px;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .loginPage {
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     position: relative;
-    background-color: rgba(185, 165, 255, 0.19);
-    height: 1024px;
-    overflow: hidden;
+    background-color: rgba(185, 165, 255, 0.5);
+    /* transform: scale(1); */
+    overflow:hidden;
     text-align: left;
     font-size: 17px;
     color: #fff;
-    font-family: Roboto;
+    font-family: Roboto,sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 

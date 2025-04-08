@@ -62,6 +62,10 @@ const LoginPage = () => {
               src="/union-3.svg"
               />
           </p>
+          <img 
+            className={styles.student}
+            src="/studentplug.svg" 
+            alt="Student " />
         </div>
         {Loading ? <Spinner/>: ''}
         <div className={styles.loginBox}>
@@ -107,7 +111,7 @@ const LoginPage = () => {
             {/* <div className={styles.rectangleDiv}/> */}
             <br />
             <br />
-            <button className={styles.loginButton} onClick={HandlerFunction}>Login  inininini</button>
+            <button className={styles.loginButton} onClick={HandlerFunction}>Login  in</button>
             <div className={styles.forgotPassword}><br></br>Forgot Password?</div>
           </div>
         </div>
