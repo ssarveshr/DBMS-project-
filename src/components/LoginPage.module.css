@@ -1,22 +1,43 @@
+/* Updated styles for input fields (email, password, and login button) */
 .inputField {
-    width: 90%;
-    background-color: #2D2020;
-    padding: 10px;
-    color: #fff;
-    margin: 10px 0;
-    margin-left: 10px;
-    border: 1px solid #fffcfc;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* Prevent scrolling */
-  }
+  width: 85%;
+  background-color: rgba(255, 255, 255, 0.6); /* Light transparent background */
+  padding: 10px;
+  color: #333; /* Dark text for contrast */
+  margin: 10px 0;
+  margin-left: 10px;
+  border: 1px solid #00bfff; /* Blue border for the water theme */
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add a soft blue glow effect when focused */
+.inputField:focus {
+  border-color: #00bfff; /* Lighter blue border on focus */
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); /* Soft glowing effect */
+}
+
+/* Input field hover effect (gentle scale on hover) */
+.inputField:hover {
+  transform: scale(1.05); /* Slight grow effect on hover */
+}
+
+/* Styles for the body and html to ensure full-screen usage */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif; /* Ensure consistency */
+}
+
+
+
+
+
+/* imp This is for the name given: Email & Password */
 .label {
     font-size: 20.7px; 
     /* font-family:'Roboto', sans-serif ; */
@@ -28,98 +49,134 @@
     line-height: 1.2px;
     letter-spacing: 0.0001em;
 }
+
+/* imp it changes the background color of the entire page */
 .black {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, .25);
     border-radius: 25px;
-    background-color: #121212;
+    background-color: #ffffff;
     width: 90vw;
-    max-width: 1253px;
-    height: 684px;
+    max-width: 750px;
+    height: 400px;
 }
+
+/* imp Background of the welcome side div */
 .loginPageChild {
     position: absolute;
-    top: 30px;
-    left: 37px;
+    top: 0px;
+    left: 0px;
     justify-content:center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 23px;
-    background-color: #9b80ff;
-    width: 651px;
-    height: 627px;
+    background-color: #9B80FF;
+    background-color: #9B80FF;
+    width: 380px;
+    height: 400px;
 }
-.unionIcon {
-    position: absolute;
-    border-radius: 45px;
-    width: 300px;
-    height: 200px;
-    left:10px;
-    top:51px;
-    z-index: 1;
-    display: block;
-}
+
+
+/*imp This is for the image present in the login page */
 .student {
     position: absolute;
     border-radius: 45px;
-    width: 500px;
-    height: 900px;
-    left:110px;
-    top:-6px;
+    width: 280px;
+    height: 280px;
+    left: 40px;
+    top:140px;
     z-index: 1;
     display: block;
 }
+
+
+/* UnionIcon towards top left */
+.unionIcon {
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    left: -2px;
+    top: 15px;
+    z-index: 1;
+    display: block;
+}
+
+
+/* Union icon present in the right side */
 .unionIcon1 {
-    border-radius: 89px;
     position:absolute;
-    width: 300px;
-    height: 500px;
+    width: 150px;
+    height: 400px;
     display:block;
     object-fit: contain;
     float: right;
-    top: -66px;
-    left:386.5px;
+    top: -131px;
+    left:226px;
     z-index: 1;
 }
+
+
+/* UnionIcon present at the bottom */
 .unionIcon2 {
-    border-radius: 45px;
-    z-index: 1;
     position:absolute;
-    width: 300px;
-    height: 500px;
-    left:40px;
+    width: 230px;
+    height: 180px;
+    left: -10px;
+    top: -30px;
     transform: translateY(245px);
     object-fit: contain;
     float: left;
 }
+
+
+/* background for the Login side */
 .loginBox {
     position: absolute;
-    top: 30px;
-    left: 717px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+    top: 0px;
+    right: px;
+    left: 380px;
+    box-shadow: 0px 4px 4px rgba(252, 252, 252, 0.25) inset;
     border-radius: 23px;
-    background-color: #2d2020;
-    width: 489px;
-    height: 627px;
+    background-color: #ffffff;
+    width: 312px;
+    height: 400px;
 }
+
+
+/* For the password positioning */
 .password {
     position: absolute;
-    top: 570px;
+    top: 550px;
     left: 7px;
     line-height: 34px;
     font-weight: 300;
 }
+
+
+ /* For the Forgot Password positioning */
 .forgotPassword {
     position: absolute;
-    top: 283px;
+    color: #f7693e;
+    top: 182px;
     left: 12.2px;
     font-family: 'Roboto', sans-serif;
-    line-height: 1.1px;
+    line-height: 1.5;
     font-size: 17px;
     font-weight: normal;
+    text-shadow: 0px 4px 6px rgba(0, 191, 255, 0.3);
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
 }
+
+.forgotPassword:hover {
+    color: #ff7839;
+    transform: scale(1.05);
+}
+
+
+
 .loginPageItem {
     position: absolute;
     height: 38.15%;
@@ -132,14 +189,21 @@
     overflow: hidden;
     max-height: 100%;
 }
+
+
+/* It controlles the welcome to and login */
 .login {
     margin: 0;
-    font-family: 'Inter';
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
     line-height: normal;
     font-weight: normal;
     padding-left: 10px;
     margin-top: -60px;
 }
+
+
+/* This is to adjust the "Enter Your account details" */
 .enterYourAccount {
     margin: 0;
     font-size: 20px;
@@ -149,119 +213,172 @@
     font-weight: normal;
     line-height: normal;
 }
+
+
+/* Thsi controlles the "Login" alone */
 .loginEnterYourContainer {
     position: absolute;
-    top: 180px;
+    top: 100px;
     left: 7px;
     justify-content: end;
     line-height: 34px;
-    font-size: 48px;
+    font-size: 50px;
     font-family: Inter;
+    color: #9B80FF;
+    font-style: normal;
 }
+
+
+/* This is to maintain the "Welcome to" alone */
 .welcomeTo1 {
-    letter-spacing: 0.00001em;
-    font-family: "Inter",sans-serif;
-    font-size: 64px;
     position: absolute;
+    font-family: "Inter",sans-serif;
     left: 54px;
-    top:60px;
+    top: 0px;
+    font-size: 33px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    font-style: normal;
 }
+
+
+
+/* This is to maintain the "Student Portal" alone */
 .studentPortal {
-    margin: 0;
     position:absolute;
     font-family: "Inter",sans-serif;
-    left: 64px;
-    top: 119px;
+    left: 57px;
+    top: 10px;
     line-height: 1.6;      
-  margin-bottom: 20px;
-    font-size: 42px;
-    letter-spacing: 0.0001em;
+    margin-bottom: 20px;
+    font-size: 30px;
+    letter-spacing: .5px;
+    font-weight: 100;
 }
+
+
+
+
 .welcomeToStudentContainer {
-    position: relative;
+    position: absolute;
     z-index: 1000;
     top: 60px;
     left: -20px;
     line-height: 58px;
     width: 498px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 4px 4px rgba(244, 100, 10, 0.25);
     font-size: 64px;
     font-family: 'Inter';
 }
-.loginPageInner {
+
+
+/* Login button */
+.loginButton {
+    width: 50%;
+    max-width: 233px;
+    padding: 14px 24px;
+    margin-left: 120px;
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    background: linear-gradient(135deg, #7f00ff, #e100ff);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .loginButton::before {
+    content: '';
     position: absolute;
-    top: 08px;
-    left: 57px;
-    width: 300px;
-    height: 2px;
-    object-fit: contain;
-}
-.lineIcon {
-    position: absolute;
-    top: 607px;
-    left: 857px;
-    width: 353px;
-    height: 2px;
-    object-fit: contain;
-}
-.username {
-    position: absolute;
-    top: 490px;
-    padding-left:10px;
-    font-family: 'Inter';
-    left: 857px;
-    font-size: 10px;
-    line-height: 34px;
-    font-weight: 300;
-}
-.rectangleDiv {
-    position: absolute;
-    top: 012px;
-    left: 883px;
-    border-radius: 10px;
-    background-color: #b9a5ff;
-    width: 217px;
-    margin-left: 30px;
-    height: 43px;
-}
-.login1 {
-    position: absolute;
-    top: calc(50% + 205px);
-    right: 367px;
-    font-size: 20px;
-    line-height: 34px;
-    font-family: 'Inter',sans-serif;
-}
-.loginButton{
-width: 100%; /* Full width */
-  max-width: 233px; /* Optional: Set a max width */
-  padding: 12px 20px;
-  position: center;
-  background-color:  #b9a5ff; /* Blue color */
-  color: white;
-  margin-left: 120px;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  font-family:'Inter',sans-serif;
-  margin-top: 25px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-.loginPage {
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    animation: pulse 2s infinite;
+  }
+  
+  .loginButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.7);
+    background: linear-gradient(135deg, #a155f6, #f472b6);
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+
+
+/* Backgroud of whole page */
+    .loginPage {
     width: 100vw;
     height: 100vh;
     position: relative;
-    background-color: rgba(185, 165, 255, 0.5);
-    /* transform: scale(1); */
-    overflow:hidden;
-    text-align: left;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(255, 255, 255, 0.2));
+    overflow: hidden;
     font-size: 17px;
-    color: #fff;
-    font-family: Roboto,sans-serif;
+    color: #f1f1f1;
+    font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 20px rgba(124, 58, 237, 0.2);
+  
+    animation: backgroundGlow 10s ease infinite;
+  }
+  
+  @keyframes backgroundGlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
+  .loginPage::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 70%),
+                radial-gradient(circle at top right, rgba(255, 0, 255, 0.08), transparent 70%),
+                radial-gradient(circle at bottom left, rgba(0, 255, 255, 0.1), transparent 70%);
+    animation: floatLights 20s linear infinite;
+    z-index: 0;
+  }
+  
+  @keyframes floatLights {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(50px, -30px) rotate(180deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(360deg);
+    }
+  }
+  

@@ -86,8 +86,6 @@ const LoginPage = () => {
             <p className={styles.enterYourAccount}>
               Enter your account details
             </p>
-            <br />
-            <br />
             {/* <img className={styles.loginPageInner} alt="" src="Line 1.svg" />
         				<img className={styles.lineIcon} alt="" src="Line 2.svg" /> */}
             {/* <div className={styles.username}>Username</div> */}
@@ -109,10 +107,8 @@ const LoginPage = () => {
             />
 
             {/* <div className={styles.rectangleDiv}/> */}
-            <br />
-            <br />
-            <button className={styles.loginButton} onClick={HandlerFunction}>Login</button>
             <div className={styles.forgotPassword}><br></br>Forgot Password?</div>
+            <button className={styles.loginButton} onClick={HandlerFunction}>Login</button>
           </div>
         </div>
       </div>
