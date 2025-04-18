@@ -19,10 +19,6 @@
   box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); /* Soft glowing effect */
 }
 
-/* Input field hover effect (gentle scale on hover) */
-.inputField:hover {
-  transform: scale(1.05); /* Slight grow effect on hover */
-}
 
 /* Styles for the body and html to ensure full-screen usage */
 html, body {
@@ -274,52 +270,56 @@ html, body {
 
 /* Login button */
 .loginButton {
-    width: 50%;
-    max-width: 233px;
-    padding: 14px 24px;
-    margin-left: 120px;
-    margin-top: 25px;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: 'Inter', sans-serif;
-    color: #fff;
-    background: linear-gradient(135deg, #7f00ff, #e100ff);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.5);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+  position: relative; /* Added this */
+  width: 40%;
+  max-width: 120px;
+  height: 35px;
+  padding: 5px 24px;
+  margin-left: 95px;
+  margin-top: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.5);
+  transition: all 0.3s ease;
+  overflow: hidden; /* Prevent ::before from spilling outside */
+}
+
+.loginButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: pulse 2s infinite;
+  pointer-events: none; /* This ensures it doesn’t interfere with clicks */
+}
+
+.loginButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.7);
+  background: linear-gradient(135deg, #a155f6, #f472b6);
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
-  
-  .loginButton::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-    animation: pulse 2s infinite;
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
   }
-  
-  .loginButton:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.7);
-    background: linear-gradient(135deg, #a155f6, #f472b6);
-  }
-  
-  @keyframes pulse {
-    0% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(1.5);
-      opacity: 0;
-    }
-  }
+}
+
   
 
 
