@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 
 const DashBoard = () => {
-  const token = localStorage.getItem("userAuth");
+  const token = sessionStorage.getItem("userAuth");
 
   const HandlerFunction = (() => {
     axios

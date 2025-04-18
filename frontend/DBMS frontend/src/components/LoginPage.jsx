@@ -21,7 +21,7 @@ const LoginPage = () => {
       .then((res) => {
         // console.log(res.data.token); // see in browser console 
         const token = res.data.token; 
-        localStorage.setItem('userAuth' , token)
+        sessionStorage.setItem('userAuth' , token)
         // axios.defaults.headers.common['Authorization'] = `${token}`;
         setLoading(false);
         Nav('/dashboard') // Under develpoment 
