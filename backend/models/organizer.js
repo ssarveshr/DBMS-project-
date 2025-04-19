@@ -6,6 +6,11 @@ const OragnizerSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    Organiser_ID: {
+        type: String,
+        required: true,
+        unique: true
+    },
     email: {
         type: String,
         required: true,
