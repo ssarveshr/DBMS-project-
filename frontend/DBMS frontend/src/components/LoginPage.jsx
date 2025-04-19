@@ -5,30 +5,33 @@ import axios from "axios";
 import Spinner from "./Spinner.jsx";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [Loading, setLoading] = useState(false);
-  const [UserType, setUserType] = useState("");
-  // const Nav = useNavigate()
-  const HandlerFunction = () => {
-    const Data = {
-      email,
-      password,
-      UserType,
-    };
-    console.log(Data);
-    setLoading(true);
-    axios
-      .post(`http://localhost:5000/api/auth/Student/login`, Data)
-      .then((res) => {
-        console.log(res);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  };
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const [Loading, setLoading] = useState(false)
+  const [UserType, setUserType] = useState('');
+	// const Nav = useNavigate()
+	const HandlerFunction = () => {
+		const Data = {
+			email,
+			password,
+      UserType
+		}
+		console.log(Data)
+		setLoading(true)
+		axios
+      .post(`http://localhost:5000/api/auth/login` , Data)
+		  .then(res => {
+        const token = res.data.token; 
+        sessionStorage.setItem('userAuth' , token)
+				console.log(res)
+				setLoading(false)
+		  })
+		  .catch(err => {
+			console.log(err)
+			setLoading(false) 
+		}
+	);
+	}
   return (
     <div className={styles.loginPage}>
       <div className={styles.black}>
