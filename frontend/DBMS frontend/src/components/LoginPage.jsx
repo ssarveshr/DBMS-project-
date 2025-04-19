@@ -20,8 +20,10 @@ const LoginPage = () => {
 		console.log(Data)
 		setLoading(true)
 		axios
-      .post(`http://localhost:5000/api/auth/Student/login` , Data)
+      .post(`http://localhost:5000/api/auth/login` , Data)
 		  .then(res => {
+        const token = res.data.token; 
+        sessionStorage.setItem('userAuth' , token)
 				console.log(res)
 				setLoading(false)
 		  })
