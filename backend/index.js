@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import Studentrouter from "./serverRoutes/studentRouter.js";
 import Facultyrouter from "./serverRoutes/facultyrouter.js";
 import OrganizerRouter from "./serverRoutes/organiserRouter.js";
+import CommonRouter from "./serverRoutes/commonlogin.js";
 import passport from "passport";
 
 import authMiddleware from "./middleware/authMiddleware.js";
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/api/auth/Student", Studentrouter);
 app.use("/api/auth/Faculty", Facultyrouter);
 app.use("/api/auth/Organiser", OrganizerRouter); // Use authentication routes
+app.use("/api/auth", CommonRouter);
 
 
 mongoose.connect(MongoDB).then(() => {
