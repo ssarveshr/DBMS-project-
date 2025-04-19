@@ -3,13 +3,14 @@ import styles from "./LoginPage.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./Spinner.jsx";
+import { jwtDecode } from "jwt-decode";
 
 const LoginPage = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [Loading, setLoading] = useState(false)
   const [UserType, setUserType] = useState('');
-	// const Nav = useNavigate()
+	const Nav = useNavigate()
 	const HandlerFunction = () => {
 		const Data = {
 			email,
@@ -21,10 +22,17 @@ const LoginPage = () => {
 		axios
       .post(`http://localhost:5000/api/auth/login` , Data)
 		  .then(res => {
-        const token = res.data.token; 
-        sessionStorage.setItem('userAuth' , token)
-				console.log(res)
-				setLoading(false)
+        const token = res.data.token;
+        const payload= jwtDecode(token);
+        if(payload.User_id ==email && payload.User_password == password){
+          sessionStorage.setItem('userAuth' , token)
+          setLoading(false)
+          Nav('/dashboard')
+        }
+        else{
+          alert("Invalid Credentials")
+          setLoading(false)
+        }
 		  })
 		  .catch(err => {
 			console.log(err)
