@@ -8,5 +8,5 @@ export const email = {
     service: 'gmail', // or your email provider
     username: 'forprojectdbonly@gmail.com', // your email address
     password: 'ssrp@123', // for Gmail, use App Password if 2FA enabled
-    from: 'samudra' // sender email
+    from: 'fordbonly129@gmail.com' // sender email
   }
