@@ -9,7 +9,7 @@ const LoginPage = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [Loading, setLoading] = useState(false)
-  const [UserType, setUserType] = useState('');
+  const [UserType, setUserType] = useState("");
 	const Nav = useNavigate()
 	const HandlerFunction = () => {
 		const Data = {
@@ -133,6 +133,7 @@ const LoginPage = () => {
               value={UserType}
               onChange={(information) => setUserType(information.target.value)}
             >
+              <option value="" disabled hidden>Select your role</option>
               <option value="Student">Student</option>
               <option value="Faculty">Faculty</option>
               <option value="Organiser">Organiser</option>

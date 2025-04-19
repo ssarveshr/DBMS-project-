@@ -15,7 +15,7 @@ const CommonLoginRouter = express.Router()
 CommonLoginRouter.post('/login', async (req, res) => {
     const { email, password, UserType } = req.body
     try {
-        if (UserType === 'student') {
+        if (UserType === 'Student') {
             const { errors, isValid } = ValidateStudentData(req.body)
 
             try {
@@ -57,7 +57,7 @@ CommonLoginRouter.post('/login', async (req, res) => {
                 res.status(500).json({ error: "Internal Server Error" });
             }
         }
-        else if (UserType === 'faculty') {
+        else if (UserType === 'Faculty') {
 
             const { errors, isValid } = ValidateFacultyData(req.body)
 
@@ -97,7 +97,7 @@ CommonLoginRouter.post('/login', async (req, res) => {
             }
 
         }
-        else if (UserType === 'organizer' && UserType === 'organiser') {
+        else if (UserType === 'Organiser' && UserType === 'organiser') {
 
             const { errors, isValid } = ValidateOrganizerData(req.body)
 
