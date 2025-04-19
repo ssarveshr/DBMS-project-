@@ -24,7 +24,7 @@ const LoginPage = () => {
 		  .then(res => {
         const token = res.data.token;
         const payload= jwtDecode(token);
-        if(payload.User_id ==email && payload.User_password == password){
+        if(payload.User_email == email){
           sessionStorage.setItem('userAuth' , token)
           setLoading(false)
           Nav('/dashboard')
