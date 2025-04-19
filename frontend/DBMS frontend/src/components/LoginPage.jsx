@@ -9,11 +9,13 @@ const LoginPage = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [Loading, setLoading] = useState(false)
+  const [UserType, setUserType] = useState('');
 	// const Nav = useNavigate()
 	const HandlerFunction = () => {
 		const Data = {
 			email,
-			password
+			password,
+      UserType
 		}
 		console.log(Data)
 		setLoading(true)
@@ -107,6 +109,18 @@ const LoginPage = () => {
             />
 
             {/* <div className={styles.rectangleDiv}/> */}
+            <label className={styles.label} htmlFor="type">Choose a Role:</label>
+            <select
+              id="type"
+              name="Types"
+              className={styles.inputField}
+              value={UserType}
+              onChange={(information) => setUserType(information.target.value)}
+            >
+              <option value="Student">Student</option>
+              <option value="Faculty">Faculty</option>
+              <option value="Organiser">Organiser</option>
+            </select>
             <div className={styles.forgotPassword}><br></br>Forgot Password?</div>
             <button className={styles.loginButton} onClick={HandlerFunction}>Login</button>
           </div>
