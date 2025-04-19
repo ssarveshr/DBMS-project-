@@ -1,10 +1,15 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const DashBoard = () => {
   const token = sessionStorage.getItem("userAuth");
+  const [isview, setisview] = useState(false);
 
-  const HandlerFunction = (() => {
+  const UserAuthentication = (isview) => {
+    return setisview(!isview);
+  };
+  
+  useEffect(() => {
     axios
       .get("http://localhost:5000/api/auth/Student/current", {
         headers: {
@@ -12,16 +17,13 @@ const DashBoard = () => {
         },
       })
       .then((res) => {
+        setisview(true);
         console.log("Loged in as : ", res.data.name);
       })
       .catch((err) => console.error(err));
-  })();
-  
-  return (
-    <div>
-      This is the User DashBoard 
-    </div>
-  );
+  }, []);
+
+  return <div>This is the User DashBoard</div>;
 };
 
 export default DashBoard;

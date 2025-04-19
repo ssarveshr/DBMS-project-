@@ -15,10 +15,10 @@ const Studentrouter = express.Router()
 //!public
 Studentrouter.post("/signup", async (req, res) => {
 	const { errors, isValid } = ValidateStudentData(req.body)
-	
+
 	const Data = req.body
 	try {
-		
+
 		if (!isValid) {
 			return res.status(400).send(errors)
 		}
@@ -41,9 +41,9 @@ Studentrouter.post("/signup", async (req, res) => {
 			email: Data.email,
 			password: Data.password
 		})
-		
+
 		const HashPassword = await bcrypt.hash(Data.password, 10)
-		
+
 		if (HashPassword) {
 			NewUser.password = HashPassword
 			NewUser.save()
@@ -53,13 +53,12 @@ Studentrouter.post("/signup", async (req, res) => {
 				User_email: NewUser.email,
 				User_password: NewUser.password
 			}
-			const Token = jwt.sign(PayLoad , JWT_SECRET , {expiresIn : '1h'})
-			res.cookie('authToken', Token);
-			if(Token){
+			const Token = jwt.sign(PayLoad, JWT_SECRET, { expiresIn: '1h' })
+			if (Token) {
 				return res.status(201).send({
-					success : true,
-					message : 'signin successfull',
-					Token : 'Bearer ' + Token
+					success: true,
+					message: 'signin successfull',
+					Token: 'Bearer ' + Token
 				})
 			}
 
@@ -83,16 +82,17 @@ Studentrouter.post("/login", async (req, res) => {
 			return res.status(400).send(errors)
 		}
 		const { email, password } = req.body;
-		
+
 		// Check if user exists
 		const user = await User.findOne({ email: email });
 		if (!user) return res.status(400).json({ message: "Invalid email or password" });
-		
+
 		// Compare hashed passwords
 		const isMatch = await bcrypt.compare(password, user.password);
 		if (!isMatch) {
 			return res.status(400).json({ message: "Password incorrect" });
-		} else {
+		}
+		else {
 			const PayLoad = {
 				User_id: user._id,
 				User_email: user.email,

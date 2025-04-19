@@ -3,7 +3,7 @@ import cors from "cors";
 import { PORT, MongoDB } from "./config.js";
 import mongoose from "mongoose";
 import Studentrouter from "./serverRoutes/studentRouter.js";
-import Facultyrouter from "./serverRoutes/facultyRouter.js";
+import Facultyrouter from "./serverRoutes/facultyrouter.js";
 import OrganizerRouter from "./serverRoutes/organiserRouter.js";
 import passport from "passport";
 
