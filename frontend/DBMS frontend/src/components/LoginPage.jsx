@@ -10,7 +10,7 @@ const LoginPage = () => {
 	const [password, setPassword] = useState("")
 	const [Loading, setLoading] = useState(false)
   const [UserType, setUserType] = useState("");
-	const Nav = useNavigate()
+	const navigate = useNavigate()
 	const HandlerFunction = () => {
 		const Data = {
 			email,
@@ -96,7 +96,8 @@ const LoginPage = () => {
               <b></b>
             </p>
             <p className={styles.enterYourAccount}>
-              Enter your account details
+              Don't have an account?
+              <span onClick={() => navigate('/signup')} className="spanlogin">  Signup</span>
             </p>
             {/* <img className={styles.loginPageInner} alt="" src="Line 1.svg" />
         				<img className={styles.lineIcon} alt="" src="Line 2.svg" /> */}
@@ -122,22 +123,7 @@ const LoginPage = () => {
               }}
             />
 
-            {/* <div className={styles.rectangleDiv}/> */}
-            <label className={styles.label} htmlFor="type">
-              Choose a Role:
-            </label>
-            <select
-              id="type"
-              name="Types"
-              className={styles.inputField}
-              value={UserType}
-              onChange={(information) => setUserType(information.target.value)}
-            >
-              <option value="" disabled hidden>Select your role</option>
-              <option value="Student">Student</option>
-              <option value="Faculty">Faculty</option>
-              <option value="Organiser">Organiser</option>
-            </select>
+            
             <div className={styles.forgotPassword}>
               <br></br>Forgot Password?
             </div>

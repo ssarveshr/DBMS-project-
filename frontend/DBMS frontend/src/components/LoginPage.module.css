@@ -202,13 +202,23 @@
   /* This is to adjust the "Enter Your account details" */
   .enterYourAccount {
       margin: 0;
-      font-size: 20px;
+      font-size: 16px;
       font-family: 'Inter';
       padding-left: 10px;
       letter-spacing: 0.0001em;
       font-weight: normal;
       line-height: normal;
   }
+
+span {
+  color:  #9B80FF;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+span:hover {
+  color: #7c57ff;
+}
   
   
   /* Thsi controlles the "Login" alone */
@@ -252,9 +262,7 @@
       font-weight: 100;
   }
   
-  
-  
-  
+
   .welcomeToStudentContainer {
       position: absolute;
       z-index: 1000;
@@ -381,4 +389,4 @@
         transform: translate(0, 0) rotate(360deg);
       }
     }
-    
+
