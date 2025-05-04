@@ -75,7 +75,7 @@ const LoginPage = () => {
           </p>
           <img
             className={styles.student}
-            src="/studentplug.svg"
+            src="../studentplug.svg"
             alt="Student "
           />
         </div>
