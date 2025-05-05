@@ -45,9 +45,9 @@ const SignupPage = () => {
                 <div className={styles.loginPageChild}>
                     <div className={styles.welcomeToStudentContainer}>
                         <p className={styles.login}>
-                            <b className={styles.welcomeTo1}>Create Your</b>
+                            <b className={styles.welcomeTo1}>Create your</b>
                         </p>
-                        <p className={styles.studentPortal}>Student Account</p>
+                        <p className={styles.studentPortal}>student account</p>
                     </div>
                 </div>
                 <div>
@@ -60,8 +60,9 @@ const SignupPage = () => {
                 <div className={styles.loginBox}>
                     <div className={styles.loginEnterYourContainer}>
                         <p className={styles.login}>
-                            <b>Sign Up</b>
+                            <b><i>Sign Up</i></b>
                         </p>
+                        <b></b>
                         <div className={styles.loginLink}>
                             Already have an account? 
                             <span onClick={() => navigate('/login')} className="spanlogin"> Login here</span>

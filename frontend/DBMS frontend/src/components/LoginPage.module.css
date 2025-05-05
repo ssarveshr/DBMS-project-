@@ -6,17 +6,18 @@
     color: #333; /* Dark text for contrast */
     margin: 10px 0;
     margin-left: 10px;
-    border: 1px solid #00bfff; /* Blue border for the water theme */
+    border: 1px solid #8a16ea; /* Blue border for the water theme */
+    /* changed it to purple blue didnt go well for the look */
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
   
   /* Add a soft blue glow effect when focused */
   .inputField:focus {
-    border-color: #00bfff; /* Lighter blue border on focus */
-    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); /* Soft glowing effect */
+    border-color: #8a16ea; /* Lighter blue border on focus */
+    box-shadow: 0 0 10px rgb(138, 22, 234); /* Soft glowing effect */
   }
   
   
@@ -39,9 +40,9 @@
       /* font-family:'Roboto', sans-serif ; */
       font-family: 'Inter',sans-serif;
       padding-left: 10px;
-      font-size: 19.8px;
+      font-size: 17.8px;
       font-weight: normal;
-      letter-spacing:1px;
+      letter-spacing:0.8px;
       line-height: 1.2px;
       letter-spacing: 0.0001em;
   }
@@ -155,7 +156,7 @@
   .forgotPassword {
       position: absolute;
       color: #f7693e;
-      top: 186px;
+      top: 179.9px;
       left: 12.2px;
       font-family: 'Roboto', sans-serif;
       line-height: 1.5;
@@ -202,7 +203,7 @@
   /* This is to adjust the "Enter Your account details" */
   .enterYourAccount {
       margin: 0;
-      font-size: 16px;
+      font-size: 14px;
       font-family: 'Inter';
       padding-left: 10px;
       letter-spacing: 0.0001em;
@@ -243,7 +244,7 @@ span:hover {
       top: 0px;
       font-size: 33px;
       font-weight: 700;
-      letter-spacing: .5px;
+      letter-spacing: .05px;
       font-style: normal;
   }
   
@@ -254,7 +255,7 @@ span:hover {
       position:absolute;
       font-family: "Inter",sans-serif;
       left: 57px;
-      top: 10px;
+      top: 0.5px;
       line-height: 1.6;      
       margin-bottom: 20px;
       font-size: 30px;
@@ -283,8 +284,8 @@ span:hover {
     max-width: 120px;
     height: 35px;
     padding: 5px 24px;
-    margin-left: 95px;
-    margin-top: 25px;
+    margin-left: 108px;
+    margin-top: 32px;
     font-size: 18px;
     font-weight: bold;
     font-family: 'Inter', sans-serif;
