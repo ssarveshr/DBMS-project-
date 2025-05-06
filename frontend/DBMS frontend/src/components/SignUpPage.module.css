@@ -70,9 +70,9 @@
 .student {
   position: absolute;
   border-radius: 45px;
-  width: 290px;
+  width: 310px;
   height: 230px;
-  left: 43px;
+  left: 29px;
   top: 170px;
   z-index: 1;
   display: block;
@@ -249,6 +249,8 @@
     color: #9B80FF;
     font-style: normal;
     font-weight: bolder;
+    /* transform: scale(0.9); Adjust this number between 0 and 1 to shrink
+  transform-origin: top left; */
   }
 
 .loginLink {
