@@ -285,13 +285,16 @@
 
 .upcomingEventsContainer {
   display: flex;
+  flex-direction: row;
   overflow-x: auto;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 20px;
   padding: 10px 0;
-  width: 100%;
+  /* width: 100%;
   margin-bottom: 30px;
   scrollbar-width: none;
-  -ms-overflow-style: none;
+  -ms-overflow-style: none; */
 }
 
 .upcomingEventsContainer::-webkit-scrollbar {
@@ -309,15 +312,21 @@
   margin-right: 20px;
 } */
 
-.eventCard {
-  min-width: 300px; /* Important: make it wide so that horizontal scroll is needed */
+/* .eventCard {
+  min-width: 300px;    Important: make it wide so that horizontal scroll is needed
   flex-shrink: 0;
   background: #fff;
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+} */
 
+
+.eventCard {
+  flex: 0 0 auto; /* Important! */
+  min-width: 280px; 
+  max-width: 300px;
+}
 .eventCard:last-child {
   margin-right: 0;
 }

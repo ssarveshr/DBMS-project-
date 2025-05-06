@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./LoginPage.module.css";
+import styles from "./LoginFaculty.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./Spinner.jsx";
@@ -49,7 +49,7 @@ const LoginPage = () => {
             <p className={styles.login}>
               <b className={styles.welcomeTo1}>Welcome to</b>
             </p>
-            <p className={styles.studentPortal}>student portal</p>
+            <p className={styles.studentPortal}>faculty portal</p>
           </div>
         </div>
         <div>
@@ -76,7 +76,7 @@ const LoginPage = () => {
           </p>
           <img
             className={styles.student}
-            src="../studentplug.svg"
+            src="../faculty.svg"
             alt="Student "
           />
         </div>
@@ -98,7 +98,7 @@ const LoginPage = () => {
             </p>
             <p className={styles.enterYourAccount}>
               Don't have an account?
-              <span onClick={() => navigate('/signup')} className="spanlogin">  Signup</span>
+              <span onClick={() => navigate('/signupfaculty')} className="spanlogin">  Signup</span>
             </p>
             {/* <img className={styles.loginPageInner} alt="" src="Line 1.svg" />
         				<img className={styles.lineIcon} alt="" src="Line 2.svg" /> */}
@@ -113,6 +113,16 @@ const LoginPage = () => {
                 setEmail(information.target.value);
               }}
             />
+             {/* unique id to recognise teachers */}
+             <label className={styles.label}>UID</label>
+            <input
+              type="text"
+              className={styles.inputField}
+              placeholder="Enter your unique ID"
+              onChange={(information) => {
+                setUID(information.target.value);
+              }}
+              />
             {/* <div className={styles.password}>Password</div> */}
             <label className={styles.label}>Password</label>
             <input
