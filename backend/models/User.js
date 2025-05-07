@@ -22,17 +22,7 @@ const UserSchema = new mongoose.Schema({
 		unique: true
 	},
 	// When student registers for an event this array keeps getting appened with the id of respective event
-	registeredEvents : [
-		{
-			name,
-			dob,
-			email,
-			eventname
-		},
-		{
-			
-		}
-	]
+	registeredEvents : []
 });
 
 const User = mongoose.model("User", UserSchema);
