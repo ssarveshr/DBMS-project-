@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./SignupPage.module.css";
+import styles from "./SignUpFaculty.module.css";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Spinner from './Spinner.jsx';
@@ -47,14 +47,14 @@ const SignupPage = () => {
                         <p className={styles.login}>
                             <b className={styles.welcomeTo1}>Create your</b>
                         </p>
-                        <p className={styles.studentPortal}>student account</p>
+                        <p className={styles.studentPortal}>faculty account</p>
                     </div>
                 </div>
                 <div>
                     <img className={styles.unionIcon} alt="Union Icon" src="/union-1.svg" />
                     <img className={styles.unionIcon1} alt="Union Icon 1" src="/union-2.svg" />
                     <img className={styles.unionIcon2} alt="Union Icon 2" src="/union-3.svg" />
-                    <img className={styles.student} src="/cuate.svg" alt="Student" />
+                    <img className={styles.student} src="/faculty2.svg" alt="Student" />
                 </div>
                 {Loading && <Spinner />}
                 <div className={styles.loginBox}>
@@ -65,7 +65,7 @@ const SignupPage = () => {
                         <b></b>
                         <div className={styles.loginLink}>
                             Already have an account? 
-                            <span onClick={() => navigate('/login')} className="spanlogin"> Login here</span>
+                            <span onClick={() => navigate('/loginfaculty')} className="spanlogin"> Login here</span>
                         </div>
 
                         <div className={styles.formGroup}>
@@ -85,6 +85,16 @@ const SignupPage = () => {
                                     className={styles.inputField}
                                     placeholder="Enter your email"
                                     onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+
+                            <div className={styles.formGroup}>
+                                <label className={styles.label}>UID</label>
+                                <input
+                                    type="text"
+                                    className={styles.inputField}
+                                    placeholder="Enter your unique ID"
+                                    onChange={(e) => setUID(e.target.value)}
                                 />
                             </div>
 

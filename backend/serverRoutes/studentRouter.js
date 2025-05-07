@@ -39,6 +39,7 @@ Studentrouter.post("/signup", async (req, res) => {
 		console.log(Data.password)
 		const NewUser = await User.create({
 			name: Data.name,
+			USN: Data.USN,
 			email: Data.email,
 			password: Data.password
 		})
