@@ -120,4 +120,12 @@ OrganizerRouter.post("/forgot-password", async (req, res) => {
 //     res.json({ message: `Received: Name=${req.body.name}, Email=${req.body.email}` });
 //   });
 
+
+// !Post Request to create a event
+// OrganizerRouter.post('/create-events' , (req,res) => {
+//   const Data = req.body
+
+
+// })
+
 export default OrganizerRouter;

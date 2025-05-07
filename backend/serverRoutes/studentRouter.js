@@ -5,6 +5,7 @@ import User from "../models/User.js";
 import { JWT_SECRET } from "../config.js";
 import passport, { Passport } from "passport";
 import ValidateStudentData from '../validation/StudentValidation.js'
+import Event from '../models/events.js'
 // I have added Token for sign up also cause it give UX to not make user to enter the login credentials after signup 
 
 
@@ -12,7 +13,7 @@ const Studentrouter = express.Router()
 
 // ✅ SIGNUP Route page to create a Account
 //* JWT-Auth
-//!public
+//*public
 Studentrouter.post("/signup", async (req, res) => {
 	const { errors, isValid } = ValidateStudentData(req.body)
 
@@ -73,7 +74,7 @@ Studentrouter.post("/signup", async (req, res) => {
 
 // ✅ LOGIN Route page for Student Loging 
 //* JWT-Auth
-//!public
+//*public
 // email password 
 Studentrouter.post("/login", async (req, res) => {
 	const { errors, isValid } = ValidateStudentData(req.body)
@@ -131,7 +132,7 @@ Studentrouter.post("/forgot-password", async (req, res) => {
 });
 
 // Post request to access Student Dashboard 
-//! private router
+//* private router
 Studentrouter.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
 	try {
 		// res.cookie({
@@ -142,6 +143,62 @@ Studentrouter.get('/current', passport.authenticate('jwt', { session: false }), 
 
 	} catch (error) {
 		console.log(error)
+	}
+})
+
+
+// Get request to display all the events 
+//* Public router
+Studentrouter.get('/events', (req, res) => {
+
+	Event.find()
+		.then((result) => {
+			return res.status(200).json(result)
+		})
+		.catch(error => {
+			console.log(error)
+			return res.status(404).json(error)
+		})
+
+})
+
+
+// Get request to display an event by its Id 
+//* Public router
+Studentrouter.get('/events/:id' , (req,res) => {
+	const id = req.params.id
+
+	Event.findById(id)
+	.then((result) => {
+		return res.status(200).json(result)
+	})
+	.catch(error => {
+		console.log(error)
+		return res.status(404).json(error)
+	})
+})
+
+
+// Post request to register for an event 
+//* Private router
+Studentrouter.post('/register-event' , (req,res) => {
+	const {name , dob , email , eventname} = req.body
+
+	try {
+		if(
+			!name ||
+			!dob ||
+			!email ||
+			!eventname
+		){
+			return res.status(400).json({
+				message : 'All fields are required'
+			})
+		}
+		
+	} catch (error) {
+		console.log(error)
+		return res.status(500).json(error)
 	}
 })
 
