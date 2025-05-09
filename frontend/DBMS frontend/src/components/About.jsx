@@ -13,58 +13,58 @@ const About = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Jane Smith",
-      role: "Frontend Developer",
-      photo: "/api/placeholder/300/300",
-      contributions: "Developed the UI components for the home page and events listings. Implemented the carousel functionality and responsive design.",
-      academic: "B.E. Computer Science, 3rd Year",
-      college: "University Institute of Technology",
-      skills: ["React", "JavaScript", "CSS Modules", "Responsive Design"],
+      name: "Sai Sarvesh R",
+      role: "Backend Developer",
+      photo: "/members/sai.png",
+      contributions: "Developed the Backend API's and other connections.",
+      academic: "B.E. Computer Science, 2nd Year",
+      college: "RNS Institute of Technology",
+      skills: ["Node.js", "Express", "MongoDB", "REST APIs"],
       contact: {
-        github: "https://github.com/janesmith",
-        linkedin: "https://linkedin.com/in/janesmith"
+        github: "https://github.com/ssarveshr",
+        linkedin: "https://www.linkedin.com/in/sai-sarvesh-r-b203b8219/"
       }
     },
     {
       id: 2,
-      name: "Alex Johnson",
+      name: "Samudra S Hosmata",
       role: "Backend Developer",
-      photo: "/api/placeholder/300/300",
+      photo: "/members/Samu.png",
       contributions: "Designed and implemented the event management API. Created authentication system and database schema.",
-      academic: "B.Tech Information Technology, 3rd Year",
-      college: "University Institute of Technology",
+      academic: "B.E. Computer Science, 2nd Year",
+      college: "RNS Institute of Technology",
       skills: ["Node.js", "Express", "MongoDB", "JWT Authentication"],
       contact: {
-        github: "https://github.com/alexjohnson",
-        linkedin: "https://linkedin.com/in/alexjohnson"
+        github: "https://github.com/samudra1024",
+        linkedin: "https://www.linkedin.com/in/samudra-s-hosmata-2581032a7/"
       }
     },
     {
       id: 3,
-      name: "Sam Rivera",
-      role: "UI/UX Designer",
-      photo: "/api/placeholder/300/300",
+      name: "Ranjitha Sridhar",
+      role: "UI/UX Designer & Frontend Developer",
+      photo: "/members/ranjitha.png",
       contributions: "Created wireframes and mockups for all pages. Designed the color scheme and visual identity of the platform.",
-      academic: "B.Des Interaction Design, 3rd Year",
-      college: "University Institute of Technology",
-      skills: ["Figma", "Adobe XD", "Prototyping", "User Research"],
+      academic: "B.E. Computer Science, 2nd Year",
+      college: "RNS Institute of Technology",
+      skills: ["Figma","Prototyping", "React", "CSS", "JavaScript", "HTML", "Documentation"],
       contact: {
-        github: "https://github.com/samrivera",
-        linkedin: "https://linkedin.com/in/samrivera"
+        github: "https://github.com/ranjitha-sridhar",
+        linkedin: "https://www.linkedin.com/in/ranjitha-sridhar-a5b711311/"
       }
     },
     {
       id: 4,
-      name: "Taylor Kim",
-      role: "Full Stack Developer",
-      photo: "/api/placeholder/300/300",
-      contributions: "Implemented the event calendar system, notification features, and helped with deployment strategy.",
-      academic: "B.E. Computer Science, 3rd Year",
-      college: "University Institute of Technology",
-      skills: ["React", "Node.js", "Firebase", "CI/CD"],
+      name: "Praveen Kumar M",
+      role: "Front Developer",
+      photo: "/members/praveen.png",
+      contributions: "Implemented the frontend using React. Integrated the frontend with backend APIs.",
+      academic: "B.E. Computer Science, 2nd Year",
+      college: "RNS Institute of Technology",
+      skills: ["React", "Node.js","javascript", "HTML", "CSS", "GitHub"],
       contact: {
-        github: "https://github.com/taylorkim",
-        linkedin: "https://linkedin.com/in/taylorkim"
+        github: "https://github.com/PraveenKumarM17",
+        linkedin: "https://www.linkedin.com/in/praveen-kumar-m-880952246/"
       }
     }
   ];
@@ -232,7 +232,6 @@ const About = () => {
                   <div className={styles.frontInfo}>
                     <h2>{member.name}</h2>
                     <h3>{member.role}</h3>
-                    <p className={styles.viewDetails}>Click to view details</p>
                   </div>
                 </div>
                 

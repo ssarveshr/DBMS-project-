@@ -315,6 +315,8 @@
 }
 
 .cardFront {
+  display: flex;
+  flex-direction: column;
   background-color: white;
 }
 
@@ -327,11 +329,13 @@
 }
 
 .photoContainer {
+  position: relative;
   height: 65%;
   overflow: hidden;
 }
 
 .memberPhoto {
+  margin-top: 0px;
   width: 100%;
   height: 100%;
   object-fit: cover;
