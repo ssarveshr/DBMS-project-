@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './About.module.css';
 
 const About = () => {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const footerRef = useRef(null);
+
 
   // Team members data - preloaded to avoid fetch delays
   const teamMembers = [
@@ -117,8 +120,13 @@ const About = () => {
   }, []);
 
   const handleNavigation = (path) => {
-    navigate(path);
+    if (path === '/contact') {
+      footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate(path);
+    }
   };
+  
 
   return (
     <div className={`${styles.container} ${isLoaded ? styles.loaded : ''}`}>
@@ -320,7 +328,7 @@ const About = () => {
       </section>
 
       {/* Footer */}
-      <footer className={styles.footer}>
+      <footer className={styles.footer} ref={footerRef}>
         <div className={styles.footerContent}>
           <div className={styles.footerSection}>
             <h3>Campus Events</h3>
