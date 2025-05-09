@@ -330,47 +330,47 @@ const HomePage = () => {
       </main>
 
       {/* Footer */}
-      <footer className={styles.footer} ref={footerRef}>
-        <div className={styles.footerContent}>
-          <div className={styles.footerSection}>
-            <h3>Campus Events</h3>
-            <p>Stay connected with the latest campus events, clubs, and student life activities.</p>
-            <div className={styles.socialIcons}>
-              <a href="#" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
-              <a href="#" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
-              <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-              <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#">Events Calendar</a></li>
-              <li><a href="#">Student Organizations</a></li>
-              <li><a href="#">Submit an Event</a></li>
-              <li><a href="#">Campus Map</a></li>
-            </ul>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Contact Us</h3>
-            <p>123 University Ave</p>
-            <p>Campus City, State 12345</p>
-            <p>info@campusevents.edu</p>
-            <p>(123) 456-7890</p>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Newsletter</h3>
-            <p>Subscribe to get updates on upcoming events</p>
-            <div className={styles.newsletterForm}>
-              <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
-              <button>Subscribe</button>
-            </div>
-          </div>
-        </div>
-        <div className={styles.copyright}>
-          <p>&copy; 2025 Campus Events. All rights reserved.</p>
-        </div>
-      </footer>
+            <footer className={styles.footer} ref={footerRef}>
+              <div className={styles.footerContent}>
+                <div className={styles.footerSection}>
+                  <h3>Campus Events</h3>
+                  <p>Your one-stop platform for all campus activities and events.</p>
+                  <div className={styles.socialIcons}>
+                    <a href="#" aria-label="Facebook"><img src="/facebook.svg" alt=""/></a>
+                    <a href="#" aria-label="Twitter"><img src="/twitter2.svg" alt="" /></a>
+                    <a href="#" aria-label="Instagram"><img src="/insta.svg" alt="" /></a>
+                    <a href="#" aria-label="LinkedIn"><img src="/linkedin.svg" alt="" /></a>
+                  </div>
+                </div>
+                <div className={styles.footerSection}>
+                  <h3>Quick Links</h3>
+                  <ul>
+                    <li><a href="#">Events Calendar</a></li>
+                    <li><a href="#">Student Organizations</a></li>
+                    <li><a href="#">Submit an Event</a></li>
+                    <li><a href="#">Campus Map</a></li>
+                  </ul>
+                </div>
+                <div className={styles.footerSection}>
+                  <h3>Contact Us</h3>
+                  <p>123 University Ave</p>
+                  <p>Campus City, State 12345</p>
+                  <p>info@campusevents.edu</p>
+                  <p>(123) 456-7890</p>
+                </div>
+                <div className={styles.footerSection}>
+                  <h3>Newsletter</h3>
+                  <p>Subscribe to get updates on upcoming events</p>
+                  <div className={styles.newsletterForm}>
+                    <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
+                    <button>Subscribe</button>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.copyright}>
+                <p>&copy; 2025 Campus Events. All rights reserved.</p>
+              </div>
+            </footer>
     </div>
   );
 };
