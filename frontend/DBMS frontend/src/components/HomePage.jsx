@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from './HomePage.module.css';
+import styles from './HomePage.module.css'; // Adjust the path as necessary
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
@@ -14,6 +14,11 @@ const HomePage = () => {
   // Redirect function for signup
   const handleSignupRedirect = () => {
     navigate('/signup'); // Navigate to the signup page
+  };
+
+  // Redirect function for About page
+  const handleAboutRedirect = () => {
+    navigate('/about'); // Navigate to the About page
   };
 
   // Mock data for events - replace with actual API calls in production
@@ -212,7 +217,7 @@ const HomePage = () => {
           <li><a href="#">Events</a></li>
           <li><a href="#">Calendar</a></li>
           <li><a href="#">Organizations</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="#" onClick={handleAboutRedirect}>About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
         <div className={styles.authButtons}>
