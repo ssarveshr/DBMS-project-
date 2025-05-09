@@ -445,6 +445,7 @@ html, body {
 }
 
 .footerSection ul li a {
+  font-size: 0.85rem;
   color: #ccc;
   text-decoration: none;
   transition: color 0.3s ease;

@@ -576,6 +576,7 @@
 }
 
 .footerSection ul li a {
+  font-size: 0.9rem;
   color: #aaa;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -586,6 +587,9 @@
 }
 
 .socialIcons {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
@@ -595,13 +599,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   transition: all 0.3s ease;
 }
+
+.socialIcons img {
+  width: 35px;
+  height: 36px;
+}
+
 
 .socialIcons a:hover {
   background-color: #3a86ff;

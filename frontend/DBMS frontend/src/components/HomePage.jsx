@@ -4,6 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
 
+  const footerRef = useRef(null);
+
+  const handleContactScroll = () => {
+    footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };  
+
   const navigate = useNavigate(); // Ensure this is defined
 
   // Redirect function for login
@@ -216,9 +222,10 @@ const HomePage = () => {
           <li><a href="#" className={styles.active}>Home</a></li>
           <li><a href="#">Events</a></li>
           <li><a href="#">Calendar</a></li>
-          <li><a href="#">Organizations</a></li>
+          <li><a href="#">Registered</a></li>
           <li><a href="#" onClick={handleAboutRedirect}>About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#" onClick={handleContactScroll}>Contact</a></li>
+
         </ul>
         <div className={styles.authButtons}>
           <button className={styles.loginBtn} onClick={handleLoginRedirect}>Login</button>
@@ -323,11 +330,11 @@ const HomePage = () => {
       </main>
 
       {/* Footer */}
-      <footer className={styles.footer}>
+      <footer className={styles.footer} ref={footerRef}>
         <div className={styles.footerContent}>
           <div className={styles.footerSection}>
             <h3>Campus Events</h3>
-            <p>Your one-stop platform for all campus activities and events.</p>
+            <p>Stay connected with the latest campus events, clubs, and student life activities.</p>
             <div className={styles.socialIcons}>
               <a href="#" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
               <a href="#" aria-label="Twitter"><i className="fab fa-twitter"></i></a>

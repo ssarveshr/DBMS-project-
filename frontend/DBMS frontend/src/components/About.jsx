@@ -326,10 +326,10 @@ const About = () => {
             <h3>Campus Events</h3>
             <p>Your one-stop platform for all campus activities and events.</p>
             <div className={styles.socialIcons}>
-              <a href="#" aria-label="Facebook">FB</a>
-              <a href="#" aria-label="Twitter">TW</a>
-              <a href="#" aria-label="Instagram">IG</a>
-              <a href="#" aria-label="LinkedIn">LI</a>
+              <a href="#" aria-label="Facebook"><img src="/facebook.svg" alt=""/></a>
+              <a href="#" aria-label="Twitter"><img src="/twitter2.svg" alt="" /></a>
+              <a href="#" aria-label="Instagram"><img src="/insta.svg" alt="" /></a>
+              <a href="#" aria-label="LinkedIn"><img src="/linkedin.svg" alt="" /></a>
             </div>
           </div>
           <div className={styles.footerSection}>
