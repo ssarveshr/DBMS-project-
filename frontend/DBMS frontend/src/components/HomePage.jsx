@@ -27,6 +27,11 @@ const HomePage = () => {
     navigate('/about'); // Navigate to the About page
   };
 
+  // Redirect function for Events page
+  const handleEventRedirect = () => {
+    navigate('/event'); // Navigate to the event page
+  };
+
   // Mock data for events - replace with actual API calls in production
   const [events, setEvents] = useState([
     {
@@ -220,7 +225,7 @@ const HomePage = () => {
         </div>
         <ul className={styles.navLinks}>
           <li><a href="#" className={styles.active}>Home</a></li>
-          <li><a href="#">Events</a></li>
+          <li><a href="#" onClick={handleEventRedirect}>Events</a></li>
           <li><a href="#">Calendar</a></li>
           <li><a href="#">Registered</a></li>
           <li><a href="#" onClick={handleAboutRedirect}>About</a></li>

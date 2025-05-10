@@ -350,10 +350,10 @@ const About = () => {
           </div>
           <div className={styles.footerSection}>
             <h3>Contact Us</h3>
-            <p>123 University Ave</p>
-            <p>Campus City, State 12345</p>
-            <p>info@campusevents.edu</p>
-            <p>(123) 456-7890</p>
+            <p>RNS Institute Of Technology</p>
+            <p>Channasandra, Banglore-98</p>
+            <p><a href="mailto:forprojectdbonly@gmail.com">forprojectdbonly@gmail.com</a></p>
+            <p>(+91) 8394-3480-38</p>
           </div>
           <div className={styles.footerSection}>
             <h3>Newsletter</h3>
