@@ -4,9 +4,10 @@ import SignupPage from "./components/SignUpPage.jsx"
 import DashBoard from "./components/DashBoard.jsx";
 import LoginFaculty from "./components/LoginFaculty.jsx";
 import SignUpFaculty from "./components/SignUpFaculty.jsx";
+import About from "./components/About.jsx";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home.jsx";
+import Home from "./components/HomePage.jsx";
 
 function App() {
   return (
@@ -17,25 +18,9 @@ function App() {
       <Route path="/loginfaculty" element={<LoginFaculty/>} />
       <Route path="/signupfaculty" element={<SignUpFaculty/>} />
       <Route path="/dashboard" element={<DashBoard/>} />
+      <Route path="/about" element={<About />} />
     </Routes>
   );
 }
 export default App;
 
-
-
-
-
-/* import LoginPage from "./components/LoginPage.jsx";
-import "./App.css";
-
-function App() {
-  return (
-    <>
-      <div class = 'app'>
-        <LoginPage />
-      </div>
-    </>
-  );
-}
-export default App; */

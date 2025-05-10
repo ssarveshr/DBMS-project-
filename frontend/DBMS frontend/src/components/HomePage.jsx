@@ -1,8 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from './HomePage.module.css';
+import styles from './HomePage.module.css'; // Adjust the path as necessary
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+
+  const footerRef = useRef(null);
+
+  const handleContactScroll = () => {
+    footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };  
 
   const navigate = useNavigate(); // Ensure this is defined
 
@@ -14,6 +20,11 @@ const HomePage = () => {
   // Redirect function for signup
   const handleSignupRedirect = () => {
     navigate('/signup'); // Navigate to the signup page
+  };
+
+  // Redirect function for About page
+  const handleAboutRedirect = () => {
+    navigate('/about'); // Navigate to the About page
   };
 
   // Mock data for events - replace with actual API calls in production
@@ -211,9 +222,10 @@ const HomePage = () => {
           <li><a href="#" className={styles.active}>Home</a></li>
           <li><a href="#">Events</a></li>
           <li><a href="#">Calendar</a></li>
-          <li><a href="#">Organizations</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#">Registered</a></li>
+          <li><a href="#" onClick={handleAboutRedirect}>About</a></li>
+          <li><a href="#" onClick={handleContactScroll}>Contact</a></li>
+
         </ul>
         <div className={styles.authButtons}>
           <button className={styles.loginBtn} onClick={handleLoginRedirect}>Login</button>
@@ -318,47 +330,47 @@ const HomePage = () => {
       </main>
 
       {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.footerContent}>
-          <div className={styles.footerSection}>
-            <h3>Campus Events</h3>
-            <p>Your one-stop platform for all campus activities and events.</p>
-            <div className={styles.socialIcons}>
-              <a href="#" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
-              <a href="#" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
-              <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-              <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#">Events Calendar</a></li>
-              <li><a href="#">Student Organizations</a></li>
-              <li><a href="#">Submit an Event</a></li>
-              <li><a href="#">Campus Map</a></li>
-            </ul>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Contact Us</h3>
-            <p>123 University Ave</p>
-            <p>Campus City, State 12345</p>
-            <p>info@campusevents.edu</p>
-            <p>(123) 456-7890</p>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Newsletter</h3>
-            <p>Subscribe to get updates on upcoming events</p>
-            <div className={styles.newsletterForm}>
-              <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
-              <button>Subscribe</button>
-            </div>
-          </div>
-        </div>
-        <div className={styles.copyright}>
-          <p>&copy; 2025 Campus Events. All rights reserved.</p>
-        </div>
-      </footer>
+            <footer className={styles.footer} ref={footerRef}>
+              <div className={styles.footerContent}>
+                <div className={styles.footerSection}>
+                  <h3>Campus Events</h3>
+                  <p>Your one-stop platform for all campus activities and events.</p>
+                  <div className={styles.socialIcons}>
+                    <a href="#" aria-label="Facebook"><img src="/facebook.svg" alt=""/></a>
+                    <a href="#" aria-label="Twitter"><img src="/twitter2.svg" alt="" /></a>
+                    <a href="#" aria-label="Instagram"><img src="/insta.svg" alt="" /></a>
+                    <a href="#" aria-label="LinkedIn"><img src="/linkedin.svg" alt="" /></a>
+                  </div>
+                </div>
+                <div className={styles.footerSection}>
+                  <h3>Quick Links</h3>
+                  <ul>
+                    <li><a href="#">Events Calendar</a></li>
+                    <li><a href="#">Student Organizations</a></li>
+                    <li><a href="#">Submit an Event</a></li>
+                    <li><a href="#">Campus Map</a></li>
+                  </ul>
+                </div>
+                <div className={styles.footerSection}>
+                  <h3>Contact Us</h3>
+                  <p>123 University Ave</p>
+                  <p>Campus City, State 12345</p>
+                  <p>info@campusevents.edu</p>
+                  <p>(123) 456-7890</p>
+                </div>
+                <div className={styles.footerSection}>
+                  <h3>Newsletter</h3>
+                  <p>Subscribe to get updates on upcoming events</p>
+                  <div className={styles.newsletterForm}>
+                    <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
+                    <button>Subscribe</button>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.copyright}>
+                <p>&copy; 2025 Campus Events. All rights reserved.</p>
+              </div>
+            </footer>
     </div>
   );
 };
