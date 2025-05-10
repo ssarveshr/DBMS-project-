@@ -1,7 +1,6 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import Faculty from "../models/faculty.js";
 import { JWT_SECRET } from "../config.js";
 import passport, { Passport } from "passport";
 import ValidateFacultyData from '../validation/FacultyValidation.js'

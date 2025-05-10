@@ -1,24 +1,39 @@
-import mongoose from 'mongoose'
-import { Strategy as JwtStrategy } from 'passport-jwt'
-import { ExtractJwt } from 'passport-jwt'
-import { JWT_SECRET } from '../config.js'
-import User from '../models/User.js'
-import passport from 'passport'
+// middleware/auth.js
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
+import passportJWT from 'passport-jwt';
+import { JWT_SECRET } from '../config.js';
 
+
+const JWTStrategy = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 const opts = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: JWT_SECRET
+  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+  secretOrKey: JWT_SECRET
 }
+// Configure passport
+passport.use(new JWTStrategy(opts, (jwtPayload, done) => {
+  try {
+    if (jwtPayload) {
+      console.log(jwtPayload)
+      return done(null, jwtPayload);
+    }
+    return done(null, false);
+  } catch (error) {
+    console.log(error)
+  }
+}));
+
+// Middleware to check if user has specific role
+export const checkRole = (roles) => (req, res, next) => {
+  // console.log(req.user)
+  if (!req.user) return res.status(401).send('Unauthorized');
+
+  if (roles.includes(req.user.Role)) {
+    return next();
+  }
+
+  return res.status(403).send('Forbidden');
+};
 
 
-export default passport => {
-    passport.use(new JwtStrategy(opts, async (pay_load, done) => {
-        const CurrentUser = await User.findById(pay_load.User_id)
-
-        if (CurrentUser) {
-            console.log(CurrentUser)
-            return done(null, CurrentUser)
-        }
-        return done(null, false)
-    }))
-}

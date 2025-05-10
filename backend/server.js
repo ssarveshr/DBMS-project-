@@ -7,24 +7,26 @@ import Facultyrouter from "./serverRoutes/facultyrouter.js";
 import OrganizerRouter from "./serverRoutes/organiserRouter.js";
 import CommonRouter from "./serverRoutes/commonlogin.js";
 import passport from "passport";
+import chalk from 'chalk'
+import commonsignup from "./serverRoutes/commonsignup.js";
 
-import authMiddleware from "./middleware/authMiddleware.js";
 const app = express();
-authMiddleware(passport)
+// authMiddleware(passport)
+app.use(passport.initialize());
 app.use(express.json());
 app.use(cors());
 
 app.use("/api/auth/Student", Studentrouter);
 app.use("/api/auth/Faculty", Facultyrouter);
 app.use("/api/auth/Organiser", OrganizerRouter); // Use authentication routes
-app.use("/api/auth", CommonRouter);
+app.use("/api/auth", CommonRouter , commonsignup);
 
 
 mongoose.connect(MongoDB).then(() => {
 	try {
-		console.log(` MongoDB connected succefully `),
+		console.log(chalk.cyan.underline(` MongoDB connected succefully `)),
   		app.listen(PORT, () => {
-    	console.log(`🚀 Server running on port ${PORT}`)
+    	console.log(chalk.yellow.bold(`🚀 Server running on port ${PORT}`))
   })
 	} catch (error) {
 		console.log(error)
