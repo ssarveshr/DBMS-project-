@@ -9,6 +9,7 @@ import CommonRouter from "./serverRoutes/commonlogin.js";
 import passport from "passport";
 import chalk from 'chalk'
 import commonsignup from "./serverRoutes/commonsignup.js";
+import Public from "./serverRoutes/Public/PublicRouter.js";
 
 const app = express();
 // authMiddleware(passport)
@@ -19,7 +20,7 @@ app.use(cors());
 app.use("/api/auth/Student", Studentrouter);
 app.use("/api/auth/Faculty", Facultyrouter);
 app.use("/api/auth/Organiser", OrganizerRouter); // Use authentication routes
-app.use("/api/auth", CommonRouter , commonsignup);
+app.use("/api", CommonRouter , commonsignup , Public);
 
 
 mongoose.connect(MongoDB).then(() => {

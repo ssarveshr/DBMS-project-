@@ -28,12 +28,12 @@ const About = () => {
     {
       id: 2,
       name: "Samudra S Hosmata",
-      role: "Backend Developer",
-      photo: "/members/Samu.png",
+      role: "FullStack Developer",
+      photo: "/members/samu_1.png",
       contributions: "Designed and implemented the event management API. Created authentication system and database schema.",
       academic: "B.E. Computer Science, 2nd Year",
       college: "RNS Institute of Technology",
-      skills: ["Node.js", "Express", "MongoDB", "JWT Authentication"],
+      skills: ["Node.js", "Express", "MongoDB", "JWT Authentication" , "React" , "Authentication" , "RestApi"],
       contact: {
         github: "https://github.com/samudra1024",
         linkedin: "https://www.linkedin.com/in/samudra-s-hosmata-2581032a7/"

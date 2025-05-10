@@ -26,7 +26,7 @@ const SignupPage = () => {
         }
 
         setLoading(true);
-        axios.post("http://localhost:5000/api/auth/Student/signup", Data)
+        axios.post("http://localhost:5000/api/signup", Data)
             .then(res => {
                 console.log(res);
                 setLoading(false);
