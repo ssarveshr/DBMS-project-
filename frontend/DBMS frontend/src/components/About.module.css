@@ -569,6 +569,13 @@
   color: #aaa;
 }
 
+.footerSection a {
+  color: #3872fb;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
 .footerSection ul {
   list-style: none;
   padding: 0;

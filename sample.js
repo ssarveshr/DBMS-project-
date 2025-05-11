@@ -1,15 +1,11 @@
-const a = []
-
-const obj = {
-    1 : '1',
-    2 : '2'
+const a = {
+    'name':1,
+    'std':2,
+    'class':3
 }
 
-a.unshift(obj)
-a.unshift(obj)
-a.unshift(obj)
 
-console.log(a)
+console.log(a.name)
 
 
 
@@ -64,7 +60,18 @@ console.log(a)
 
 
 
+// const a = []
 
+// const obj = {
+//     1 : '1',
+//     2 : '2'
+// }
+
+// a.unshift(obj)
+// a.unshift(obj)
+// a.unshift(obj)
+
+// console.log(a)
 
 
 // const a = {

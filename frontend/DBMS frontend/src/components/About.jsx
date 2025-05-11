@@ -28,12 +28,12 @@ const About = () => {
     {
       id: 2,
       name: "Samudra S Hosmata",
-      role: "Backend Developer",
-      photo: "/members/Samu.png",
+      role: "FullStack Developer",
+      photo: "/members/samu_1.png",
       contributions: "Designed and implemented the event management API. Created authentication system and database schema.",
       academic: "B.E. Computer Science, 2nd Year",
       college: "RNS Institute of Technology",
-      skills: ["Node.js", "Express", "MongoDB", "JWT Authentication"],
+      skills: ["Node.js", "Express", "MongoDB", "JWT Authentication" , "React" , "Authentication" , "RestApi"],
       contact: {
         github: "https://github.com/samudra1024",
         linkedin: "https://www.linkedin.com/in/samudra-s-hosmata-2581032a7/"
@@ -350,10 +350,10 @@ const About = () => {
           </div>
           <div className={styles.footerSection}>
             <h3>Contact Us</h3>
-            <p>123 University Ave</p>
-            <p>Campus City, State 12345</p>
-            <p>info@campusevents.edu</p>
-            <p>(123) 456-7890</p>
+            <p>RNS Institute Of Technology</p>
+            <p>Channasandra, Banglore-98</p>
+            <p><a href="mailto:forprojectdbonly@gmail.com">forprojectdbonly@gmail.com</a></p>
+            <p>(+91) 8394-3480-38</p>
           </div>
           <div className={styles.footerSection}>
             <h3>Newsletter</h3>

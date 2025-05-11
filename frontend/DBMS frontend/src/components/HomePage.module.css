@@ -382,7 +382,7 @@ html, body {
 /* Footer */
 .footer {
   background-color: #1a1a2e;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 3rem 2rem 1rem;
 }
 
@@ -421,6 +421,13 @@ html, body {
   font-size: 0.9rem;
   margin: 10px 0;
   color: #ccc;
+}
+
+.footerSection a {
+  color: #3872fb;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
 }
 
 .socialIcons {
