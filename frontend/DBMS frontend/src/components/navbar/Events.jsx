@@ -1,546 +1,329 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import './Events.module.css';
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import styles from './Events.module.css';
 
 const Events = () => {
   const { eventId } = useParams();
   const navigate = useNavigate();
-  const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [allEvents, setAllEvents] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('');
-
-  useEffect(() => {
-    // Simulate API fetch
-    setLoading(true);
-    
-    // Mock data - in production, replace with actual API calls
-    const mockEvents = [
-      {
-        id: "1", // Changed to string for URL parameter compatibility
-        title: "Annual Tech Symposium",
-        description: "Join us for a day of innovation and technological advancements featuring keynote speakers from leading tech companies. This event includes panel discussions, workshops, networking opportunities, and demonstrations of cutting-edge technologies. Students will have the chance to interact directly with industry professionals and showcase their own projects.",
-        date: "May 10, 2025",
-        time: "10:00 AM - 4:00 PM",
-        location: "Main Auditorium",
-        image: "/api/placeholder/800/400",
-        organizer: "Computer Science Department",
-        capacity: "300 attendees",
-        type: "academic",
-        registrationDeadline: "May 8, 2025",
-        registrationFee: "Free for students, ₹500 for others",
-        contactPerson: "Dr. Priya Sharma",
-        contactEmail: "priya.sharma@rnsit.edu",
-        agenda: [
-          { time: "10:00 AM - 10:30 AM", activity: "Registration & Welcome Coffee" },
-          { time: "10:30 AM - 11:30 AM", activity: "Keynote: The Future of AI in Education" },
-          { time: "11:45 AM - 12:45 PM", activity: "Panel Discussion: Industry 4.0" },
-          { time: "12:45 PM - 1:45 PM", activity: "Lunch Break" },
-          { time: "1:45 PM - 3:00 PM", activity: "Workshops (Multiple Tracks)" },
-          { time: "3:15 PM - 4:00 PM", activity: "Student Project Showcase & Awards" }
-        ],
-        isOngoing: true
-      },
-      {
-        id: "2",
-        title: "Cultural Fest: Rhythm 2025",
-        description: "Experience the vibrant cultural diversity with performances, competitions, and exhibitions showcasing talents from across the country. This two-day extravaganza will feature music concerts, dance performances, fashion shows, and much more.",
-        date: "May 20-21, 2025",
-        time: "9:00 AM - 9:00 PM",
-        location: "Campus Central Ground",
-        image: "/api/placeholder/800/400",
-        organizer: "Student Cultural Committee",
-        capacity: "1000+ attendees",
-        type: "cultural",
-        registrationDeadline: "May 15, 2025",
-        registrationFee: "₹200 for students, ₹500 for others",
-        contactPerson: "Rahul Mehta",
-        contactEmail: "culturalcommittee@rnsit.edu",
-        agenda: [
-          { time: "Day 1 - 9:00 AM", activity: "Inauguration Ceremony" },
-          { time: "Day 1 - 10:30 AM", activity: "Inter-College Dance Competition" },
-          { time: "Day 1 - 2:00 PM", activity: "Battle of Bands" },
-          { time: "Day 1 - 6:00 PM", activity: "Celebrity Performance" },
-          { time: "Day 2 - 10:00 AM", activity: "Art Exhibition" },
-          { time: "Day 2 - 1:00 PM", activity: "Fashion Show" },
-          { time: "Day 2 - 5:00 PM", activity: "DJ Night & Closing Ceremony" }
-        ],
-        isOngoing: false
-      },
-      {
-        id: "3",
-        title: "Career Fair 2025",
-        description: "Connect with top employers from various industries and explore internship and job opportunities. The fair will include resume workshops, mock interviews, and networking sessions to help students prepare for their professional careers.",
-        date: "June 5, 2025",
-        time: "10:00 AM - 5:00 PM",
-        location: "Engineering Block",
-        image: "/api/placeholder/800/400",
-        organizer: "Placement Department",
-        capacity: "500 attendees",
-        type: "career",
-        registrationDeadline: "June 1, 2025",
-        registrationFee: "Free",
-        contactPerson: "Prof. Amit Kumar",
-        contactEmail: "placements@rnsit.edu",
-        agenda: [
-          { time: "10:00 AM - 11:00 AM", activity: "Opening Remarks & Orientation" },
-          { time: "11:00 AM - 1:00 PM", activity: "Company Booths - Session 1" },
-          { time: "1:00 PM - 2:00 PM", activity: "Lunch Break" },
-          { time: "2:00 PM - 4:00 PM", activity: "Company Booths - Session 2" },
-          { time: "4:00 PM - 5:00 PM", activity: "Networking Session" }
-        ],
-        isOngoing: false
-      },
-      {
-        id: "4",
-        title: "Hackathon: Code For Change",
-        description: "A 24-hour coding marathon to develop solutions for real-world problems. Teams will compete to create innovative applications that address social challenges, with prizes for the best solutions.",
-        date: "May 25-26, 2025",
-        time: "Starts at 10:00 AM",
-        location: "Computer Labs 1-4",
-        image: "/api/placeholder/800/400",
-        organizer: "IEEE Student Chapter",
-        capacity: "200 participants (50 teams)",
-        type: "academic",
-        registrationDeadline: "May 20, 2025",
-        registrationFee: "₹300 per team",
-        contactPerson: "Ankit Singh",
-        contactEmail: "ieee@rnsit.edu",
-        agenda: [
-          { time: "Day 1 - 9:00 AM", activity: "Registration & Team Check-in" },
-          { time: "Day 1 - 10:00 AM", activity: "Problem Statement Announcement" },
-          { time: "Day 1 - 11:00 AM", activity: "Hacking Begins" },
-          { time: "Day 1 - 8:00 PM", activity: "Mentor Sessions" },
-          { time: "Day 2 - 10:00 AM", activity: "Hacking Ends & Submission" },
-          { time: "Day 2 - 11:00 AM", activity: "Presentations & Judging" },
-          { time: "Day 2 - 3:00 PM", activity: "Awards Ceremony" }
-        ],
-        isOngoing: false
-      },
-      {
-        id: "5",
-        title: "Sports Tournament: Champions Cup",
-        description: "A multi-sport tournament featuring cricket, football, basketball, and volleyball competitions between departments. Come support your department's team and witness thrilling matches!",
-        date: "June 10-15, 2025",
-        time: "9:00 AM - 6:00 PM",
-        location: "Campus Sports Complex",
-        image: "/api/placeholder/800/400",
-        organizer: "Physical Education Department",
-        capacity: "Teams from all departments",
-        type: "sports",
-        registrationDeadline: "June 5, 2025",
-        registrationFee: "₹500 per team",
-        contactPerson: "Coach Rajesh Kumar",
-        contactEmail: "sports@rnsit.edu",
-        agenda: [
-          { time: "June 10", activity: "Cricket Matches" },
-          { time: "June 11", activity: "Football Matches" },
-          { time: "June 12", activity: "Basketball Matches" },
-          { time: "June 13", activity: "Volleyball Matches" },
-          { time: "June 14", activity: "Semi-Finals (All Sports)" },
-          { time: "June 15", activity: "Finals & Award Ceremony" }
-        ],
-        isOngoing: false
-      }
-    ];
-
-    // Set all events for the "All Events" section
-    setAllEvents(mockEvents);
-
-    // If eventId is provided, find the specific event
-    if (eventId) {
-      const foundEvent = mockEvents.find(e => e.id === eventId);
-      if (foundEvent) {
-        setEvent(foundEvent);
-      } else {
-        // Redirect to the events page if event not found
-        navigate('/events');
-      }
-    } else {
-      // Reset the event state when viewing all events
-      setEvent(null);
+  const footerRef = useRef(null);
+  
+  // Mock data for events - replace with actual API calls in production
+  const [events, setEvents] = useState([
+    {
+      id: 1,
+      title: "Annual Tech Symposium",
+      description: "Join us for a day of innovation and technological advancements featuring keynote speakers from leading tech companies. The symposium will include interactive workshops, panel discussions, and networking opportunities. Participants will get to explore the latest trends in artificial intelligence, blockchain, cybersecurity, and more. This is a great opportunity to learn from industry experts and connect with like-minded professionals.",
+      date: "May 10, 2025",
+      time: "10:00 AM - 4:00 PM",
+      location: "Main Auditorium",
+      image: "/api/placeholder/800/400",
+      isOngoing: true,
+      organizer: "Computer Science Department",
+      contact: "techsymposium@campus.edu"
+    },
+    {
+      id: 2,
+      title: "Career Fair",
+      description: "Connect with potential employers from various industries and explore internship and job opportunities. Over 50 companies will be present at this event, representing fields including technology, finance, healthcare, and more. Bring your resume and be prepared for on-the-spot interviews. Professional attire is recommended. There will also be resume review sessions and interview preparation workshops throughout the day.",
+      date: "May 15, 2025",
+      time: "9:00 AM - 3:00 PM",
+      location: "Student Center",
+      image: "/api/placeholder/800/400",
+      organizer: "Career Services",
+      contact: "careers@campus.edu"
+    },
+    {
+      id: 3,
+      title: "Cultural Festival",
+      description: "Celebrate diversity with performances, food, and activities representing cultures from around the world. This annual festival showcases traditional dances, music, art, and cuisine from over 30 different countries. Student organizations will host booths with interactive activities and educational displays. The event includes a main stage for performances throughout the day and a food court featuring international cuisine prepared by local restaurants and student groups.",
+      date: "May 20, 2025",
+      time: "12:00 PM - 8:00 PM",
+      location: "Campus Quad",
+      image: "/api/placeholder/800/400",
+      organizer: "International Student Association",
+      contact: "culturefest@campus.edu"
+    },
+    {
+      id: 4,
+      title: "Research Symposium",
+      description: "Undergraduate and graduate students present their latest research findings across all disciplines. The symposium will feature oral presentations, poster sessions, and roundtable discussions covering topics from the humanities, social sciences, natural sciences, and engineering. This is an excellent opportunity to learn about cutting-edge research happening on campus and to practice your presentation skills in a supportive environment. Faculty members will serve as judges and provide valuable feedback.",
+      date: "May 25, 2025",
+      time: "1:00 PM - 5:00 PM",
+      location: "Science Building",
+      image: "/api/placeholder/800/400",
+      organizer: "Office of Research",
+      contact: "research@campus.edu"
+    },
+    {
+      id: 5,
+      title: "Alumni Networking Night",
+      description: "Connect with successful alumni and build your professional network in a relaxed setting. Alumni from diverse career fields will be present to share their experiences and advice. This is a great opportunity for current students to learn about different career paths, make industry connections, and get insights into the job market. Light refreshments will be served, and there will be structured networking activities to help break the ice.",
+      date: "June 1, 2025",
+      time: "6:00 PM - 9:00 PM",
+      location: "University Club",
+      image: "/api/placeholder/800/400",
+      organizer: "Alumni Relations",
+      contact: "alumni@campus.edu"
+    },
+    {
+      id: 6,
+      title: "Hackathon Challenge",
+      description: "A 24-hour coding competition where students form teams to solve real-world problems through technology. Participants will have access to mentors from tech companies, workshops on emerging technologies, and plenty of food and drinks to keep energy levels up throughout the event. Prizes will be awarded for the most innovative solutions, best technical implementation, and best UI/UX design. All skill levels are welcome!",
+      date: "June 5-6, 2025",
+      time: "10:00 AM - 10:00 AM (next day)",
+      location: "Engineering Building",
+      image: "/api/placeholder/800/400",
+      organizer: "Tech Club",
+      contact: "hackathon@campus.edu"
+    },
+    {
+      id: 7,
+      title: "Environmental Sustainability Workshop",
+      description: "Learn practical ways to reduce your ecological footprint and promote sustainability on campus. This interactive workshop will cover topics such as waste reduction, energy conservation, sustainable food choices, and campus initiatives you can get involved with. Participants will develop a personal sustainability plan and learn about opportunities to join environmental projects. The workshop will include hands-on activities and group discussions.",
+      date: "June 12, 2025",
+      time: "2:00 PM - 5:00 PM",
+      location: "Green Sciences Hall",
+      image: "/api/placeholder/800/400",
+      organizer: "Sustainability Office",
+      contact: "green@campus.edu"
+    },
+    {
+      id: 8,
+      title: "Leadership Conference",
+      description: "Develop your leadership skills through workshops, keynote speeches, and team-building activities. The conference will focus on topics such as effective communication, conflict resolution, inclusive leadership, and project management. Participants will have the opportunity to network with student leaders from various organizations and learn from experienced professionals. A certificate of completion will be provided to all attendees.",
+      date: "June 18, 2025",
+      time: "9:00 AM - 5:00 PM",
+      location: "Business School",
+      image: "/api/placeholder/800/400",
+      organizer: "Student Leadership Center",
+      contact: "leadership@campus.edu"
     }
+  ]);
 
-    // Simulate network delay
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, [eventId, navigate]);
-
-  // Function to handle registration
-  const handleRegister = () => {
-    // Registration logic here
-    alert(`Registered for "${event.title}" successfully!`);
+  // Get selected event if eventId is provided
+  const selectedEvent = eventId ? events.find(event => event.id === parseInt(eventId)) : null;
+  
+  const handleContactScroll = () => {
+    footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+  
+  const handleEventDetails = (id) => {
+    navigate(`/event/${id}`);
+  };
+  
+  const handleReturnToAllEvents = () => {
+    navigate('/event');
   };
 
-  const handleAddToCalendar = () => {
-    // Calendar logic here
-    alert(`${event.title} added to your calendar!`);
+  // Redirect functions for navigation
+  const handleHomeRedirect = () => {
+    navigate('/');
   };
-
-  const handleShareLink = () => {
-    navigator.clipboard.writeText(window.location.href);
-    alert('Event link copied to clipboard!');
+  
+  const handleLoginRedirect = () => {
+    navigate('/login');
   };
-
-  // Filter events based on search term and type
-  const filteredEvents = allEvents.filter(event => {
-    const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          event.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesType = filterType === '' || event.type === filterType;
-    return matchesSearch && matchesType;
-  });
-
-  // If loading, show loader
-  if (loading) {
-    return (
-      <div className="loaderContainer">
-        <div className="loader"></div>
-        <p className="loaderText">Loading event details...</p>
-      </div>
-    );
-  }
+  
+  const handleSignupRedirect = () => {
+    navigate('/signup');
+  };
+  
+  const handleAboutRedirect = () => {
+    navigate('/about');
+  };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className="navbar">
-        <div className="navbarContent">
-          <div className="logo">
-            <Link to="/">Campus Events</Link>
-          </div>
-          <div className="navLinks">
-            <Link to="/">Home</Link>
-            <Link to="/events" className="active">Events</Link>
-            <Link to="/calendar">Calendar</Link>
-            <Link to="/registered">Registered</Link>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
-          </div>
-          <div className="authButtons">
-            <button className="loginBtn">Login</button>
-            <button className="signupBtn">Sign Up</button>
-          </div>
-          <div className="mobileMenuBtn">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+      <nav className={styles.navbar}>
+        <div className={styles.logo} onClick={handleHomeRedirect}>
+          <h1>Campus Events</h1>
+        </div>
+        <ul className={styles.navLinks}>
+          <li><a href="#" onClick={handleHomeRedirect}>Home</a></li>
+          <li><a href="#" className={styles.active}>Events</a></li>
+          <li><a href="#">Calendar</a></li>
+          <li><a href="#">Registered</a></li>
+          <li><a href="#" onClick={handleAboutRedirect}>About</a></li>
+          <li><a href="#" onClick={handleContactScroll}>Contact</a></li>
+        </ul>
+        <div className={styles.authButtons}>
+          <button className={styles.loginBtn} onClick={handleLoginRedirect}>Login</button>
+          <button className={styles.signupBtn} onClick={handleSignupRedirect}>Sign Up</button>
         </div>
       </nav>
 
-      <main className="main">
-        {event ? (
-          // Single Event Details View
-          <div className="eventDetails">
-            {/* Breadcrumb */}
-            <div className="breadcrumb">
-              <Link to="/">Home</Link>
-              <span className="breadcrumbSeparator">›</span>
-              <Link to="/events">Events</Link>
-              <span className="breadcrumbSeparator">›</span>
-              <span>{event.title}</span>
+      {/* Main Content */}
+      <main className={styles.mainContent}>
+        {selectedEvent ? (
+          /* Single Event Detail View */
+          <section className={styles.eventDetailSection}>
+            <div className={styles.eventDetailHeader}>
+              <button className={styles.backButton} onClick={handleReturnToAllEvents}>
+                &larr; Back to All Events
+              </button>
+              <h1>{selectedEvent.title}</h1>
             </div>
             
-            {/* Event Header */}
-            <div className="eventHeader">
-              <h1>{event.title}</h1>
-              {event.isOngoing && (
-                <span className="liveTag">LIVE NOW</span>
-              )}
-            </div>
-            
-            {/* Event Content */}
-            <div className="eventContent">
-              {/* Left Column - Image */}
-              <div className="eventImageContainer">
-                <img 
-                  src={event.image} 
-                  alt={event.title} 
-                  className="eventImage"
-                />
+            <div className={styles.eventDetailContent}>
+              <div className={styles.eventDetailImage}>
+                <img src={selectedEvent.image} alt={selectedEvent.title} />
+                {selectedEvent.isOngoing && <div className={styles.liveTag}>LIVE</div>}
               </div>
               
-              {/* Right Column - Event Info */}
-              <div className="eventInfo">
-                <div className="eventInfoGrid">
-                  <div className="infoItem">
-                    <div className="infoIcon">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                    </div>
-                    <div>
-                      <h4>Date & Time</h4>
-                      <p>{event.date}<br />{event.time}</p>
-                    </div>
+              <div className={styles.eventDetailInfo}>
+                <div className={styles.detailCard}>
+                  <h3>Event Details</h3>
+                  <div className={styles.detailRow}>
+                    <span className={styles.detailLabel}>Date:</span>
+                    <span>{selectedEvent.date}</span>
                   </div>
-                  
-                  <div className="infoItem">
-                    <div className="infoIcon">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                    </div>
-                    <div>
-                      <h4>Location</h4>
-                      <p>{event.location}</p>
-                    </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.detailLabel}>Time:</span>
+                    <span>{selectedEvent.time}</span>
                   </div>
-                  
-                  <div className="infoItem">
-                    <div className="infoIcon">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                    </div>
-                    <div>
-                      <h4>Organizer</h4>
-                      <p>{event.organizer}</p>
-                    </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.detailLabel}>Location:</span>
+                    <span>{selectedEvent.location}</span>
                   </div>
-                  
-                  <div className="infoItem">
-                    <div className="infoIcon">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                    </div>
-                    <div>
-                      <h4>Registration Fee</h4>
-                      <p>{event.registrationFee}</p>
-                    </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.detailLabel}>Organizer:</span>
+                    <span>{selectedEvent.organizer}</span>
+                  </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.detailLabel}>Contact:</span>
+                    <span>{selectedEvent.contact}</span>
                   </div>
                 </div>
                 
-                <div className="registrationInfo">
-                  <p>
-                    <span>Registration deadline:</span> {event.registrationDeadline}
-                  </p>
-                  <div className="actionButtons">
-                    <button 
-                      onClick={handleRegister}
-                      className="registerBtn"
-                    >
-                      Register Now
-                    </button>
-                    <button 
-                      onClick={handleAddToCalendar}
-                      className="calendarBtn"
-                    >
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                      Add to Calendar
-                    </button>
+                <div className={styles.registerCard}>
+                  <button className={styles.registerBtn}>Register Now</button>
+                  <button className={styles.saveBtn}>Save to Calendar</button>
+                  <div className={styles.shareOptions}>
+                    <span>Share: </span>
+                    <div className={styles.socialIcons}>
+                      <a href="#" aria-label="Share on Facebook">FB</a>
+                      <a href="#" aria-label="Share on Twitter">TW</a>
+                      <a href="#" aria-label="Share on LinkedIn">LI</a>
+                      <a href="#" aria-label="Share via Email">@</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Event Description */}
-            <div className="eventDescription">
-              <h2>About This Event</h2>
-              <p>{event.description}</p>
-            </div>
-            
-            {/* Event Schedule */}
-            <div className="eventSchedule">
-              <h2>Event Schedule</h2>
-              <div className="timeline">
-                {event.agenda.map((item, index) => (
-                  <div key={index} className="timelineItem">
-                    <div className="timelineMarker"></div>
-                    <div className="timelineContent">
-                      <div className="timelineTime">{item.time}</div>
-                      <div className="timelineActivity">{item.activity}</div>
-                    </div>
-                  </div>
-                ))}
+              
+              <div className={styles.eventDescription}>
+                <h3>About This Event</h3>
+                <p>{selectedEvent.description}</p>
               </div>
             </div>
-            
-            {/* Contact Information */}
-            <div className="contactInfo">
-              <h2>Contact Information</h2>
-              <div className="contactDetails">
-                <p>
-                  <span>Contact Person:</span> {event.contactPerson}
-                </p>
-                <p>
-                  <span>Email:</span>
-                  <a href={`mailto:${event.contactEmail}`}>
-                    {event.contactEmail}
-                  </a>
-                </p>
-              </div>
-            </div>
-            
-            {/* Share Section */}
-            <div className="shareSection">
-              <h2>Share This Event</h2>
-              <div className="shareButtons">
-                <button className="shareBtn facebook">
-                  Facebook
-                </button>
-                <button className="shareBtn twitter">
-                  Twitter
-                </button>
-                <button className="shareBtn linkedin">
-                  LinkedIn
-                </button>
-                <button 
-                  onClick={handleShareLink} 
-                  className="shareBtn copyLink"
-                >
-                  Copy Link
-                </button>
-              </div>
-            </div>
-            
-            {/* Similar Events */}
-            <div className="similarEvents">
-              <h2>Similar Events You Might Like</h2>
-              <div className="similarEventsGrid">
-                {allEvents
-                  .filter(e => e.id !== event.id && e.type === event.type)
-                  .slice(0, 3)
-                  .map((similarEvent) => (
-                    <div key={similarEvent.id} className="eventCard">
-                      <img 
-                        src={similarEvent.image} 
-                        alt={similarEvent.title} 
-                        className="cardImage"
-                      />
-                      <div className="cardContent">
-                        <h3>{similarEvent.title}</h3>
-                        <div className="cardDetails">
-                          <p>{similarEvent.date}</p>
-                          <p>{similarEvent.location}</p>
-                        </div>
-                        <Link 
-                          to={`/events/${similarEvent.id}`} 
-                          className="viewDetailsBtn"
-                        >
-                          View Details
-                        </Link>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </div>
+          </section>
         ) : (
-          // All Events View (when no specific event ID is provided)
-          <div className="eventsListContainer">
-            <div className="eventsHeader">
-              <h1>Campus Events</h1>
-              <div className="filterControls">
-                <select 
-                  className="filterSelect"
-                  value={filterType}
-                  onChange={(e) => setFilterType(e.target.value)}
-                >
-                  <option value="">All Event Types</option>
+          /* All Events View */
+          <section className={styles.allEventsSection}>
+            <div className={styles.sectionHeader}>
+              <h1>All Campus Events</h1>
+              <div className={styles.eventFilters}>
+                <select className={styles.filterDropdown} defaultValue="">
+                  <option value="" disabled>Filter by Category</option>
+                  <option value="all">All Categories</option>
                   <option value="academic">Academic</option>
                   <option value="cultural">Cultural</option>
-                  <option value="sports">Sports</option>
                   <option value="career">Career</option>
+                  <option value="sports">Sports</option>
                 </select>
-                <input 
-                  type="text" 
-                  placeholder="Search events..." 
-                  className="searchInput"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
+                <select className={styles.filterDropdown} defaultValue="">
+                  <option value="" disabled>Sort by Date</option>
+                  <option value="newest">Newest First</option>
+                  <option value="oldest">Oldest First</option>
+                </select>
+                <div className={styles.searchBox}>
+                  <input type="text" placeholder="Search events..." />
+                  <button className={styles.searchBtn}>Search</button>
+                </div>
               </div>
             </div>
             
-            <div className="eventsList">
-              {filteredEvents.length > 0 ? (
-                filteredEvents.map(event => (
-                  <div key={event.id} className="eventListItem">
-                    <div className="eventImageWrapper">
-                      <img 
-                        src={event.image} 
-                        alt={event.title} 
-                        className="eventListImage"
-                      />
-                      {event.isOngoing && (
-                        <div className="liveIndicator">
-                          LIVE
-                        </div>
-                      )}
-                    </div>
-                    <div className="eventListContent">
-                      <h3>{event.title}</h3>
-                      <div className="eventListDetails">
-                        <div className="eventListDetail">
-                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                          <span>{event.date}</span>
-                        </div>
-                        <div className="eventListDetail">
-                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                          <span>{event.time}</span>
-                        </div>
-                        <div className="eventListDetail">
-                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-                          <span>{event.location}</span>
-                        </div>
-                      </div>
-                      <p className="eventListDescription">
-                        {event.description.substring(0, 160)}...
-                      </p>
-                      <Link 
-                        to={`/events/${event.id}`} 
-                        className="eventListBtn"
-                      >
-                        View Details
-                      </Link>
-                    </div>
+            <div className={styles.eventsGrid}>
+              {events.map((event) => (
+                <div key={event.id} className={styles.eventCard}>
+                  <div className={styles.cardImage}>
+                    <img src={event.image} alt={event.title} />
+                    {event.isOngoing && <div className={styles.liveTag}>LIVE</div>}
                   </div>
-                ))
-              ) : (
-                <div className="noEvents">
-                  <p>No events found matching your criteria.</p>
+                  <div className={styles.cardContent}>
+                    <h3>{event.title}</h3>
+                    <p className={styles.eventDate}>{event.date}</p>
+                    <p className={styles.eventTime}>{event.time}</p>
+                    <p className={styles.eventLocation}>{event.location}</p>
+                    <p className={styles.eventBrief}>
+                      {event.description.length > 120 
+                        ? `${event.description.substring(0, 120)}...` 
+                        : event.description}
+                    </p>
+                    <button 
+                      className={styles.detailsBtn} 
+                      onClick={() => handleEventDetails(event.id)}
+                    >
+                      View Details
+                    </button>
+                  </div>
                 </div>
-              )}
+              ))}
             </div>
-          </div>
+            
+            <div className={styles.pagination}>
+              <button className={`${styles.pageBtn} ${styles.activePageBtn}`}>1</button>
+              <button className={styles.pageBtn}>2</button>
+              <button className={styles.pageBtn}>3</button>
+              <button className={styles.pageBtn}>Next &rarr;</button>
+            </div>
+          </section>
         )}
       </main>
 
       {/* Footer */}
-      <footer className="footer">
-        <div className="footerContent">
-          <div className="footerSection">
+      <footer className={styles.footer} ref={footerRef}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerSection}>
             <h3>Campus Events</h3>
             <p>Your one-stop platform for all campus activities and events.</p>
-            <div className="socialIcons">
-              <a href="#" aria-label="Facebook">FB</a>
-              <a href="#" aria-label="Twitter">TW</a>
-              <a href="#" aria-label="Instagram">IG</a>
-              <a href="#" aria-label="LinkedIn">LI</a>
+            <div className={styles.socialIcons}>
+              <a href="#" aria-label="Facebook"><img src="/facebook.svg" alt=""/></a>
+              <a href="#" aria-label="Twitter"><img src="/twitter2.svg" alt="" /></a>
+              <a href="#" aria-label="Instagram"><img src="/insta.svg" alt="" /></a>
+              <a href="#" aria-label="LinkedIn"><img src="/linkedin.svg" alt="" /></a>
             </div>
           </div>
-          <div className="footerSection">
+          <div className={styles.footerSection}>
             <h3>Quick Links</h3>
             <ul>
               <li><a href="#">Events Calendar</a></li>
               <li><a href="#">Student Organizations</a></li>
               <li><a href="#">Submit an Event</a></li>
-              <li><a href="#">Campus Map</a></li>
+              <li>
+                <a href="https://www.google.com/maps/place/RNS+INSTITUTE+OF+TECHNOLOGY/@12.9021197,77.5183721,19.86z/data=!4m14!1m7!3m6!1s0x3bae3fa7243af9c3:0x9bed6669a38d1c3!2sRNS+INSTITUTE+OF+TECHNOLOGY!8m2!3d12.9021902!4d77.518582!16s%2Fm%2F07kddf8!3m5!1s0x3bae3fa7243af9c3:0x9bed6669a38d1c3!8m2!3d12.9021902!4d77.518582!16s%2Fm%2F07kddf8?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+                  Campus Map
+                </a>
+              </li>
             </ul>
           </div>
-          <div className="footerSection">
+          <div className={styles.footerSection}>
             <h3>Contact Us</h3>
             <p>RNS Institute Of Technology</p>
             <p>Channasandra, Banglore-98</p>
             <p><a href="mailto:forprojectdbonly@gmail.com">forprojectdbonly@gmail.com</a></p>
             <p>(+91) 8394-3480-38</p>
           </div>
-          <div className="footerSection">
+          <div className={styles.footerSection}>
             <h3>Newsletter</h3>
             <p>Subscribe to get updates on upcoming events</p>
-            <div className="newsletterForm">
+            <div className={styles.newsletterForm}>
               <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
               <button>Subscribe</button>
             </div>
           </div>
         </div>
-        <div className="copyright">
+        <div className={styles.copyright}>
           <p>&copy; 2025 Campus Events. All rights reserved.</p>
         </div>
       </footer>
