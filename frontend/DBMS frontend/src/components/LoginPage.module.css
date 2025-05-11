@@ -13,6 +13,22 @@
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
+  .inputfield {
+    width: 37%;
+    background-color: rgba(255, 255, 255, 0.6); /* Light transparent background */
+    padding: 10px;
+    color: #333; /* Dark text for contrast */
+    margin: 10px 0;
+    position: absolute;
+    top: -74px;
+    margin-left: 230px;
+    border: 1px solid #8a16ea; /* Blue border for the water theme */
+    /* changed it to purple blue didnt go well for the look */
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
   
   /* Add a soft blue glow effect when focused */
   .inputField:focus {

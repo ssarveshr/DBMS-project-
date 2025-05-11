@@ -9,15 +9,19 @@ const LoginPage = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [Loading, setLoading] = useState(false)
-  const [UserType, setUserType] = useState("");
+  const [userType, setUserType] = useState("");
 	const navigate = useNavigate()
 
 	const HandlerFunction = () => {
+    if (!userType) {
+      alert("Please select a role before proceeding.");
+      return;
+    }
 		const Data = {
 			email,
 			password,
-      UserType
-		}
+      userType
+		};
 		console.log(Data)
 		setLoading(true)
 		axios
@@ -28,7 +32,15 @@ const LoginPage = () => {
         if(payload.User_email == email){
           sessionStorage.setItem('userAuth' , token)
           setLoading(false)
-          Nav('/dashboard')
+          // Role-based navigation logic
+          if (userType === "Student") {
+            // Stay on the same page for Student
+            console.log("Logged in as Student");
+          } else if (userType === "Faculty") {
+            Nav("/loginfaculty"); // Redirect to Faculty Login
+          } else if (userType === "Admin") {
+            Nav("/signupfaculty"); // Redirect to Admin Login
+          }
         }
         else{
           alert("Invalid Credentials")
@@ -40,7 +52,7 @@ const LoginPage = () => {
 			setLoading(false) 
 		}
 	);
-	}
+	};
   return (
     <div className={styles.loginPage}>
       <div className={styles.black}>
@@ -104,6 +116,17 @@ const LoginPage = () => {
         				<img className={styles.lineIcon} alt="" src="Line 2.svg" /> */}
             {/* <div className={styles.username}>Username</div> */}
 
+            {/* Dropdown for Role Selection */}
+            <select
+              className={styles.inputfield}
+              value={userType}
+              onChange={(e) => setUserType(e.target.value)}
+            >
+              <option value="" disabled>Select Role</option>
+              <option value="Student">Student</option>
+              <option value="Faculty">Faculty</option>
+              <option value="Admin">Admin</option>
+            </select>
             <label className={styles.label}>Email</label>
             <input
               type="Email"
