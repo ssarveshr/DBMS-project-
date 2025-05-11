@@ -4,7 +4,7 @@ import { Schema, model } from 'mongoose';
 const UserSchema = new Schema({
 	email: { type: String, required: true},
 	password: { type: String, required: true },
-	role: { type: String, enum: ['student', 'organizer', 'admin'], required: true },
+	role: { type: String, enum: ['student', 'organizer', 'faculty'], required: true },
 	// Add other fields specific to each role
 	studentInfo: {
 		name: {
@@ -22,8 +22,18 @@ const UserSchema = new Schema({
 		Organiser_ID : {
 			type: String,
 		  },
+	},
+	facultyInfo:{
+		facultyname: {
+			type: String,
+		  },
+		faculty_ID : {
+			type: String,
+		  },
+		department: {
+			type: String,
+		  },
 	}
-	//Add faculty later
 });
 
 // Hash password before saving

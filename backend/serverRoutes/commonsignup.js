@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import { JWT_SECRET } from "../config.js";
 import ValidateStudentData from '../validation/StudentValidation.js'
-
+import getRandomLengthNumber from "../Security/GenrandomNumber.js";
 const commonsignup = express.Router()
 
 commonsignup.post('/signup', async (req, res) => {
@@ -37,8 +37,13 @@ commonsignup.post('/signup', async (req, res) => {
 		// Add role-specific data
 		if (role === 'student') {
 			userData.studentInfo = RoleData;
+
 		} else if (role === 'organizer') {
 			userData.organizerInfo = RoleData;
+			userData.organizerInfo.Organiser_ID = getRandomLengthNumber(10, 10);
+		} else if (role === 'faculty') {
+			userData.facultyInfo = RoleData;
+			userData.facultyInfo.faculty_ID = getRandomLengthNumber(10, 10);
 		}
 
 		const NewUser = await User.create(userData);
