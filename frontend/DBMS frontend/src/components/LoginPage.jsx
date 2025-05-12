@@ -9,18 +9,18 @@ const LoginPage = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [Loading, setLoading] = useState(false)
-  const [userType, setUserType] = useState("");
+  const [UserType, setUserType] = useState("");
 	const navigate = useNavigate()
 
 	const HandlerFunction = () => {
-    if (!userType) {
+    if (!UserType) {
       alert("Please select a role before proceeding.");
       return;
     }
 		const Data = {
 			email,
 			password,
-      userType
+      UserType
 		};
 		console.log(Data)
 		setLoading(true)
@@ -32,14 +32,15 @@ const LoginPage = () => {
         if(payload.User_email == email){
           sessionStorage.setItem('userAuth' , token)
           setLoading(false)
+          Nav('/dashboard')
           // Role-based navigation logic
-          if (userType === "Student") {
+          if (UserType === "Student") {
             // Stay on the same page for Student
             console.log("Logged in as Student");
-          } else if (userType === "Faculty") {
+          } else if (UserType === "Faculty") {
             Nav("/loginfaculty"); // Redirect to Faculty Login
-          } else if (userType === "Admin") {
-            Nav("/signupfaculty"); // Redirect to Admin Login
+          } else if (UserType === "Organiser") {
+            Nav("/loginorganiser"); // Redirect to Admin Login
           }
         }
         else{
@@ -119,13 +120,13 @@ const LoginPage = () => {
             {/* Dropdown for Role Selection */}
             <select
               className={styles.inputfield}
-              value={userType}
+              value={UserType}
               onChange={(e) => setUserType(e.target.value)}
             >
               <option value="" disabled>Select Role</option>
               <option value="Student">Student</option>
               <option value="Faculty">Faculty</option>
-              <option value="Admin">Admin</option>
+              <option value="Admin">Organiser</option>
             </select>
             <label className={styles.label}>Email</label>
             <input

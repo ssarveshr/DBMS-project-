@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./LoginFaculty.module.css";
+import styles from "./LoginOrganiser.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./Spinner.jsx";
@@ -9,11 +9,11 @@ const LoginPage = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [Loading, setLoading] = useState(false)
-  const [UserType, setUserType] = useState("");
+    const [UserType, setUserType] = useState("");
 	const navigate = useNavigate()
 
 	const HandlerFunction = () => {
-    if (!UserType) {
+         if (!UserType) {
       alert("Please select a role before proceeding.");
       return;
     }
@@ -33,7 +33,8 @@ const LoginPage = () => {
           sessionStorage.setItem('userAuth' , token)
           setLoading(false)
           Nav('/dashboard')
-        if (UserType === "Student") {
+           // Role-based navigation logic
+          if (UserType === "Student") {
             // Stay on the same page for Student
             console.log("Logged in as Student");
           } else if (UserType === "Faculty") {
@@ -61,7 +62,7 @@ const LoginPage = () => {
             <p className={styles.login}>
               <b className={styles.welcomeTo1}>Welcome to</b>
             </p>
-            <p className={styles.studentPortal}>faculty portal</p>
+            <p className={styles.studentPortal}>organiser portal</p>
           </div>
         </div>
         <div>
@@ -88,7 +89,7 @@ const LoginPage = () => {
           </p>
           <img
             className={styles.student}
-            src="../faculty.svg"
+            src="../faculty2.svg"
             alt="Student "
           />
         </div>
@@ -108,24 +109,25 @@ const LoginPage = () => {
               <b>Login</b>
               <b></b>
             </p>
-            <p className={styles.enterYourAccount}>
+            {/* <p className={styles.enterYourAccount}>
               Don't have an account?
               <span onClick={() => navigate('/signupfaculty')} className="spanlogin">  Signup</span>
-            </p>
+            </p> */}
             {/* <img className={styles.loginPageInner} alt="" src="Line 1.svg" />
         				<img className={styles.lineIcon} alt="" src="Line 2.svg" /> */}
             {/* <div className={styles.username}>Username</div> */}
-              {/* Dropdown for Role Selection */}
-              <select
-                 className={styles.inputfield}
-                 value={UserType}
-                 onChange={(e) => setUserType(e.target.value)}
-              >
-                  <option value="" disabled>Select Role</option>
-                  <option value="Student">Student</option>
-                   <option value="Faculty">Faculty</option>
-                  <option value="Admin">Organiser</option>
-              </select>
+            
+            {/* Dropdown for Role Selection */}
+            <select
+             className={styles.inputfield}
+             value={UserType}
+             onChange={(e) => setUserType(e.target.value)}
+            >
+               <option value="" disabled>Select Role</option>
+               <option value="Student">Student</option>
+               <option value="Faculty">Faculty</option>
+               <option value="Admin">Organiser</option>
+            </select>
             <label className={styles.label}>Email</label>
             <input
               type="Email"
