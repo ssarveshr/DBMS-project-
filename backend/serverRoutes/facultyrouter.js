@@ -39,12 +39,4 @@ Facultyrouter.post('/approve-event', passport.authenticate('jwt', { session: fal
   }
 });
 
-// ✅ FORGOT PASSWORD Route (Placeholder)
-
-
-// router.post("/test", (req, res) => {
-//     console.log(req.body);  // Debugging
-//     res.json({ message: `Received: Name=${req.body.name}, Email=${req.body.email}` });
-//   });
-
 export default Facultyrouter;
