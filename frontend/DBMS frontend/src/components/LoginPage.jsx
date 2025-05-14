@@ -126,9 +126,9 @@ const LoginPage = () => {
               onChange={(e) => setUserType(e.target.value)}
             >
               <option value="" disabled>Select Role</option>
-              <option value="Student">Student</option>
-              <option value="Faculty">Faculty</option>
-              <option value="Admin">Organiser</option>
+              <option value="student">Student</option>
+              <option value="faculty">Faculty</option>
+              <option value="organiser">Organiser</option>
             </select>
             <label className={styles.label}>Email</label>
             <input

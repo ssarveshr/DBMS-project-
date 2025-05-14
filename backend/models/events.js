@@ -26,6 +26,7 @@ const EventSchema = new mongoose.Schema({
 	// image 
 	is_ongoing: {
 		type: String,
+		default: 'false'
 	},
 	facultyName: {
 		type: String,
