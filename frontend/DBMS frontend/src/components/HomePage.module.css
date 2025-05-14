@@ -374,7 +374,7 @@ html, body {
 }
 
 .mainContent {
-  padding-top: 80px; /* Add space below fixed navbar */
+  padding-top: 50px; /* Add space below fixed navbar */
 }
 
 @media (max-width: 768px) {

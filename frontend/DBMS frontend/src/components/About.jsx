@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './About.module.css';
 import Footer from './footer/Footer.jsx';
+import Navbar from './navbar/NavBar.jsx';
 
 const About = () => {
   const navigate = useNavigate();
@@ -108,9 +109,10 @@ const About = () => {
     }, { threshold: 0.2 });
     
     // Observe all team cards
-    document.querySelectorAll(`.${styles.teamCard}`).forEach(card => {
-      observer.observe(card);
-    });
+    document.querySelectorAll(`.${styles.teamCard}`).forEach((card, i) => {
+    card.style.transitionDelay = `${i * 100}ms`; // Stagger delay
+    observer.observe(card); // Observe for animation
+  });
     
     // Observe project sections
     document.querySelectorAll(`.${styles.animatedSection}`).forEach(section => {
@@ -120,7 +122,7 @@ const About = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleNavigation = (path) => {
+  const handleContactScroll = (path) => {
     if (path === '/contact') {
       footerRef.current?.scrollIntoView({ behavior: 'smooth' });
     } else {
@@ -132,23 +134,7 @@ const About = () => {
   return (
     <div className={`${styles.container} ${isLoaded ? styles.loaded : ''}`}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo} onClick={() => handleNavigation('/')}>
-          <h1>Campus Events</h1>
-        </div>
-        <ul className={styles.navLinks}>
-          <li><button onClick={() => handleNavigation('/')}>Home</button></li>
-          <li><button onClick={() => handleNavigation('/event')}>Events</button></li>
-          <li><button onClick={() => handleNavigation('/calendar')}>Calendar</button></li>
-          <li><button onClick={() => handleNavigation('/organizations')}>Organizations</button></li>
-          <li><button className={styles.active}>About</button></li>
-          <li><button onClick={() => handleNavigation('/contact')}>Contact</button></li>
-        </ul>
-        <div className={styles.authButtons}>
-          <button className={styles.loginBtn} onClick={() => handleNavigation('/login')}>Login</button>
-          <button className={styles.signupBtn} onClick={() => handleNavigation('/signup')}>Sign Up</button>
-        </div>
-      </nav>
+      <Navbar onContactScroll={handleContactScroll} />
 
       {/* Hero section */}
       <section className={`${styles.heroSection} ${isLoaded ? styles.visible : ''}`}>
