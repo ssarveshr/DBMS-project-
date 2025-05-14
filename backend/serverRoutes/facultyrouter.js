@@ -1,16 +1,14 @@
 import express from "express";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../config.js";
-import passport, { Passport } from "passport";
-import ValidateFacultyData from '../validation/FacultyValidation.js'
+import passport from "passport";
 import { checkRole } from "../middleware/authMiddleware.js";
 import Event from '../models/events.js'
 import User from "../models/User.js";
 
 const Facultyrouter = express.Router();
 
-
+// @desc Fetchs data all Unapproved events  
+// @method Get 
+// @access Private
 Facultyrouter.get('/', passport.authenticate('jwt', { session: false }), checkRole('faculty'), async (req, res) => {
 
   try {
@@ -69,7 +67,9 @@ Facultyrouter.get('/', passport.authenticate('jwt', { session: false }), checkRo
 })
 
 
-
+// @desc Faculty will approves events 
+// @method put 
+// @access Private
 Facultyrouter.put('/approve-event', passport.authenticate('jwt', { session: false }), checkRole('faculty'), async (req, res) => {
   try {
     const { organiserName, title, facultyName } = req.body;
