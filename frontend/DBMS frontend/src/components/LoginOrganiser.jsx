@@ -14,7 +14,7 @@ const LoginPage = () => {
 
 	const HandlerFunction = () => {
          if (!UserType) {
-      alert("Please select a role before proceeding.");
+      toast.warning("Please select a role before proceeding.");
       return;
     }
 		const Data = {
@@ -44,7 +44,7 @@ const LoginPage = () => {
           }
         }
         else{
-          alert("Invalid Credentials")
+          toast.error("Invalid Credentials")
           setLoading(false)
         }
 		  })

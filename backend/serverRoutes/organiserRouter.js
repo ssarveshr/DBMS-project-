@@ -26,7 +26,7 @@ OrganizerRouter.get('/current', passport.authenticate('jwt', { session: false })
 // @method post 
 // @access Private
 OrganizerRouter.post('/create-events', passport.authenticate('jwt', { session: false }), checkRole('organizer'), (req, res) => {
-	const { Orgname, title, loca, desc, faculty, isOngoing } = req.body
+	const { Orgname, title, loca, desc, faculty} = req.body
 	const { errors, valid, isValid } = EventcreateValidation(req.body)
 
 	try {

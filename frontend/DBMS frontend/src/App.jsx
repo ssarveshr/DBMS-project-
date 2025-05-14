@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import LoginPage from "./components/LoginPage.jsx";
-import SignupPage from "./components/SignUpPage.jsx"
+import SignupPage from "./components/SignUpPage.jsx";
 import DashBoard from "./components/DashBoard.jsx";
 import LoginFaculty from "./components/LoginFaculty.jsx";
 import LoginOrganiser from "./components/LoginOrganiser.jsx";
@@ -10,22 +10,32 @@ import Event from "./components/Events.jsx";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/HomePage.jsx";
+import NavBar from "./components/navbar/NavBar.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 function App() {
+  const footerRef = useRef(null);
+
+  const handleContactScroll = () => {
+    footerRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage/>}/>
-      <Route path="/loginfaculty" element={<LoginFaculty/>} />
-      <Route path="/signupfaculty" element={<SignUpFaculty/>} />
-      <Route path="/loginorganiser" element={<LoginOrganiser/>} />
-      <Route path="/dashboard" element={<DashBoard/>} />
-      <Route path="/about" element={<About />} />
-      <Route path="/event" element={<Event />} />
-      <Route path="/event/:eventId" element={<Event />} />
-    </Routes>
+    <>
+      <NavBar onContactScroll={handleContactScroll} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/loginfaculty" element={<LoginFaculty />} />
+        <Route path="/signupfaculty" element={<SignUpFaculty />} />
+        <Route path="/loginorganiser" element={<LoginOrganiser />} />
+        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/event" element={<Event />} />
+        <Route path="/event/:eventId" element={<Event />} />
+      </Routes>
+      <Footer ref={footerRef} />
+    </>
   );
 }
 export default App;
-

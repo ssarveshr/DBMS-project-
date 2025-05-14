@@ -221,7 +221,6 @@ const HomePage = () => {
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <Navbar onContactScroll={handleContactScroll} />
 
       {/* Main Content */}
       <main className={styles.mainContent}>
@@ -320,7 +319,6 @@ const HomePage = () => {
       </main>
 
       {/* Footer */}
-           <Footer ref={footerRef}/> 
     </div>
   );
 };

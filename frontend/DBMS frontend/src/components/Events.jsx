@@ -137,7 +137,6 @@ const Events = () => {
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <Navbar onContactScroll={handleContactScroll} />
 
       {/* Main Content */}
       <main className={styles.mainContent}>
@@ -268,7 +267,6 @@ const Events = () => {
       </main>
 
       {/* Footer */}
-      <Footer ref={footerRef}/>
     </div>
   );
 };

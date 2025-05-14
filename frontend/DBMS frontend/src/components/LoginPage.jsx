@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./Spinner.jsx";
 import { jwtDecode } from "jwt-decode";
+import { toast } from "react-toastify";
 
 
 const LoginPage = () => {
@@ -15,7 +16,7 @@ const LoginPage = () => {
 
 	const HandlerFunction = () => {
     if (!UserType) {
-      alert("Please select a role before proceeding.");
+      toast.error("Please select a role before proceeding.");
       return;
     }
 		const Data = {
@@ -45,7 +46,7 @@ const LoginPage = () => {
           }
         }
         else{
-          alert("Invalid Credentials")
+          toast.warning("Invalid Credentials")
           setLoading(false)
         }
 		  })

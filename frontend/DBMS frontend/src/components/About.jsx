@@ -134,7 +134,6 @@ const About = () => {
   return (
     <div className={`${styles.container} ${isLoaded ? styles.loaded : ''}`}>
       {/* Navigation Bar */}
-      <Navbar onContactScroll={handleContactScroll} />
 
       {/* Hero section */}
       <section className={`${styles.heroSection} ${isLoaded ? styles.visible : ''}`}>
@@ -314,7 +313,6 @@ const About = () => {
       </section>
 
       {/* Footer */}
-      <Footer ref={footerRef}/>
     </div>
   );
 };

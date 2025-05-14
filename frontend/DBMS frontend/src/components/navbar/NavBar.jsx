@@ -7,6 +7,7 @@ const NavBar = ({ onContactScroll }) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [userRole, setuserRole] = useState('student');
 
   // Handle navigation
   const handleNavigation = (path) => {
