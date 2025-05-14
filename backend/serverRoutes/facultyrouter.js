@@ -55,8 +55,8 @@ Facultyrouter.get('/', passport.authenticate('jwt', { session: false }), checkRo
     })
 
     if(Not_approved.length === 0){
-      return res.status(204).json({
-        message : "All Events asigned to you are approved"
+      return res.status(200).json({
+        message : "All Events assigned to you are approved"
       })
     }
 
