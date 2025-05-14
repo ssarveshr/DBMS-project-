@@ -10,6 +10,7 @@ import passport from "passport";
 import chalk from 'chalk'
 import commonsignup from "./serverRoutes/commonsignup.js";
 import Public from "./serverRoutes/Public/PublicRouter.js";
+import DeleteAccount from "./serverRoutes/Deleteaccount.js";
 
 const app = express();
 // authMiddleware(passport)
@@ -20,15 +21,15 @@ app.use(cors());
 app.use("/api/auth/Student", Studentrouter);
 app.use("/api/auth/Faculty", Facultyrouter);
 app.use("/api/auth/Organiser", OrganizerRouter); // Use authentication routes
-app.use("/api", CommonRouter , commonsignup , Public);
+app.use("/api", CommonRouter, commonsignup, Public, DeleteAccount);
 
 
 mongoose.connect(MongoDB).then(() => {
 	try {
 		console.log(chalk.cyan.underline(` MongoDB connected succefully `)),
-  		app.listen(PORT, () => {
-    	console.log(chalk.yellow.bold(`🚀 Server running on port ${PORT}`))
-  })
+			app.listen(PORT, () => {
+				console.log(chalk.yellow.bold(`🚀 Server running on port ${PORT}`))
+			})
 	} catch (error) {
 		console.log(error)
 	}

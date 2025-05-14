@@ -1,5 +1,4 @@
 // middleware/auth.js
-import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import passportJWT from 'passport-jwt';
 import { JWT_SECRET } from '../config.js';

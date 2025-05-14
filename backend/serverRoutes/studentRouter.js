@@ -1,15 +1,14 @@
 import express from "express";
 import User from "../models/User.js";
-import Event from '../models/events.js'
 import EventValidation from "../validation/EventValidation.js";
 import { checkRole } from "../middleware/authMiddleware.js";
 import passport from "passport";
-// import  from "../middleware/authMiddleware.js";
 
 const Studentrouter = express.Router()
 
-// Get request to access Student DATA 
-//* private router
+// @desc Fetchs data of student
+// @method Get 
+// @access Private
 Studentrouter.get('/current', passport.authenticate('jwt', { session: false }), checkRole('student'), (req, res) => {
 	try {
 		// res.cookie({
@@ -32,8 +31,9 @@ Studentrouter.get('/current', passport.authenticate('jwt', { session: false }), 
 })
 
 
-// Post request to register for an event 
-//* Private router
+// @desc student Registeration for an event 
+// @method post 
+// @access Private
 Studentrouter.post('/register-event', passport.authenticate('jwt', { session: false }), checkRole('student'), async (req, res) => {
 	const { name, email, eventname, branchname } = req.body
 	const { errors, valid, isValid } = EventValidation(req.body)
