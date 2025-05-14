@@ -1,0 +1,44 @@
+.calendarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: #f0f4f8;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.daysOfWeek {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.dayOfWeek {
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.daysContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.dayCell {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dayCell:hover {
+  background-color: #e0e7ff;
+}
