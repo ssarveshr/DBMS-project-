@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { jwtDecode } from "jwt-decode";
@@ -8,28 +8,31 @@ const NavBar = ({ onContactScroll }) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [userRole, setuserRole] = useState("student");
-  const [payload, setpayload] = useState({});
+  const [userRole, setUserRole] = useState(null); // Initialize as null
+  const [payload, setPayload] = useState(null);
 
   useEffect(() => {
-    try {
-      const pl = jwtDecode(sessionStorage.getItem("userAuth"));
-      setpayload(pl);
-      setuserRole(payload.Role);
-    } catch (error) {
-      console.log(error);
+    const token = sessionStorage.getItem("userAuth");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setPayload(decoded);
+        setUserRole(decoded.Role); // Assuming the role is stored in 'Role'
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        setUserRole(null);
+      }
     }
-  }, []);
+  }, []); // Empty dependency array to run only once on mount
 
   // Handle navigation
   const handleNavigation = (path) => {
     if (path === "/contact") {
       onContactScroll();
     } else {
-      console.log(userRole);
       navigate(path);
     }
-    setMenuOpen(false); // Close mobile menu after navigation
+    setMenuOpen(false);
   };
 
   // Check if current page is active
@@ -40,22 +43,50 @@ const NavBar = ({ onContactScroll }) => {
   // Add scroll effect for navbar
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Toggle mobile menu
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  // Render role-specific tab
+  const renderRoleTab = () => {
+    if (!userRole) return null; // Don't render if no role
+
+    let rolePath, roleName;
+
+    switch (userRole.toLowerCase()) {
+      case "student":
+        rolePath = "/student-dashboard";
+        roleName = "Student Portal";
+        break;
+      case "faculty":
+        rolePath = "/faculty-dashboard";
+        roleName = "Faculty Portal";
+        break;
+      case "organizer":
+        rolePath = "/organizer-dashboard";
+        roleName = "Organizer Portal";
+        break;
+      default:
+        return null;
+    }
+
+    return (
+      <li>
+        <button
+          onClick={() => handleNavigation(rolePath)}
+          className={isActive(rolePath) ? styles.active : ""}
+        >
+          {roleName}
+        </button>
+      </li>
+    );
   };
 
   return (
@@ -109,14 +140,6 @@ const NavBar = ({ onContactScroll }) => {
         </li>
         <li>
           <button
-            onClick={() => handleNavigation("/organizations")}
-            className={isActive("/organizations") ? styles.active : ""}
-          >
-            Organizations
-          </button>
-        </li>
-        <li>
-          <button
             onClick={() => handleNavigation("/about")}
             className={isActive("/about") ? styles.active : ""}
           >
@@ -126,26 +149,44 @@ const NavBar = ({ onContactScroll }) => {
         <li>
           <button onClick={() => handleNavigation("/contact")}>Contact</button>
         </li>
+
+        {/* Dynamically rendered role tab */}
+        {renderRoleTab()}
       </ul>
 
-      {/* Auth Buttons */}
+      {/* Auth Buttons - Conditionally render based on login status */}
       <div
         className={`${styles.authButtons} ${
           menuOpen ? styles.showMobileMenu : ""
         }`}
       >
-        <button
-          className={styles.loginBtn}
-          onClick={() => handleNavigation("/login")}
-        >
-          Login
-        </button>
-        <button
-          className={styles.signupBtn}
-          onClick={() => handleNavigation("/signup")}
-        >
-          Sign Up
-        </button>
+        {userRole ? (
+          <button
+            className={styles.signupBtn}
+            onClick={() => {
+              sessionStorage.removeItem("userAuth");
+              setUserRole(null);
+              navigate("/login");
+            }}
+          >
+            Logout
+          </button>
+        ) : (
+          <>
+            <button
+              className={styles.loginBtn}
+              onClick={() => handleNavigation("/login")}
+            >
+              Login
+            </button>
+            <button
+              className={styles.signupBtn}
+              onClick={() => handleNavigation("/signup")}
+            >
+              Sign Up
+            </button>
+          </>
+        )}
       </div>
     </nav>
   );
