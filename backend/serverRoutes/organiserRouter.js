@@ -4,12 +4,12 @@ import { checkRole } from "../middleware/authMiddleware.js";
 import User from "../models/User.js";
 import EventcreateValidation from "../validation/EventCreateValidation.js";
 import Event from "../models/events.js";
-// import { requireRole } from "../middleware/authMiddleware.js";
 
 const OrganizerRouter = express.Router();
 
-// Get request to access Organiser DATA 
-//* private router
+// @desc Fetchs data of Organizer
+// @method Get 
+// @access Private
 OrganizerRouter.get('/current', passport.authenticate('jwt', { session: false }), checkRole('organizer'), (req, res) => {
 	User.findOne({ email: req.user.User_Email }).then(result => {
 		console.log(result)
@@ -22,15 +22,21 @@ OrganizerRouter.get('/current', passport.authenticate('jwt', { session: false })
 })
 
 
-// !Post Request to create a event
+// @desc Organizer created events
+// @method post 
+// @access Private
 OrganizerRouter.post('/create-events', passport.authenticate('jwt', { session: false }), checkRole('organizer'), (req, res) => {
-	const { email, Orgname, title, loca, desc, faculty, isOngoing } = req.body
+	const { Orgname, title, loca, desc, faculty} = req.body
 	const { errors, valid, isValid } = EventcreateValidation(req.body)
 
 	try {
 		if (!isValid) {
 			return res.status(400).json(errors)
 		}
+		console.log(req.user.User_Email)
+
+		const email = req.user.User_Email
+
 
 		const Existing_organiser = User.findOne({ email })
 

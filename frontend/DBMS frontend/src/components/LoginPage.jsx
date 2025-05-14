@@ -4,56 +4,42 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./Spinner.jsx";
 import { jwtDecode } from "jwt-decode";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
-	const [email, setEmail] = useState("")
-	const [password, setPassword] = useState("")
-	const [Loading, setLoading] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [Loading, setLoading] = useState(false);
   const [UserType, setUserType] = useState("");
-	const navigate = useNavigate()
+  const navigate = useNavigate();
 
-	const HandlerFunction = () => {
-    if (!UserType) {
-      alert("Please select a role before proceeding.");
-      return;
-    }
-		const Data = {
-			email,
-			password,
-      UserType
-		};
-		console.log(Data)
-		setLoading(true)
-		axios
-      .post(`http://localhost:5000/api/login` , Data)
-		  .then(res => {
-        const token = res.data.token;
-        const payload= jwtDecode(token);
-        if(payload.User_email == email){
-          sessionStorage.setItem('userAuth' , token)
-          setLoading(false)
-          Nav('/dashboard')
-          // Role-based navigation logic
-          if (UserType === "Student") {
-            // Stay on the same page for Student
-            console.log("Logged in as Student");
-          } else if (UserType === "Faculty") {
-            Nav("/loginfaculty"); // Redirect to Faculty Login
-          } else if (UserType === "Organiser") {
-            Nav("/loginorganiser"); // Redirect to Admin Login
-          }
+  const HandlerFunction = () => {
+    const Data = {
+      email,
+      password,
+    };
+    console.log(Data);
+    setLoading(true);
+    axios
+      .post(`http://localhost:5000/api/login`, Data)
+      .then((res) => {
+        const token = res.data.Token;
+        const payload = jwtDecode(token);
+        console.log(payload);
+        if (payload.User_Email === email) {
+          sessionStorage.setItem("userAuth", token);
+          setLoading(false);
+          navigate("/");
+        } else {
+          toast.warning("Invalid Credentials");
+          setLoading(false);
         }
-        else{
-          alert("Invalid Credentials")
-          setLoading(false)
-        }
-		  })
-		  .catch(err => {
-			console.log(err)
-			setLoading(false) 
-		}
-	);
-	};
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
   return (
     <div className={styles.loginPage}>
       <div className={styles.black}>
@@ -111,7 +97,10 @@ const LoginPage = () => {
             </p>
             <p className={styles.enterYourAccount}>
               Don't have an account?
-              <span onClick={() => navigate('/signup')} className="spanlogin">  Signup</span>
+              <span onClick={() => navigate("/signup")} className="spanlogin">
+                {" "}
+                Signup
+              </span>
             </p>
             {/* <img className={styles.loginPageInner} alt="" src="Line 1.svg" />
         				<img className={styles.lineIcon} alt="" src="Line 2.svg" /> */}
@@ -123,10 +112,12 @@ const LoginPage = () => {
               value={UserType}
               onChange={(e) => setUserType(e.target.value)}
             >
-              <option value="" disabled>Select Role</option>
-              <option value="Student">Student</option>
-              <option value="Faculty">Faculty</option>
-              <option value="Admin">Organiser</option>
+              <option value="" disabled>
+                Select Role
+              </option>
+              <option value="student">Student</option>
+              <option value="faculty">Faculty</option>
+              <option value="organiser">Organiser</option>
             </select>
             <label className={styles.label}>Email</label>
             <input
@@ -148,7 +139,6 @@ const LoginPage = () => {
               }}
             />
 
-            
             <div className={styles.forgotPassword}>
               <br></br>Forgot Password?
             </div>

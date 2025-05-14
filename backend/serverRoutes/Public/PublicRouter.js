@@ -5,13 +5,26 @@ import Event from '../../models/events.js';
 const Public = express.Router()
 
 
-// Get request to display all the events 
-//* Public router
+// @desc Fetchs all the events available for registration
+// @method get 
+// @access public
 Public.get('/events', (req, res) => {
 
 	Event.find()
 		.then((result) => {
-			return res.status(200).json(result)
+			const approved = []
+			result.map(item => {
+				console.log(item.is_ongoing)
+				if (item.is_ongoing === 'true') {
+					approved.unshift(item)
+				}
+			})
+			if(approved){
+				return res.status(200).json(approved)
+			}
+			return res.status(204).json({
+				message : 'No events found'
+			})
 		})
 		.catch(error => {
 			console.log(error)
@@ -21,8 +34,9 @@ Public.get('/events', (req, res) => {
 })
 
 
-// Get request to display an event by its Id 
-//* Public router
+// @desc Fetchs event by id available for registration
+// @method get 
+// @access public
 Public.get('/events/:id', (req, res) => {
 	const id = req.params.id
 

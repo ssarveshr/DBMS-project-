@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './Events.module.css';
+import Footer from './footer/Footer.jsx';
+import Navbar from './navbar/NavBar.jsx';
 
 const Events = () => {
   const { eventId } = useParams();
@@ -135,23 +137,6 @@ const Events = () => {
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo} onClick={handleHomeRedirect}>
-          <h1>Campus Events</h1>
-        </div>
-        <ul className={styles.navLinks}>
-          <li><a href="#" onClick={handleHomeRedirect}>Home</a></li>
-          <li><a href="#" className={styles.active}>Events</a></li>
-          <li><a href="#">Calendar</a></li>
-          <li><a href="#">Registered</a></li>
-          <li><a href="#" onClick={handleAboutRedirect}>About</a></li>
-          <li><a href="#" onClick={handleContactScroll}>Contact</a></li>
-        </ul>
-        <div className={styles.authButtons}>
-          <button className={styles.loginBtn} onClick={handleLoginRedirect}>Login</button>
-          <button className={styles.signupBtn} onClick={handleSignupRedirect}>Sign Up</button>
-        </div>
-      </nav>
 
       {/* Main Content */}
       <main className={styles.mainContent}>
@@ -282,51 +267,6 @@ const Events = () => {
       </main>
 
       {/* Footer */}
-      <footer className={styles.footer} ref={footerRef}>
-        <div className={styles.footerContent}>
-          <div className={styles.footerSection}>
-            <h3>Campus Events</h3>
-            <p>Your one-stop platform for all campus activities and events.</p>
-            <div className={styles.socialIcons}>
-              <a href="#" aria-label="Facebook"><img src="/facebook.svg" alt=""/></a>
-              <a href="#" aria-label="Twitter"><img src="/twitter2.svg" alt="" /></a>
-              <a href="#" aria-label="Instagram"><img src="/insta.svg" alt="" /></a>
-              <a href="#" aria-label="LinkedIn"><img src="/linkedin.svg" alt="" /></a>
-            </div>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#">Events Calendar</a></li>
-              <li><a href="#">Student Organizations</a></li>
-              <li><a href="#">Submit an Event</a></li>
-              <li>
-                <a href="https://www.google.com/maps/place/RNS+INSTITUTE+OF+TECHNOLOGY/@12.9021197,77.5183721,19.86z/data=!4m14!1m7!3m6!1s0x3bae3fa7243af9c3:0x9bed6669a38d1c3!2sRNS+INSTITUTE+OF+TECHNOLOGY!8m2!3d12.9021902!4d77.518582!16s%2Fm%2F07kddf8!3m5!1s0x3bae3fa7243af9c3:0x9bed6669a38d1c3!8m2!3d12.9021902!4d77.518582!16s%2Fm%2F07kddf8?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
-                  Campus Map
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Contact Us</h3>
-            <p>RNS Institute Of Technology</p>
-            <p>Channasandra, Banglore-98</p>
-            <p><a href="mailto:forprojectdbonly@gmail.com">forprojectdbonly@gmail.com</a></p>
-            <p>(+91) 8394-3480-38</p>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Newsletter</h3>
-            <p>Subscribe to get updates on upcoming events</p>
-            <div className={styles.newsletterForm}>
-              <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
-              <button>Subscribe</button>
-            </div>
-          </div>
-        </div>
-        <div className={styles.copyright}>
-          <p>&copy; 2025 Campus Events. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 };

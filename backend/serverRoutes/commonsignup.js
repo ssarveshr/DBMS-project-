@@ -5,8 +5,12 @@ import User from "../models/User.js";
 import { JWT_SECRET } from "../config.js";
 import ValidateStudentData from '../validation/StudentValidation.js'
 import getRandomLengthNumber from "../Security/GenrandomNumber.js";
+
 const commonsignup = express.Router()
 
+// @desc User sign up (User will select their respective role)
+// @method post 
+// @access public
 commonsignup.post('/signup', async (req, res) => {
 	const { errors, isValid } = ValidateStudentData(req.body)
 	try {

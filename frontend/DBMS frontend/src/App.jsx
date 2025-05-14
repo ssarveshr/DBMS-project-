@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import LoginPage from "./components/LoginPage.jsx";
-import SignupPage from "./components/SignUpPage.jsx"
+import SignupPage from "./components/SignUpPage.jsx";
 import DashBoard from "./components/DashBoard.jsx";
 import LoginFaculty from "./components/LoginFaculty.jsx";
 import LoginOrganiser from "./components/LoginOrganiser.jsx";
 import SignUpFaculty from "./components/SignUpFaculty.jsx";
 import About from "./components/About.jsx";
-import Event from "./components/navbar/Events.jsx";
+import Event from "./components/Events.jsx";
 import Student from "./components/navbar/StudentNavbar.jsx";
 import Calendar from "./components/navbar/Calender.jsx";
 import CreateEvent from "./components/CreateEvent.jsx";
@@ -14,8 +14,15 @@ import OrganizerDashboard from "./components/OrganizerDashboard.jsx";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/HomePage.jsx";
+import NavBar from "./components/navbar/NavBar.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 function App() {
+  const footerRef = useRef(null);
+
+  const handleContactScroll = () => {
+    footerRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -27,13 +34,8 @@ function App() {
       <Route path="/dashboard" element={<DashBoard/>} />
       <Route path="/about" element={<About />} />
       <Route path="/event" element={<Event />} />
-      <Route path="/calender" element={<Calendar/>}/>
       <Route path="/event/:eventId" element={<Event />} />
-      <Route path="/student" element={<Student />} />
-      <Route path="/createevent"element={<CreateEvent/>}/>
-      <Route path="/organizerdashboard" element={<OrganizerDashboard/>}/>
     </Routes>
   );
 }
 export default App;
-

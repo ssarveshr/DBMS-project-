@@ -1,5 +1,4 @@
 // middleware/auth.js
-import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import passportJWT from 'passport-jwt';
 import { JWT_SECRET } from '../config.js';
@@ -15,7 +14,7 @@ const opts = {
 passport.use(new JWTStrategy(opts, (jwtPayload, done) => {
   try {
     if (jwtPayload) {
-      console.log(jwtPayload)
+      console.log('This is the Payload : ',jwtPayload)
       return done(null, jwtPayload);
     }
     return done(null, false);
@@ -26,7 +25,7 @@ passport.use(new JWTStrategy(opts, (jwtPayload, done) => {
 
 // Middleware to check if user has specific role
 export const checkRole = (roles) => (req, res, next) => {
-  // console.log(req.user)
+  console.log(req.user)
   if (!req.user) return res.status(401).send('Unauthorized');
 
   if (roles.includes(req.user.Role)) {

@@ -14,7 +14,7 @@ const SignupPage = () => {
 
     const HandlerFunction = () => {
         if (password !== confirmPassword) {
-            alert("Passwords don't match!");
+            toast.error("Passwords don't match!");
             return;
         }
 
@@ -30,12 +30,13 @@ const SignupPage = () => {
             .then(res => {
                 console.log(res);
                 setLoading(false);
+                toast.success('Login successful')
                 navigate('/login');
             })
             .catch(err => {
                 console.log(err);
                 setLoading(false);
-                alert(err.response?.data?.message || "Registration failed");
+                toast.warning(err.response?.data?.message || "Registration failed");
             });
     }
 

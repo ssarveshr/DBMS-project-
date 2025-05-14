@@ -6,6 +6,9 @@ import GeneratBearerToken from '../Security/GeneratBearerToken.js'
 
 const CommonLoginRouter = express.Router()
 
+// @desc User Login
+// @method post 
+// @access public
 CommonLoginRouter.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
