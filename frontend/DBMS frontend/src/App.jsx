@@ -7,6 +7,10 @@ import LoginOrganiser from "./components/LoginOrganiser.jsx";
 import SignUpFaculty from "./components/SignUpFaculty.jsx";
 import About from "./components/About.jsx";
 import Event from "./components/navbar/Events.jsx";
+import Student from "./components/navbar/StudentNavbar.jsx";
+import Calendar from "./components/navbar/Calender.jsx";
+import CreateEvent from "./components/CreateEvent.jsx";
+import OrganizerDashboard from "./components/OrganizerDashboard.jsx";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/HomePage.jsx";
@@ -23,7 +27,11 @@ function App() {
       <Route path="/dashboard" element={<DashBoard/>} />
       <Route path="/about" element={<About />} />
       <Route path="/event" element={<Event />} />
+      <Route path="/calender" element={<Calendar/>}/>
       <Route path="/event/:eventId" element={<Event />} />
+      <Route path="/student" element={<Student />} />
+      <Route path="/createevent"element={<CreateEvent/>}/>
+      <Route path="/organizerdashboard" element={<OrganizerDashboard/>}/>
     </Routes>
   );
 }

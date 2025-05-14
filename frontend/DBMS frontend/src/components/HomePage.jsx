@@ -22,6 +22,9 @@ const HomePage = () => {
     navigate('/signup'); // Navigate to the signup page
   };
 
+  const handleCalenderRedirect = () => {
+    navigate('/calendar');
+  }
   // Redirect function for About page
   const handleAboutRedirect = () => {
     navigate('/about'); // Navigate to the About page
@@ -226,7 +229,7 @@ const HomePage = () => {
         <ul className={styles.navLinks}>
           <li><a href="#" className={styles.active}>Home</a></li>
           <li><a href="#" onClick={handleEventRedirect}>Events</a></li>
-          <li><a href="#">Calendar</a></li>
+          <li><a href="#" onClick={handleCalenderRedirect}>Calendar</a></li>
           <li><a href="#">Registered</a></li>
           <li><a href="#" onClick={handleAboutRedirect}>About</a></li>
           <li><a href="#" onClick={handleContactScroll}>Contact</a></li>
