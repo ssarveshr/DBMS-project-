@@ -6,7 +6,7 @@ import LoginFaculty from "./components/LoginFaculty.jsx";
 import LoginOrganiser from "./components/LoginOrganiser.jsx";
 import SignUpFaculty from "./components/SignUpFaculty.jsx";
 import About from "./components/About.jsx";
-import Event from "./components/navbar/Events.jsx";
+import Event from "./components/Events.jsx";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/HomePage.jsx";

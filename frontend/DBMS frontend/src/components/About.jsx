@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './About.module.css';
+import Footer from './footer/Footer.jsx';
 
 const About = () => {
   const navigate = useNavigate();
@@ -137,7 +138,7 @@ const About = () => {
         </div>
         <ul className={styles.navLinks}>
           <li><button onClick={() => handleNavigation('/')}>Home</button></li>
-          <li><button onClick={() => handleNavigation('/events')}>Events</button></li>
+          <li><button onClick={() => handleNavigation('/event')}>Events</button></li>
           <li><button onClick={() => handleNavigation('/calendar')}>Calendar</button></li>
           <li><button onClick={() => handleNavigation('/organizations')}>Organizations</button></li>
           <li><button className={styles.active}>About</button></li>
@@ -327,47 +328,7 @@ const About = () => {
       </section>
 
       {/* Footer */}
-      <footer className={styles.footer} ref={footerRef}>
-        <div className={styles.footerContent}>
-          <div className={styles.footerSection}>
-            <h3>Campus Events</h3>
-            <p>Your one-stop platform for all campus activities and events.</p>
-            <div className={styles.socialIcons}>
-              <a href="#" aria-label="Facebook"><img src="/facebook.svg" alt=""/></a>
-              <a href="#" aria-label="Twitter"><img src="/twitter2.svg" alt="" /></a>
-              <a href="#" aria-label="Instagram"><img src="/insta.svg" alt="" /></a>
-              <a href="#" aria-label="LinkedIn"><img src="/linkedin.svg" alt="" /></a>
-            </div>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#">Events Calendar</a></li>
-              <li><a href="#">Student Organizations</a></li>
-              <li><a href="#">Submit an Event</a></li>
-              <li><a href="#">Campus Map</a></li>
-            </ul>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Contact Us</h3>
-            <p>RNS Institute Of Technology</p>
-            <p>Channasandra, Banglore-98</p>
-            <p><a href="mailto:forprojectdbonly@gmail.com">forprojectdbonly@gmail.com</a></p>
-            <p>(+91) 8394-3480-38</p>
-          </div>
-          <div className={styles.footerSection}>
-            <h3>Newsletter</h3>
-            <p>Subscribe to get updates on upcoming events</p>
-            <div className={styles.newsletterForm}>
-              <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
-              <button>Subscribe</button>
-            </div>
-          </div>
-        </div>
-        <div className={styles.copyright}>
-          <p>&copy; 2025 Campus Events. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer ref={footerRef}/>
     </div>
   );
 };
