@@ -5,10 +5,9 @@ const EventcreateValidation = (DATA) => {
     const errors = {}
 
     DATA.title = !isEmpty(DATA.title) ? DATA.title : ''
-    DATA.desc = !isEmpty(DATA.desc) ? DATA.desc : ''
-    DATA.loca = !isEmpty(DATA.loca) ? DATA.loca : ''
+    DATA.description = !isEmpty(DATA.desc) ? DATA.desc : ''
+    DATA.location = !isEmpty(DATA.loca) ? DATA.loca : ''
     DATA.faculty = !isEmpty(DATA.faculty) ? DATA.faculty : ''
-    DATA.email = !isEmpty(DATA.email) ? DATA.email : ''
 
 
     if (validator.isEmpty(DATA.title)) {
@@ -28,12 +27,6 @@ const EventcreateValidation = (DATA) => {
     }
     if (validator.isEmpty(DATA.faculty)) {
         errors.faculty = 'Password field is required'
-    }
-    if (!validator.isEmail(DATA.email)) {
-        errors.email2 = 'Enter an valid email ID '
-    }
-    if (validator.isEmpty(DATA.email)) {
-        errors.email1 = 'Email field is required'
     }
 
     return {
