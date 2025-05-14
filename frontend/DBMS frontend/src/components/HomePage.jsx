@@ -83,7 +83,7 @@ const HomePage = () => {
       image: "/api/placeholder/400/300"
     },
     {
-      id: 2,
+      id: 6,
       title: "Career Fair",
       description: "Connect with potential employers from various industries and explore internship and job opportunities.",
       date: "May 15, 2025",
@@ -92,7 +92,7 @@ const HomePage = () => {
       image: "/api/placeholder/400/300"
     },
     {
-      id: 2,
+      id: 7,
       title: "Career Fair",
       description: "Connect with potential employers from various industries and explore internship and job opportunities.",
       date: "May 15, 2025",
@@ -101,7 +101,7 @@ const HomePage = () => {
       image: "/api/placeholder/400/300"
     },
     {
-      id: 2,
+      id: 8,
       title: "Career Fair",
       description: "Connect with potential employers from various industries and explore internship and job opportunities.",
       date: "May 15, 2025",
@@ -110,7 +110,7 @@ const HomePage = () => {
       image: "/api/placeholder/400/300"
     },
     {
-      id: 2,
+      id: 9,
       title: "Career Fair",
       description: "Connect with potential employers from various industries and explore internship and job opportunities.",
       date: "May 15, 2025",

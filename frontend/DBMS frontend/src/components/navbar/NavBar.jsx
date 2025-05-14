@@ -1,19 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import styles from './NavBar.module.css';
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import styles from "./NavBar.module.css";
+import { jwtDecode } from "jwt-decode";
 
 const NavBar = ({ onContactScroll }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [userRole, setuserRole] = useState('student');
+  const [userRole, setuserRole] = useState("student");
+  const [payload, setpayload] = useState({});
+
+  useEffect(() => {
+    try {
+      const pl = jwtDecode(sessionStorage.getItem("userAuth"));
+      setpayload(pl);
+      setuserRole(payload.Role);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   // Handle navigation
   const handleNavigation = (path) => {
-    if (path === '/contact') {
+    if (path === "/contact") {
       onContactScroll();
     } else {
+      console.log(userRole);
       navigate(path);
     }
     setMenuOpen(false); // Close mobile menu after navigation
@@ -34,9 +47,9 @@ const NavBar = ({ onContactScroll }) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -46,78 +59,90 @@ const NavBar = ({ onContactScroll }) => {
   };
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
-      <div className={styles.logo} onClick={() => handleNavigation('/')}>
+    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
+      <div className={styles.logo} onClick={() => handleNavigation("/")}>
         <h1>Campus Events</h1>
       </div>
-      
+
       {/* Mobile menu button */}
       <div className={styles.mobileMenuBtn} onClick={toggleMenu}>
-        <div className={`${styles.menuBar} ${menuOpen ? styles.open : ''}`}></div>
-        <div className={`${styles.menuBar} ${menuOpen ? styles.open : ''}`}></div>
-        <div className={`${styles.menuBar} ${menuOpen ? styles.open : ''}`}></div>
+        <div
+          className={`${styles.menuBar} ${menuOpen ? styles.open : ""}`}
+        ></div>
+        <div
+          className={`${styles.menuBar} ${menuOpen ? styles.open : ""}`}
+        ></div>
+        <div
+          className={`${styles.menuBar} ${menuOpen ? styles.open : ""}`}
+        ></div>
       </div>
-      
+
       {/* Navigation Links */}
-      <ul className={`${styles.navLinks} ${menuOpen ? styles.showMobileMenu : ''}`}>
+      <ul
+        className={`${styles.navLinks} ${
+          menuOpen ? styles.showMobileMenu : ""
+        }`}
+      >
         <li>
-          <button 
-            onClick={() => handleNavigation('/')} 
-            className={isActive('/') ? styles.active : ''}
+          <button
+            onClick={() => handleNavigation("/")}
+            className={isActive("/") ? styles.active : ""}
           >
             Home
           </button>
         </li>
         <li>
-          <button 
-            onClick={() => handleNavigation('/event')} 
-            className={isActive('/event') ? styles.active : ''}
+          <button
+            onClick={() => handleNavigation("/event")}
+            className={isActive("/event") ? styles.active : ""}
           >
             Events
           </button>
         </li>
         <li>
-          <button 
-            onClick={() => handleNavigation('/calendar')} 
-            className={isActive('/calendar') ? styles.active : ''}
+          <button
+            onClick={() => handleNavigation("/calendar")}
+            className={isActive("/calendar") ? styles.active : ""}
           >
             Calendar
           </button>
         </li>
         <li>
-          <button 
-            onClick={() => handleNavigation('/organizations')} 
-            className={isActive('/organizations') ? styles.active : ''}
+          <button
+            onClick={() => handleNavigation("/organizations")}
+            className={isActive("/organizations") ? styles.active : ""}
           >
             Organizations
           </button>
         </li>
         <li>
-          <button 
-            onClick={() => handleNavigation('/about')} 
-            className={isActive('/about') ? styles.active : ''}
+          <button
+            onClick={() => handleNavigation("/about")}
+            className={isActive("/about") ? styles.active : ""}
           >
             About
           </button>
         </li>
         <li>
-          <button onClick={() => handleNavigation('/contact')}>
-            Contact
-          </button>
+          <button onClick={() => handleNavigation("/contact")}>Contact</button>
         </li>
       </ul>
-      
+
       {/* Auth Buttons */}
-      <div className={`${styles.authButtons} ${menuOpen ? styles.showMobileMenu : ''}`}>
-        <button 
-          className={styles.loginBtn} 
-          onClick={() => handleNavigation('/login')}
+      <div
+        className={`${styles.authButtons} ${
+          menuOpen ? styles.showMobileMenu : ""
+        }`}
+      >
+        <button
+          className={styles.loginBtn}
+          onClick={() => handleNavigation("/login")}
         >
           Login
         </button>
-        <button 
-          className={styles.signupBtn} 
-          onClick={() => handleNavigation('/signup')}
+        <button
+          className={styles.signupBtn}
+          onClick={() => handleNavigation("/signup")}
         >
           Sign Up
         </button>
