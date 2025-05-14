@@ -138,7 +138,7 @@ const About = () => {
         </div>
         <ul className={styles.navLinks}>
           <li><button onClick={() => handleNavigation('/')}>Home</button></li>
-          <li><button onClick={() => handleNavigation('/events')}>Events</button></li>
+          <li><button onClick={() => handleNavigation('/event')}>Events</button></li>
           <li><button onClick={() => handleNavigation('/calendar')}>Calendar</button></li>
           <li><button onClick={() => handleNavigation('/organizations')}>Organizations</button></li>
           <li><button className={styles.active}>About</button></li>

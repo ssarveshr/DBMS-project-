@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './HomePage.module.css'; // Adjust the path as necessary
 import { useNavigate } from 'react-router-dom';
 import Footer from './footer/Footer.jsx';
+import Navbar from './navbar/NavBar.jsx';
 
 const HomePage = () => {
 
@@ -220,24 +221,7 @@ const HomePage = () => {
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <h1>Campus Events</h1>
-        </div>
-        <ul className={styles.navLinks}>
-          <li><a href="#" className={styles.active}>Home</a></li>
-          <li><a href="#" onClick={handleEventRedirect}>Events</a></li>
-          <li><a href="#">Calendar</a></li>
-          <li><a href="#">Registered</a></li>
-          <li><a href="#" onClick={handleAboutRedirect}>About</a></li>
-          <li><a href="#" onClick={handleContactScroll}>Contact</a></li>
-
-        </ul>
-        <div className={styles.authButtons}>
-          <button className={styles.loginBtn} onClick={handleLoginRedirect}>Login</button>
-          <button className={styles.signupBtn} onClick={handleSignupRedirect}>Sign Up</button>
-        </div>
-      </nav>
+      <Navbar onContactScroll={handleContactScroll} />
 
       {/* Main Content */}
       <main className={styles.mainContent}>
