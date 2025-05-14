@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./Spinner.jsx";
 import { jwtDecode } from "jwt-decode";
+import config from './config.js'
 
 const LoginPage = () => {
 	const [email, setEmail] = useState("")
