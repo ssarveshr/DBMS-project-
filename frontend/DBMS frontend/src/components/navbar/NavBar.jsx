@@ -62,15 +62,15 @@ const NavBar = ({ onContactScroll }) => {
 
     switch (userRole.toLowerCase()) {
       case "student":
-        rolePath = "/student-dashboard";
+        rolePath = "/studentdashboard";
         roleName = "Student Portal";
         break;
       case "faculty":
-        rolePath = "/faculty-dashboard";
+        rolePath = "/facultydashboard";
         roleName = "Faculty Portal";
         break;
       case "organizer":
-        rolePath = "/organizer-dashboard";
+        rolePath = "/organizerdashboard";
         roleName = "Organizer Portal";
         break;
       default:
