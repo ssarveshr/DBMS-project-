@@ -240,7 +240,7 @@
 /* signup container full */
   .loginEnterYourContainer {
     left: 7px;
-    margin-top: 78px  ;
+    margin-top: 48px  ;
     margin-left: 10px;
     justify-content: left;
     line-height: 34px;
@@ -261,7 +261,7 @@
   font-weight: normal;
   cursor: pointer;
   width: 350px;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 20px;
 }
 
@@ -397,6 +397,7 @@ a {
 .login {
   margin: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 30px;
   font-style: italic;
   line-height: normal;
   font-weight: normal;
