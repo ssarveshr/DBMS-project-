@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import styles from './CreateEvent.module.css';
 
@@ -25,17 +23,32 @@ const CreateEvent = () => {
   // Handle input change for event data
   const handleEventChange = (e) => {
     const { name, value } = e.target;
+    console.log(`Field: ${name}, Value: ${value}`);
     if (name in eventDetails) {
-      setEventDetails(prevState => ({
+      setEventDetails((prevState) => ({
         ...prevState,
         [name]: value,
       }));
     }
   };
 
-  // Handle adding a task
-  const addTask = (task) => {
-    setTasks([...tasks, task]);
+  // Handle venue change
+  const handleVenueChange = (e) => {
+    const { value } = e.target;
+    console.log(`Venue: ${value}`);
+    setEventDetails((prevState) => ({
+      ...prevState,
+      location: {
+        ...prevState.location,
+        venue: value,
+      },
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Event Details:", eventDetails);
   };
 
   return (
@@ -52,7 +65,7 @@ const CreateEvent = () => {
       {/* Event Creation Section */}
       <section className={styles.eventCreationSection}>
         <h2>Create New Event</h2>
-        <form className={styles.createEventForm}>
+        <form className={styles.createEventForm} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label htmlFor="title">Event Title</label>
             <input
@@ -64,6 +77,7 @@ const CreateEvent = () => {
               onChange={handleEventChange}
             />
           </div>
+
           <div className={styles.formGroup}>
             <label htmlFor="date">Event Date</label>
             <input
@@ -75,6 +89,7 @@ const CreateEvent = () => {
               onChange={handleEventChange}
             />
           </div>
+
           <div className={styles.formGroup}>
             <label htmlFor="venue">Event Venue</label>
             <input
@@ -83,18 +98,10 @@ const CreateEvent = () => {
               name="venue"
               placeholder="Venue"
               value={eventDetails.location.venue}
-              onChange={(e) => {
-                setEventDetails(prevState => ({
-                  ...prevState,
-                  location: {
-                    ...prevState.location,
-                    venue: e.target.value,
-                  }
-                }));
-              }}
+              onChange={handleVenueChange}
             />
           </div>
-          
+
           <div className={styles.formGroup}>
             <label htmlFor="description">Event Description</label>
             <textarea
@@ -111,7 +118,6 @@ const CreateEvent = () => {
         </form>
       </section>
 
-     
     </div>
   );
 };
