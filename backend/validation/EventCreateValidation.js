@@ -13,14 +13,14 @@ const EventcreateValidation = (DATA) => {
     if (validator.isEmpty(DATA.title)) {
         errors.title = 'Email field is required'
     }
-    if (!validator.isLength(DATA.title, { min: 4, max: 20 })) {
-        errors.lengthtitle = 'Title should be between 4 and 20 charecter'
+    if (!validator.isLength(DATA.title, { min: 4, max: 200 })) {
+        errors.lengthtitle = 'Title should be between 4 and 200 charecter'
     }
     if (validator.isEmpty(DATA.desc)) {
         errors.desc = 'desc field is required'
     }
-    if (!validator.isLength(DATA.desc, { min: 5, max: 100 })) {
-        errors.lengthdesc = 'Title should be between 10 and 100 charecter'
+    if (!validator.isLength(DATA.desc, { min: 5, max: 10000 })) {
+        errors.lengthdesc = 'Title should be between 10 and 10000 charecter'
     }
     if (validator.isEmpty(DATA.loca)) {
         errors.loca = 'loca field is required'

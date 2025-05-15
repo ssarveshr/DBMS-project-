@@ -41,6 +41,7 @@ function App() {
       <Route path="/organizerdashboard" element={<OrganizerDashboard />} />
       <Route path="/facultydashboard" element={<FacultyDashboard />} />
       <Route path="/createevent" element={<CreateEvent />} />
+      <Route path="/Calendar" element={<Calendar />} />
     </Routes>
     <Footer ref={footerRef}/>
     </>

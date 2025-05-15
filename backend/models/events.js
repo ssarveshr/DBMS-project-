@@ -32,6 +32,7 @@ const EventSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	registeredStudents : []
 })
 
 const Event = mongoose.model('events', EventSchema)
