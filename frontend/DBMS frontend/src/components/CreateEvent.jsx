@@ -1,98 +1,68 @@
-import React, { useState } from 'react';
-import styles from './CreateEvent.module.css';
-import axios from 'axios';
+import React, { useState } from "react";
+import styles from "./CreateEvent.module.css";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const CreateEvent = () => {
-  // Event data state
-  const [eventDetails, setEventDetails] = useState({
-    title: '',
-    date: '',
-    location: {
-      venue: '',
-      address: '',
-      faculty:'',
-    },
-    description: '',
-  });
+  const [title, setTitle] = useState("");
+  const [loca, setloca] = useState("");
+  const [desc, setdesc] = useState("");
+  const [faculty, setFaculty] = useState("");
+  const [Orgname, setOrgName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Task data state
-  const [tasks, setTasks] = useState([
-    "Finalize catering order",
-    "Send speaker reminders",
-    "Print event materials"
-  ]);
-
-  // Handle input change for event data
-  const handleEventChange = (e) => {
-    const { name, value } = e.target;
-    console.log(`Field: ${name}, Value: ${value}`);
-    if (name in eventDetails) {
-      setEventDetails((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
-  };
-
-  // Handle venue change
-  const handleVenueChange = (e) => {
-    const { value } = e.target;
-    console.log(`Venue: ${value}`);
-    setEventDetails((prevState) => ({
-      ...prevState,
-      location: {
-        ...prevState.location,
-        venue: value,
-      },
-    }));
-  };
-//Handle Faculty change
-  const handleFacultyChange = (e) => {
-    const { name, value } = e.target;
-    console.log(`Faculty: ${value}`);
-    setEventDetails((prevState)=>({
-      ...prevState,
-      [name]:value,
-    }));
-    };
-  
   // Handle form submission
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  const token = sessionStorage.getItem("userAuth");
-  if (!token) {
-    alert("You are not logged in!");
-    return;
-  }
+    const token = sessionStorage.getItem("userAuth");
+    if (!token) {
+      toast.warning("You are not logged in!");
+      setIsSubmitting(false);
+      return;
+    }
 
-  const payload = {
-    Orgname: "OrganizerNameHere", // TODO: Replace with actual name or fetch from session
-    title: eventDetails.title,
-    loca: eventDetails.location,
-    desc: eventDetails.description,
-    faculty: "FacultyNameHere", // TODO: Replace with selected faculty name from dropdown or logic
-    isOngoing: false // Initial state for approval
-  };
+    const Data = {
+      Orgname,
+      title,
+      loca,
+      desc,
+      faculty,
+    };
 
-  try {
-    const res = await axios.post(
-      "http://localhost:5000/api/auth/Organiser/create-events",
-      payload,
-      {
-        headers: {
-          Authorization: token
+    console.log("Data:", Data);
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/Organiser/create-events",
+        Data,
+        {
+          headers: {
+            Authorization: token,
+          },
         }
-      }
-    );
-    console.log("Event Created:", res.data);
-    alert("Event created successfully!");
-  } catch (error) {
-    console.error("Error creating event:", error.response?.data || error.message);
-    alert("Failed to create event");
-  }
-};
+      );
+      if (res) {
+        console.log("Event Created:", res.data);
+        toast.success("Event created successfully!");
 
+        // Reset form after successful submission
+        setTitle("");
+        setloca("");
+        setdesc("");
+        setFaculty("");
+        setOrgName("");
+      }
+    } catch (error) {
+      console.error(
+        "Error creating event:",
+        error.response?.data || error.message
+      );
+      toast.error(error.response?.data?.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className={styles.dashboardContainer}>
@@ -116,65 +86,72 @@ const CreateEvent = () => {
               id="title"
               name="title"
               placeholder="Event Title"
-              value={eventDetails.title}
-              onChange={handleEventChange}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="date">Event Date</label>
+            <label htmlFor="orgName">Organisation Name</label>
             <input
               type="text"
-              id="date"
-              name="date"
-              placeholder="Event Date"
-              value={eventDetails.date}
-              onChange={handleEventChange}
+              id="orgName"
+              name="orgName"
+              placeholder="Organisation Name"
+              value={Orgname}
+              onChange={(e) => setOrgName(e.target.value)}
+              required
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="venue">Event Venue</label>
+            <label htmlFor="loca">Event loca</label>
             <input
               type="text"
-              id="venue"
-              name="venue"
-              placeholder="Venue"
-              value={eventDetails.location.venue}
-              onChange={handleVenueChange}
+              id="loca"
+              name="loca"
+              placeholder="loca"
+              value={loca}
+              onChange={(e) => setloca(e.target.value)}
+              required
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="description">Event Description</label>
+            <label htmlFor="desc">Event desc</label>
             <textarea
-              id="description"
-              name="description"
-              placeholder="Event Description"
-              value={eventDetails.description}
-              onChange={handleEventChange}
+              id="desc"
+              name="desc"
+              placeholder="Event desc"
+              value={desc}
+              onChange={(e) => setdesc(e.target.value)}
+              required
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="date">Faculty Co-ordinator</label>
+            <label htmlFor="faculty">Faculty Co-ordinator</label>
             <input
               type="text"
               id="faculty"
               name="faculty"
               placeholder="Faculty Co-ordinator"
-              value={eventDetails.faculty}
-              onChange={handleFacultyChange}
+              value={faculty}
+              onChange={(e) => setFaculty(e.target.value)}
+              required
             />
           </div>
-          <button type="submit" className={styles.createEventButton}>
-            Create Event
+          <button
+            type="submit"
+            className={styles.createEventButton}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Creating..." : "Create Event"}
           </button>
         </form>
       </section>
-
     </div>
   );
 };
 
 export default CreateEvent;
-

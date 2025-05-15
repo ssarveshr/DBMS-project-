@@ -26,13 +26,12 @@ OrganizerRouter.get('/current', passport.authenticate('jwt', { session: false })
 // @method post 
 // @access Private
 OrganizerRouter.post('/create-events', passport.authenticate('jwt', { session: false }), checkRole('organizer'), (req, res) => {
-	const { Orgname, title, loca, desc, faculty} = req.body
-	const { errors, valid, isValid } = EventcreateValidation(req.body)
+	console.log('This is the value of body : ', req.body)
+	const { Orgname, title, loca, desc, faculty } = req.body
+	// const { errors, valid, isValid } = EventcreateValidation(req.body)
+	const errors = {}
 
 	try {
-		if (!isValid) {
-			return res.status(400).json(errors)
-		}
 		console.log(req.user.User_Email)
 
 		const email = req.user.User_Email
@@ -51,7 +50,6 @@ OrganizerRouter.post('/create-events', passport.authenticate('jwt', { session: f
 			description: desc,
 			location: loca,
 			facultyName: faculty,
-			isOngoing: isOngoing
 		}
 
 		Event.create(NewEvent)
