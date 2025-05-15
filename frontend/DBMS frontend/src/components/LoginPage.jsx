@@ -18,6 +18,11 @@ const LoginPage = () => {
       email,
       password,
     };
+
+    if(Data.email === '' && Data.password === ''){
+      toast.warning("Credentials are empty");
+    }
+
     console.log(Data);
     setLoading(true);
     axios
@@ -29,6 +34,7 @@ const LoginPage = () => {
         if (payload.User_Email === email) {
           sessionStorage.setItem("userAuth", token);
           setLoading(false);
+          toast.success("login successfull");
           navigate("/");
         } else {
           toast.warning("Invalid Credentials");

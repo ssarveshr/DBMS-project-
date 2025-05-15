@@ -3,6 +3,7 @@ import styles from './HomePage.module.css'; // Adjust the path as necessary
 import { useNavigate } from 'react-router-dom';
 import Footer from './footer/Footer.jsx';
 import Navbar from './navbar/NavBar.jsx';
+import axios from 'axios';
 
 const HomePage = () => {
 
@@ -36,6 +37,15 @@ const HomePage = () => {
   const handleEventRedirect = () => {
     navigate('/event'); // Navigate to the event page
   };
+
+  // axios
+  //   .get("http://localhost:5000/api/events")
+  //   .then(res => {
+
+  //   })
+  //   .catch(err => console.error(err));
+
+  
 
   // Mock data for events - replace with actual API calls in production
   const [events, setEvents] = useState([
