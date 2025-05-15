@@ -98,4 +98,22 @@ Facultyrouter.put('/approve-event', passport.authenticate('jwt', { session: fals
   }
 });
 
+Facultyrouter.delete('/deny-event', passport.authenticate('jwt', { session: false }), checkRole('faculty'), async (req, res) => {
+  try {
+    const { organiserName, title, facultyName } = req.body;
+
+    const deletedEvent = await Event.findOneAndDelete({ organiserName, title, facultyName });
+
+    if (!deletedEvent) {
+      return res.status(404).json({ error: "Event not found" });
+    }
+
+    return res.status(200).json({ success: "Event denied and deleted" });
+  } catch (error) {
+    console.error("Error denying event:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 export default Facultyrouter;
