@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './CreateEvent.module.css';
+import axios from 'axios';
 
 const CreateEvent = () => {
   // Event data state
@@ -46,10 +47,42 @@ const CreateEvent = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Event Details:", eventDetails);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const token = sessionStorage.getItem("userAuth");
+  if (!token) {
+    alert("You are not logged in!");
+    return;
+  }
+
+  const payload = {
+    Orgname: "OrganizerNameHere", // TODO: Replace with actual name or fetch from session
+    title: eventDetails.title,
+    loca: eventDetails.location,
+    desc: eventDetails.description,
+    faculty: "FacultyNameHere", // TODO: Replace with selected faculty name from dropdown or logic
+    isOngoing: false // Initial state for approval
   };
+
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/api/auth/Organiser/create-events",
+      payload,
+      {
+        headers: {
+          Authorization: token
+        }
+      }
+    );
+    console.log("Event Created:", res.data);
+    alert("Event created successfully!");
+  } catch (error) {
+    console.error("Error creating event:", error.response?.data || error.message);
+    alert("Failed to create event");
+  }
+};
+
 
   return (
     <div className={styles.dashboardContainer}>

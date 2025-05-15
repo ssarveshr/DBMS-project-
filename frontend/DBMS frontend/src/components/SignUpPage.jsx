@@ -3,6 +3,7 @@ import styles from "./SignupPage.module.css";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Spinner from './Spinner.jsx';
+import { toast } from "react-toastify";
 
 const SignupPage = () => {
     const [name, setName] = useState("");
