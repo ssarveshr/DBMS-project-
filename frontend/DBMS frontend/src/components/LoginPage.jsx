@@ -41,6 +41,8 @@ const LoginPage = () => {
           navigate("/");
         } else if(role==="faculty") {
           navigate("/FacultyDashboard");
+        } else if(role==="organizer") {
+          navigate("/organizerdashboard");
         } else {
           toast.warning("Invalid Credentials");
           setLoading(false);

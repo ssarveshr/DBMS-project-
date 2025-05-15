@@ -144,7 +144,12 @@
 import React from 'react';
 import styles from './OrganizerDashboard.module.css';
 
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 const OrganizerDashboard = () => {
+  const navigate = useNavigate();
+  const handleAddEvent = () => {
+  navigate("/createevent");
+};
   // Sample data - replace with your actual data or state management
   const organizationInfo = {
     name: "Tech Conference Org",
@@ -214,7 +219,7 @@ const OrganizerDashboard = () => {
         <section className={styles.facultySection}>
           <div className={styles.sectionHeader}>
             <h2>Faculty Assigned</h2>
-            <button className={styles.addButton}>+ Add Event</button>
+            <button className={styles.addButton} onClick={handleAddEvent}>+ Add Event</button>
           </div>
           <div className={styles.facultyGrid}>
             {facultyMembers.map(faculty => (
