@@ -10,6 +10,7 @@ const CreateEvent = () => {
     location: {
       venue: '',
       address: '',
+      faculty:'',
     },
     description: '',
   });
@@ -45,7 +46,16 @@ const CreateEvent = () => {
       },
     }));
   };
-
+//Handle Faculty change
+  const handleFacultyChange = (e) => {
+    const { name, value } = e.target;
+    console.log(`Faculty: ${value}`);
+    setEventDetails((prevState)=>({
+      ...prevState,
+      [name]:value,
+    }));
+    };
+  
   // Handle form submission
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -151,9 +161,9 @@ const CreateEvent = () => {
               type="text"
               id="faculty"
               name="faculty"
-              placeholder="Faculty Co=ordinator"
+              placeholder="Faculty Co-ordinator"
               value={eventDetails.faculty}
-              onChange={handleEventChange}
+              onChange={handleFacultyChange}
             />
           </div>
           <button type="submit" className={styles.createEventButton}>
