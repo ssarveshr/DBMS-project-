@@ -112,6 +112,17 @@ const CreateEvent = () => {
               onChange={handleEventChange}
             />
           </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="date">Faculty Allo</label>
+            <input
+              type="text"
+              id="date"
+              name="date"
+              placeholder="Event Date"
+              value={eventDetails.date}
+              onChange={handleEventChange}
+            />
+          </div>
           <button type="submit" className={styles.createEventButton}>
             Create Event
           </button>
