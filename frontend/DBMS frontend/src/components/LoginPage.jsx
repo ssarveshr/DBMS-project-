@@ -21,7 +21,7 @@ const LoginPage = () => {
     console.log(Data);
     setLoading(true);
     axios
-      .post(`http://localhost:5000/api/login`, Data)
+      .post('http://localhost:5000/api/login', Data)
       .then((res) => {
         const token = res.data.Token;
         const payload = jwtDecode(token);
@@ -29,12 +29,18 @@ const LoginPage = () => {
         if (payload.User_Email === email) {
           sessionStorage.setItem("userAuth", token);
           setLoading(false);
+          const role = payload.Role;
+          console.log(role);
+          if(role==="student") {
           navigate("/");
+        } else if(role==="faculty") {
+          navigate("/FacultyDashboard");
         } else {
           toast.warning("Invalid Credentials");
           setLoading(false);
         }
-      })
+      }
+  })
       .catch((err) => {
         console.log(err);
         setLoading(false);
