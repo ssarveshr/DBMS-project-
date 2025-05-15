@@ -33,7 +33,7 @@
   bottom: -5px;
   width: 30px;
   height: 2px;
-  background-color: #3a86ff;
+  background-color: #dfe8f8;
 }
 
 .footerSection p {
@@ -67,7 +67,7 @@
 }
 
 .footerSection ul li a:hover {
-  color: #3a86ff;
+  color: #ffffff;
 }
 
 .socialIcons {
@@ -117,7 +117,7 @@
 }
 
 .newsletterForm button {
-  background-color: #3a86ff;
+  background-color: #a163d3;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -127,7 +127,7 @@
 }
 
 .newsletterForm button:hover {
-  background-color: #2a75fc;
+  background-color: #8a16ea;
 }
 
 .copyright {

@@ -18,6 +18,11 @@ const LoginPage = () => {
       email,
       password,
     };
+
+    if(Data.email === '' && Data.password === ''){
+      toast.warning("Credentials are empty");
+    }
+
     console.log(Data);
     setLoading(true);
     axios
@@ -31,6 +36,7 @@ const LoginPage = () => {
           setLoading(false);
           const role = payload.Role;
           console.log(role);
+          toast.success("login successfull");
           if(role==="student") {
           navigate("/");
         } else if(role==="faculty") {
