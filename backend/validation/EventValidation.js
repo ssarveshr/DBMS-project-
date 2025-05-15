@@ -17,13 +17,13 @@ const EventValidation = (DATA) => {
         errors.email1 = 'Email field is required'
     }
     if(validator.isEmpty(DATA.name)){
-        errors.name = 'Password field is required'
+        errors.name = 'Title field is required'
     }
     if(validator.isEmpty(DATA.eventname)){
-        errors.eventname = 'Password field is required'
+        errors.eventname = 'eventname field is required'
     }
     if(validator.isEmpty(DATA.branchname)){
-        errors.branchname = 'Password field is required'
+        errors.branchname = 'branchname field is required'
     }
 
     return {

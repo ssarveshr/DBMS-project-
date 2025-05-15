@@ -8,22 +8,58 @@ const NavBar = ({ onContactScroll }) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [userRole, setUserRole] = useState(null); // Initialize as null
+  const [userRole, setUserRole] = useState(null);
   const [payload, setPayload] = useState(null);
 
-  useEffect(() => {
+  // Helper to update userRole and payload from sessionStorage
+  const updateAuthState = () => {
     const token = sessionStorage.getItem("userAuth");
     if (token) {
       try {
         const decoded = jwtDecode(token);
         setPayload(decoded);
-        setUserRole(decoded.Role); // Assuming the role is stored in 'Role'
+        setUserRole(decoded.Role);
       } catch (error) {
         console.error("Error decoding token:", error);
         setUserRole(null);
+        setPayload(null);
       }
+    } else {
+      setUserRole(null);
+      setPayload(null);
     }
-  }, []); // Empty dependency array to run only once on mount
+  };
+
+  // Run on mount and whenever userAuth changes (via storage event)
+  useEffect(() => {
+    updateAuthState();
+
+    // Listen for storage changes (cross-tab)
+    const handleStorage = (event) => {
+      if (event.key === "userAuth") {
+        updateAuthState();
+      }
+    };
+    window.addEventListener("storage", handleStorage);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+    };
+  }, []);
+
+  // Also, listen for login/signup in the same tab by polling (optional, for instant update)
+  useEffect(() => {
+    let prevToken = sessionStorage.getItem("userAuth");
+    const interval = setInterval(() => {
+      const currentToken = sessionStorage.getItem("userAuth");
+      if (currentToken !== prevToken) {
+        prevToken = currentToken;
+        updateAuthState();
+      }
+    }, 500); // Poll every 500ms
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Handle navigation
   const handleNavigation = (path) => {
@@ -166,6 +202,7 @@ const NavBar = ({ onContactScroll }) => {
             onClick={() => {
               sessionStorage.removeItem("userAuth");
               setUserRole(null);
+              setPayload(null);
               navigate("/login");
             }}
           >

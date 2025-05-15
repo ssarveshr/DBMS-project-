@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import EventValidation from "../validation/EventValidation.js";
 import { checkRole } from "../middleware/authMiddleware.js";
 import passport from "passport";
+import Event from "../models/events.js";
 
 const Studentrouter = express.Router()
 
@@ -56,16 +57,22 @@ Studentrouter.post('/register-event', passport.authenticate('jwt', { session: fa
 				message: '404 Not found student'
 			})
 		}
-		Existing_User.studentInfo.registeredEvents.unshift(newRegisteration)
 
-		Existing_User.save().then(result => {
-			console.log(result)
-			return res.status(200).json(valid)
+		const Existing_event = await Event.findOne({ title: eventname })
+		if (!Existing_event) {
+			return res.status(404).json({
+				message: 'Event not found'
+			})
+		}
+
+		Existing_event.registeredStudents.unshift(Existing_User)
+
+		Existing_event.save().then(result => {
+			return res.status(201).json(result)
 		})
-			.catch(error => {
-				console.log(error)
-				errors.unautharized = 'You have to login before registration'
-				return res.status(403).json(errors)
+			.catch(err => {
+				console.log(err)
+				return res.status(404).json(err)
 			})
 
 	} catch (error) {
