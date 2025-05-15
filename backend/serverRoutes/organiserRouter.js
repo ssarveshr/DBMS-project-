@@ -51,7 +51,6 @@ OrganizerRouter.post('/create-events', passport.authenticate('jwt', { session: f
 			description: desc,
 			location: loca,
 			facultyName: faculty,
-			isOngoing: isOngoing
 		}
 
 		Event.create(NewEvent)
