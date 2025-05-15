@@ -146,7 +146,7 @@
   position: absolute;
   margin: 8px 0;
   margin-left: 250px;
-  margin-top: -96px;
+  margin-top: -89px;
   border: 1px solid #8a16ea;
   border-radius: 5px;
   font-size: 14px;
@@ -258,7 +258,7 @@
 /* signup container full */
   .loginEnterYourContainer {
     left: 7px;
-    margin-top: 48px  ;
+    margin-top: 58px  ;
     margin-left: 10px;
     justify-content: left;
     line-height: 34px;
@@ -415,7 +415,7 @@ a {
 .login {
   margin: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 30px;
+  font-size: 49px;
   font-style: italic;
   line-height: normal;
   font-weight: normal;

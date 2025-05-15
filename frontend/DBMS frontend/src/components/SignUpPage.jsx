@@ -9,10 +9,9 @@ const SignupPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [UserType, setUserType] = useState("");
+    const [userType, setUserType] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [Loading, setLoading] = useState(false);
-    const[UserType,setUserType]=useState("");
     const navigate = useNavigate();
 
     const HandlerFunction = () => {
@@ -73,7 +72,7 @@ const SignupPage = () => {
                         </div>
                         <select
                  className={styles.inputField1}
-                 value={UserType}
+                 value={userType}
                  onChange={(e) => setUserType(e.target.value)}
               >
                   <option value="" disabled>Role</option>
@@ -110,17 +109,6 @@ const SignupPage = () => {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
-                            <select className={styles.inputField}
-                                          value={UserType}
-                                          onChange={(e) => setUserType(e.target.value)}
-                                        >
-                                          <option value="" disabled>
-                                            Select Role
-                                          </option>
-                                          <option value="student">Student</option>
-                                          <option value="faculty">Faculty</option>
-                                          <option value="organiser">Organiser</option>
-                                        </select>
 
 
                         <button className={styles.loginButton} onClick={HandlerFunction}>
