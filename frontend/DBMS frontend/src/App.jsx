@@ -24,6 +24,8 @@ function App() {
     footerRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   return (
+    <>
+    <NavBar onContactScroll={handleContactScroll}/>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LoginPage />} />
@@ -36,6 +38,8 @@ function App() {
       <Route path="/event" element={<Event />} />
       <Route path="/event/:eventId" element={<Event />} />
     </Routes>
+    <Footer ref={footerRef}/>
+    </>
   );
 }
 export default App;
