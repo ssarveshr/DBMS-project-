@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./LoginPage.module.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./Spinner.jsx";
 import { jwtDecode } from "jwt-decode";

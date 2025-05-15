@@ -16,6 +16,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/HomePage.jsx";
 import NavBar from "./components/navbar/NavBar.jsx";
 import Footer from "./components/footer/Footer.jsx";
+import FacultyDashboard from "./components/FacultyDashboard.jsx";
 
 function App() {
   const footerRef = useRef(null);
