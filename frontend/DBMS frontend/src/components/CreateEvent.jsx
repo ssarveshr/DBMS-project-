@@ -146,13 +146,13 @@ const CreateEvent = () => {
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="date">Faculty Allo</label>
+            <label htmlFor="date">Faculty Co-ordinator</label>
             <input
               type="text"
-              id="date"
-              name="date"
-              placeholder="Event Date"
-              value={eventDetails.date}
+              id="faculty"
+              name="faculty"
+              placeholder="Faculty Co=ordinator"
+              value={eventDetails.faculty}
               onChange={handleEventChange}
             />
           </div>
