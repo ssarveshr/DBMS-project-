@@ -11,6 +11,7 @@ const SignupPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [Loading, setLoading] = useState(false);
+    const[UserType,setUserType]=useState("");
     const navigate = useNavigate();
 
     const HandlerFunction = () => {
@@ -69,16 +70,25 @@ const SignupPage = () => {
                             Already have an account? 
                             <span onClick={() => navigate('/login')} className="spanlogin"> Login here</span>
                         </div>
-
+                        <select
+                 className={styles.inputField1}
+                 value={UserType}
+                 onChange={(e) => setUserType(e.target.value)}
+              >
+                  <option value="" disabled>Role</option>
+                  <option value="Student">Student</option>
+                   <option value="Faculty">Faculty</option>
+                  <option value="Admin">Organiser</option>
+              </select>
                         <div className={styles.formGroup}>
-                        <label className={styles.label}>Full Name</label>
-                        <input
-                            type="text"
-                            className={styles.inputField}
-                            placeholder="Enter your full name"
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                            </div>
+                            <label className={styles.label}>Full Name</label>
+                            <input
+                                type="text"
+                                className={styles.inputField}
+                                placeholder="Enter your full name"
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
 
                             <div className={styles.formGroup}>
                                 <label className={styles.label}>Email</label>

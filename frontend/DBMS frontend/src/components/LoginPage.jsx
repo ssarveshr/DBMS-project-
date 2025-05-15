@@ -121,7 +121,7 @@ const LoginPage = () => {
             {/* <div className={styles.username}>Username</div> */}
 
             {/* Dropdown for Role Selection */}
-            <select
+            {/* <select
               className={styles.inputfield}
               value={UserType}
               onChange={(e) => setUserType(e.target.value)}
@@ -132,7 +132,7 @@ const LoginPage = () => {
               <option value="student">Student</option>
               <option value="faculty">Faculty</option>
               <option value="organiser">Organiser</option>
-            </select>
+            </select> */}
             <label className={styles.label}>Email</label>
             <input
               type="Email"

@@ -127,11 +127,29 @@
   background-color: rgba(255, 255, 255, 0.6);
   padding: 10px;
   color: #333;
+
   margin: 8px 0;
   margin-left: 10px;
+  margin-top: 13px;
   border: 1px solid #8a16ea;
   border-radius: 5px;
   font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.inputField1 {
+  width: 25%;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 8px;
+  color: #333;
+  height: 33px;
+  position: absolute;
+  margin: 8px 0;
+  margin-left: 250px;
+  margin-top: -96px;
+  border: 1px solid #8a16ea;
+  border-radius: 5px;
+  font-size: 14px;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -240,7 +258,7 @@
 /* signup container full */
   .loginEnterYourContainer {
     left: 7px;
-    margin-top: 78px  ;
+    margin-top: 65px  ;
     margin-left: 10px;
     justify-content: left;
     line-height: 34px;
@@ -374,7 +392,7 @@ a {
  
 
 .formGroup {
-  margin-bottom: 15px; /* adjust spacing as needed */
+  margin-bottom: 15px;/* adjust spacing as needed */
 }
 
 .label {
