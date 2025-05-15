@@ -1,0 +1,106 @@
+
+ .dashboardContainer {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 100%;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #4b0082;
+}
+
+.header {
+  background-color: #43255c;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.orgInfo p {
+  margin: 5px 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+}
+
+.eventSection, .facultySection, .actionsSection {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.eventCard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.eventCard h3 {
+  margin-top: 0;
+  color: #4b0082;
+}
+
+.addButton {
+  background-color: #b794da;
+  color: #ffffff;
+  padding: 15px 30px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  display: block;
+  width: calc(100% - 40px);
+  margin: 20px auto 0;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.addButton:hover {
+  background-color: #43255c;
+}
+
+.facultyCard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.facultyAvatar {
+  width: 40px;
+  height: 40px;
+  background-color: #43255c;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.actionButton {
+  background-color: #d3a1ff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.actionButton:hover {
+  background-color: #c084f5;
+}

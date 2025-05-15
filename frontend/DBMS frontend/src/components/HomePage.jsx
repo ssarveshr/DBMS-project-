@@ -24,6 +24,9 @@ const HomePage = () => {
     navigate('/signup'); // Navigate to the signup page
   };
 
+  const handleCalenderRedirect = () => {
+    navigate('/calendar');
+  }
   // Redirect function for About page
   const handleAboutRedirect = () => {
     navigate('/about'); // Navigate to the About page
@@ -83,7 +86,7 @@ const HomePage = () => {
       image: "/api/placeholder/400/300"
     },
     {
-      id: 2,
+      id: 6,
       title: "Career Fair",
       description: "Connect with potential employers from various industries and explore internship and job opportunities.",
       date: "May 15, 2025",
@@ -92,7 +95,7 @@ const HomePage = () => {
       image: "/api/placeholder/400/300"
     },
     {
-      id: 2,
+      id: 7,
       title: "Career Fair",
       description: "Connect with potential employers from various industries and explore internship and job opportunities.",
       date: "May 15, 2025",
@@ -101,7 +104,7 @@ const HomePage = () => {
       image: "/api/placeholder/400/300"
     },
     {
-      id: 2,
+      id: 8,
       title: "Career Fair",
       description: "Connect with potential employers from various industries and explore internship and job opportunities.",
       date: "May 15, 2025",
@@ -110,7 +113,7 @@ const HomePage = () => {
       image: "/api/placeholder/400/300"
     },
     {
-      id: 2,
+      id: 9,
       title: "Career Fair",
       description: "Connect with potential employers from various industries and explore internship and job opportunities.",
       date: "May 15, 2025",
@@ -221,6 +224,24 @@ const HomePage = () => {
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
+      <nav className={styles.navbar}>
+        <div className={styles.logo}>
+          <h1>Campus Events</h1>
+        </div>
+        <ul className={styles.navLinks}>
+          <li><a href="#" className={styles.active}>Home</a></li>
+          <li><a href="#" onClick={handleEventRedirect}>Events</a></li>
+          <li><a href="#" onClick={handleCalenderRedirect}>Calendar</a></li>
+          <li><a href="#">Registered</a></li>
+          <li><a href="#" onClick={handleAboutRedirect}>About</a></li>
+          <li><a href="#" onClick={handleContactScroll}>Contact</a></li>
+
+        </ul>
+        <div className={styles.authButtons}>
+          <button className={styles.loginBtn} onClick={handleLoginRedirect}>Login</button>
+          <button className={styles.signupBtn} onClick={handleSignupRedirect}>Sign Up</button>
+        </div>
+      </nav>
 
       {/* Main Content */}
       <main className={styles.mainContent}>
