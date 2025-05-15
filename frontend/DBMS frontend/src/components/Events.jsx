@@ -3,113 +3,34 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styles from './Events.module.css';
 import Footer from './footer/Footer.jsx';
 import Navbar from './navbar/NavBar.jsx';
+import axios from 'axios';
 
 const Events = () => {
   const { eventId } = useParams();
   const navigate = useNavigate();
-  const footerRef = useRef(null);
   
   // Mock data for events - replace with actual API calls in production
-  const [events, setEvents] = useState([
-    {
-      id: 1,
-      title: "Annual Tech Symposium",
-      description: "Join us for a day of innovation and technological advancements featuring keynote speakers from leading tech companies. The symposium will include interactive workshops, panel discussions, and networking opportunities. Participants will get to explore the latest trends in artificial intelligence, blockchain, cybersecurity, and more. This is a great opportunity to learn from industry experts and connect with like-minded professionals.",
-      date: "May 10, 2025",
-      time: "10:00 AM - 4:00 PM",
-      location: "Main Auditorium",
-      image: "/api/placeholder/800/400",
-      isOngoing: true,
-      organizer: "Computer Science Department",
-      contact: "techsymposium@campus.edu"
-    },
-    {
-      id: 2,
-      title: "Career Fair",
-      description: "Connect with potential employers from various industries and explore internship and job opportunities. Over 50 companies will be present at this event, representing fields including technology, finance, healthcare, and more. Bring your resume and be prepared for on-the-spot interviews. Professional attire is recommended. There will also be resume review sessions and interview preparation workshops throughout the day.",
-      date: "May 15, 2025",
-      time: "9:00 AM - 3:00 PM",
-      location: "Student Center",
-      image: "/api/placeholder/800/400",
-      organizer: "Career Services",
-      contact: "careers@campus.edu"
-    },
-    {
-      id: 3,
-      title: "Cultural Festival",
-      description: "Celebrate diversity with performances, food, and activities representing cultures from around the world. This annual festival showcases traditional dances, music, art, and cuisine from over 30 different countries. Student organizations will host booths with interactive activities and educational displays. The event includes a main stage for performances throughout the day and a food court featuring international cuisine prepared by local restaurants and student groups.",
-      date: "May 20, 2025",
-      time: "12:00 PM - 8:00 PM",
-      location: "Campus Quad",
-      image: "/api/placeholder/800/400",
-      organizer: "International Student Association",
-      contact: "culturefest@campus.edu"
-    },
-    {
-      id: 4,
-      title: "Research Symposium",
-      description: "Undergraduate and graduate students present their latest research findings across all disciplines. The symposium will feature oral presentations, poster sessions, and roundtable discussions covering topics from the humanities, social sciences, natural sciences, and engineering. This is an excellent opportunity to learn about cutting-edge research happening on campus and to practice your presentation skills in a supportive environment. Faculty members will serve as judges and provide valuable feedback.",
-      date: "May 25, 2025",
-      time: "1:00 PM - 5:00 PM",
-      location: "Science Building",
-      image: "/api/placeholder/800/400",
-      organizer: "Office of Research",
-      contact: "research@campus.edu"
-    },
-    {
-      id: 5,
-      title: "Alumni Networking Night",
-      description: "Connect with successful alumni and build your professional network in a relaxed setting. Alumni from diverse career fields will be present to share their experiences and advice. This is a great opportunity for current students to learn about different career paths, make industry connections, and get insights into the job market. Light refreshments will be served, and there will be structured networking activities to help break the ice.",
-      date: "June 1, 2025",
-      time: "6:00 PM - 9:00 PM",
-      location: "University Club",
-      image: "/api/placeholder/800/400",
-      organizer: "Alumni Relations",
-      contact: "alumni@campus.edu"
-    },
-    {
-      id: 6,
-      title: "Hackathon Challenge",
-      description: "A 24-hour coding competition where students form teams to solve real-world problems through technology. Participants will have access to mentors from tech companies, workshops on emerging technologies, and plenty of food and drinks to keep energy levels up throughout the event. Prizes will be awarded for the most innovative solutions, best technical implementation, and best UI/UX design. All skill levels are welcome!",
-      date: "June 5-6, 2025",
-      time: "10:00 AM - 10:00 AM (next day)",
-      location: "Engineering Building",
-      image: "/api/placeholder/800/400",
-      organizer: "Tech Club",
-      contact: "hackathon@campus.edu"
-    },
-    {
-      id: 7,
-      title: "Environmental Sustainability Workshop",
-      description: "Learn practical ways to reduce your ecological footprint and promote sustainability on campus. This interactive workshop will cover topics such as waste reduction, energy conservation, sustainable food choices, and campus initiatives you can get involved with. Participants will develop a personal sustainability plan and learn about opportunities to join environmental projects. The workshop will include hands-on activities and group discussions.",
-      date: "June 12, 2025",
-      time: "2:00 PM - 5:00 PM",
-      location: "Green Sciences Hall",
-      image: "/api/placeholder/800/400",
-      organizer: "Sustainability Office",
-      contact: "green@campus.edu"
-    },
-    {
-      id: 8,
-      title: "Leadership Conference",
-      description: "Develop your leadership skills through workshops, keynote speeches, and team-building activities. The conference will focus on topics such as effective communication, conflict resolution, inclusive leadership, and project management. Participants will have the opportunity to network with student leaders from various organizations and learn from experienced professionals. A certificate of completion will be provided to all attendees.",
-      date: "June 18, 2025",
-      time: "9:00 AM - 5:00 PM",
-      location: "Business School",
-      image: "/api/placeholder/800/400",
-      organizer: "Student Leadership Center",
-      contact: "leadership@campus.edu"
-    }
-  ]);
+  const [events, setEvents] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/events")
+      .then((res) => {
+        setEvents(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, [])
 
   // Get selected event if eventId is provided
-  const selectedEvent = eventId ? events.find(event => event.id === parseInt(eventId)) : null;
+  const selectedEvent = eventId ? events.find(event => String(event._id) === String(eventId)) : null;
+  
+  const footerRef = useRef(null);
   
   const handleContactScroll = () => {
     footerRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
   
   const handleEventDetails = (id) => {
+    console.log('This is the events : ',id)
     navigate(`/event/${id}`);
   };
   
@@ -230,7 +151,7 @@ const Events = () => {
             
             <div className={styles.eventsGrid}>
               {events.map((event) => (
-                <div key={event.id} className={styles.eventCard}>
+                <div key={event._id} className={styles.eventCard}>
                   <div className={styles.cardImage}>
                     <img src={event.image} alt={event.title} />
                     {event.isOngoing && <div className={styles.liveTag}>LIVE</div>}
@@ -247,7 +168,7 @@ const Events = () => {
                     </p>
                     <button 
                       className={styles.detailsBtn} 
-                      onClick={() => handleEventDetails(event.id)}
+                      onClick={() => handleEventDetails(event._id)}
                     >
                       View Details
                     </button>
