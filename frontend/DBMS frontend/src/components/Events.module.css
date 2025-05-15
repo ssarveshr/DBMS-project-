@@ -24,7 +24,7 @@
 }
 
 .logo h1 {
-  color: #3498db;
+  color: #8a16ea;
   margin: 0;
   font-size: 1.8rem;
 }
@@ -52,7 +52,7 @@
 
 .navLinks a:hover,
 .navLinks a.active {
-  color: #3498db;
+  color: #8a16ea;
 }
 
 .navLinks a.active::after {
@@ -62,7 +62,7 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background-color: #3498db;
+  background-color: #8a16ea;
   border-radius: 2px;
 }
 
@@ -81,8 +81,8 @@
 
 .loginBtn {
   background-color: transparent;
-  color: #3498db;
-  border: 1px solid #3498db;
+  color: #8a16ea;
+  border: 1px solid #8a16ea;
 }
 
 .loginBtn:hover {
@@ -90,13 +90,13 @@
 }
 
 .signupBtn {
-  background-color: #3498db;
+  background-color: #8a16ea;
   color: white;
-  border: 1px solid #3498db;
+  border: 1px solid #8a16ea;
 }
 
 .signupBtn:hover {
-  background-color: #2980b9;
+  background-color: #8a16ea;
 }
 
 /* Main Content Styles */
@@ -157,7 +157,7 @@
 
 .searchBtn {
   padding: 0.7rem 1rem;
-  background-color: #3498db;
+  background-color: #8a16ea;
   color: white;
   border: none;
   border-radius: 0 4px 4px 0;
@@ -166,7 +166,7 @@
 }
 
 .searchBtn:hover {
-  background-color: #2980b9;
+  background-color: #8a16ea;
 }
 
 /* Events Grid */
@@ -255,7 +255,7 @@
   display: block;
   width: 100%;
   padding: 0.8rem;
-  background-color: #3498db;
+  background-color: #8a16ea;
   color: white;
   border: none;
   border-radius: 4px;
@@ -267,7 +267,7 @@
 }
 
 .detailsBtn:hover {
-  background-color: #2980b9;
+  background-color: #8a16ea;
 }
 
 /* Pagination */
@@ -289,13 +289,13 @@
 
 .pageBtn:hover {
   background-color: #f0f8ff;
-  border-color: #3498db;
+  border-color: #8a16ea;
 }
 
 .activePageBtn {
-  background-color: #3498db;
+  background-color: #8a16ea;
   color: white;
-  border-color: #3498db;
+  border-color: #8a16ea;
 }
 
 /* Single Event Detail View */
@@ -315,7 +315,7 @@
 .backButton {
   background: none;
   border: none;
-  color: #3498db;
+  color: #8a16ea;
   font-size: 1rem;
   cursor: pointer;
   display: flex;
@@ -402,18 +402,18 @@
 }
 
 .registerBtn {
-  background-color: #3498db;
+  background-color: #8a16ea;
   color: white;
 }
 
 .registerBtn:hover {
-  background-color: #2980b9;
+  background-color: #8a16ea;
 }
 
 .saveBtn {
   background-color: #f0f8ff;
-  color: #3498db;
-  border: 1px solid #3498db;
+  color: #8a16ea;
+  border: 1px solid #8a16ea;
 }
 
 .saveBtn:hover {
@@ -441,7 +441,7 @@
   height: 2rem;
   border-radius: 50%;
   background-color: #f0f8ff;
-  color: #3498db;
+  color: #8a16ea;
   text-decoration: none;
   font-weight: bold;
   font-size: 0.8rem;
@@ -449,7 +449,7 @@
 }
 
 .socialIcons a:hover {
-  background-color: #3498db;
+  background-color: #8a16ea;
   color: white;
 }
 
@@ -483,7 +483,7 @@
 }
 
 .footerSection h3 {
-  color: #3498db;
+  color: #8a16ea;
   margin-top: 0;
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
@@ -535,7 +535,7 @@
 
 .newsletterForm button {
   padding: 0.8rem 1.2rem;
-  background-color: #3498db;
+  background-color: #8a16ea;
   color: white;
   border: none;
   border-radius: 0 4px 4px 0;
@@ -544,7 +544,7 @@
 }
 
 .newsletterForm button:hover {
-  background-color: #2980b9;
+  background-color: #8a16ea;
 }
 
 .copyright {
@@ -738,7 +738,7 @@ button:focus,
 a:focus,
 input:focus,
 select:focus {
-  outline: 2px solid #3498db;
+  outline: 2px solid #8a16ea;
   outline-offset: 2px;
 }
 
