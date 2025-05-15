@@ -39,6 +39,7 @@ function App() {
       <Route path="/event" element={<Event />} />
       <Route path="/event/:eventId" element={<Event />} />
       <Route path="/organizerdashboard" element={<OrganizerDashboard />} />
+      <Route path="/facultydashboard" element={<FacultyDashboard />} />
       <Route path="/createevent" element={<CreateEvent />} />
     </Routes>
     <Footer ref={footerRef}/>
