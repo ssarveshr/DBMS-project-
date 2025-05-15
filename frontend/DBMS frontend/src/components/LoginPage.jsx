@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./LoginPage.module.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./Spinner.jsx";
 import { jwtDecode } from "jwt-decode";
@@ -15,47 +15,49 @@ const LoginPage = () => {
 	const navigate = useNavigate()
 
 	const HandlerFunction = () => {
-    if (!UserType) {
-      toast.error("Please select a role before proceeding.");
-      return;
-    }
-		const Data = {
-			email,
-			password,
-      UserType
-		};
-		console.log(Data)
-		setLoading(true)
-		axios
-      .post(`http://localhost:5000/api/login` , Data)
-		  .then(res => {
-        const token = res.data.token;
-        const payload= jwtDecode(token);
-        if(payload.User_email == email){
-          sessionStorage.setItem('userAuth' , token)
-          setLoading(false)
-          Nav('/dashboard')
-          // Role-based navigation logic
-          if (UserType === "Student") {
-            // Stay on the same page for Student
-            console.log("Logged in as Student");
-          } else if (UserType === "Faculty") {
-            Nav("/loginfaculty"); // Redirect to Faculty Login
-          } else if (UserType === "Organiser") {
-            Nav("/loginorganiser"); // Redirect to Admin Login
-          }
+  if (!UserType) {
+    toast.error("Please select a role before proceeding.");
+    return;
+  }
+
+  const Data = {
+    email,
+    password,
+    UserType
+  };
+
+  console.log(Data);
+  setLoading(true);
+
+  axios
+    .post(`http://localhost:5000/api/login`, Data)
+    .then(res => {
+      const token = res.data.token;
+      const payload = jwtDecode(token);
+
+      if (payload.User_email === email) {
+        sessionStorage.setItem('userAuth', token);
+        setLoading(false);
+
+        // ✅ Use navigate instead of Navigate
+        if (UserType === "Student") {
+          navigate("/dashboard");
+        } else if (UserType === "Faculty") {
+          navigate("/FacultyDashboard");
+        } else if (UserType === "Organiser") {
+          navigate("/OrganiserDashboard");
         }
-        else{
-          toast.warning("Invalid Credentials")
-          setLoading(false)
-        }
-		  })
-		  .catch(err => {
-			console.log(err)
-			setLoading(false) 
-		}
-	);
-	};
+      } else {
+        toast.warning("Invalid Credentials");
+        setLoading(false);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      toast.error("Login failed");
+      setLoading(false);
+    });
+};
   return (
     <div className={styles.loginPage}>
       <div className={styles.black}>

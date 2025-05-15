@@ -12,6 +12,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/HomePage.jsx";
 import NavBar from "./components/navbar/NavBar.jsx";
 import Footer from "./components/footer/Footer.jsx";
+import FacultyDashboard from "./components/FacultyDashboard.jsx";
 
 function App() {
   const footerRef = useRef(null);
@@ -29,6 +30,7 @@ function App() {
         <Route path="/loginfaculty" element={<LoginFaculty />} />
         <Route path="/signupfaculty" element={<SignUpFaculty />} />
         <Route path="/loginorganiser" element={<LoginOrganiser />} />
+        <Route path="/FacultyDashboard" element={<FacultyDashboard />} />
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/about" element={<About />} />
         <Route path="/event" element={<Event />} />
