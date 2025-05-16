@@ -66,7 +66,8 @@ Studentrouter.post('/register-event', passport.authenticate('jwt', { session: fa
 		}
 
 		Existing_event.registeredStudents.unshift(Existing_User)
-
+		//Below line is used to push the event into the student registered events
+		Existing_User.studentInfo.registeredEvents.unshift(Existing_event)
 		Existing_event.save().then(result => {
 			return res.status(201).json(result)
 		})
@@ -80,5 +81,23 @@ Studentrouter.post('/register-event', passport.authenticate('jwt', { session: fa
 		return res.status(500).json(error)
 	}
 })
+// below router to to display the events registered by the student
+Studentrouter.get('/my-events', passport.authenticate('jwt', { session: false }), checkRole('student'), async (req, res) => {
+	try {
+		const student = await User.findOne({ email: req.user.User_Email });
+
+		if (!student) {
+			return res.status(404).json({ message: "Student not found" });
+		}
+
+		const registeredEvents = student.studentInfo.registeredEvents || [];
+
+		return res.status(200).json({ events: registeredEvents });
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ error: "Internal server error" });
+	}
+});
 
 export default Studentrouter;
+
