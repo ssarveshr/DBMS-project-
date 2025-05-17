@@ -16,6 +16,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/HomePage.jsx";
 import NavBar from "./components/navbar/NavBar.jsx";
 import Footer from "./components/footer/Footer.jsx";
+import RegisterEvent from "./components/RegisterEvent.jsx";
 import FacultyDashboard from "./components/FacultyDashboard.jsx";
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
       <Route path="/facultydashboard" element={<FacultyDashboard />} />
       <Route path="/createevent" element={<CreateEvent />} />
       <Route path="/Calendar" element={<Calendar />} />
+      <Route path="/registerevent" element={<RegisterEvent/>}/>
     </Routes>
     <Footer ref={footerRef}/>
     </>

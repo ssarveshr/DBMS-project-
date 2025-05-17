@@ -1,0 +1,80 @@
+.dashboardContainer {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: #43255c;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.registrationSection {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.registrationSection h2 {
+  font-size: 1.8rem;
+  color: #43255c;
+  margin-bottom: 20px;
+}
+
+.registerForm {
+  display: grid;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  background-color: #f0f0f0;
+}
+
+input:focus {
+  border-color: #5e4b8b;
+  background-color: #fff;
+}
+
+.submitButton {
+  background-color: #43255c;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #4b3a7d;
+}

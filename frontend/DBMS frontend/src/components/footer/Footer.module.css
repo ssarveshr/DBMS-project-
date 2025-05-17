@@ -117,7 +117,7 @@
 }
 
 .newsletterForm button {
-  background-color: #a163d3;
+  background-color: #43255c;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -127,7 +127,7 @@
 }
 
 .newsletterForm button:hover {
-  background-color: #8a16ea;
+  background-color: #43255c;
 }
 
 .copyright {

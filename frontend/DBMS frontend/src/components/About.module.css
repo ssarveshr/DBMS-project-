@@ -31,7 +31,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
-  color: #8a16ea;
+  color: #43255c;
 }
 
 .navLinks {
@@ -88,13 +88,13 @@
 
 .loginBtn {
   background-color: transparent;
-  border: 1px solid #8a16ea;
-  color: #8a16ea;
+  border: 1px solid #43255c;
+  color: #43255c;
 }
 
 .signupBtn {
-  background-color: #8a16ea;
-  border: 1px solid #8a16ea;
+  background-color: #43255c;
+  border: 1px solid #43255c;
   color: white;
 }
 
@@ -103,12 +103,12 @@
 }
 
 .signupBtn:hover {
-  background-color: #8a16ea;
+  background-color: #43255c;
 }
 
 /* Hero Section */
 .heroSection {
-  background: linear-gradient(135deg, #8a16ea 0%, #8a16ea 100%);
+  background: linear-gradient(135deg, #43255c 0%, #43255c 100%);
   color: white;
   padding: 4rem 2rem;
   text-align: center;
@@ -149,7 +149,7 @@
 .underline {
   height: 3px;
   width: 60px;
-  background-color: #8a16ea;
+  background-color: #43255c;
   margin: 0 auto 1rem;
 }
 
@@ -202,7 +202,7 @@
 }
 
 .featureColumn h3 {
-  color: #8a16ea;
+  color: #43255c;
   font-size: 1.3rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -222,7 +222,7 @@
 
 .featureList li::before {
   content: "•";
-  color: #8a16ea;
+  color: #43255c;
   font-weight: bold;
   font-size: 1.2rem;
   position: absolute;
@@ -255,7 +255,7 @@
   display: block;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #8a16ea;
+  color: #43255c;
   margin-bottom: 0.5rem;
 }
 
@@ -360,7 +360,7 @@
 .frontInfo h3 {
   margin: 0.3rem 0 0.8rem;
   font-size: 0.9rem;
-  color: #3a86ff;
+  color: #43255c;
   font-weight: 500;
 }
 
@@ -379,7 +379,7 @@
 .cardBack h3 {
   margin: 0 0 1rem;
   font-size: 0.9rem;
-  color: #8a16ea;
+  color: #43255c;
   font-weight: 500;
 }
 
@@ -410,7 +410,7 @@
 
 .skillBadge {
   background-color: rgba(58, 134, 255, 0.1);
-  color: #8a16ea;
+  color: #43255c;
   font-size: 0.7rem;
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
@@ -423,7 +423,7 @@
 }
 
 .contactLinks a {
-  color: #8a16ea;
+  color: #43255c;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -431,7 +431,7 @@
 }
 
 .contactLinks a:hover {
-  color: #8a16ea;
+  color: #43255c;
 }
 
 /* Timeline Section */
@@ -487,7 +487,7 @@
   height: 20px;
   right: -10px;
   background-color: white;
-  border: 4px solid #8a16ea;
+  border: 4px solid #43255c;
   top: 15px;
   border-radius: 50%;
   z-index: 1;
@@ -513,7 +513,7 @@
 
 .date {
   display: inline-block;
-  color: #8a16ea;
+  color: #43255c;
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
 }

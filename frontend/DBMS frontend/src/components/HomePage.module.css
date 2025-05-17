@@ -40,7 +40,7 @@ html, body {
   left: 0;
   width: 50px;
   height: 3px;
-  background-color: #8a16ea;
+  background-color: #43255c;
 }
 
 /* Section headers with view all link */
@@ -52,7 +52,7 @@ html, body {
 }
 
 .viewAllLink a {
-  color: #8a16ea;
+  color: #43255c;
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
@@ -127,7 +127,7 @@ html, body {
 }
 
 .joinBtn {
-  background-color: #8a16ea;
+  background-color: #43255c;
   color: white;
   border: none;
   border-radius: 5px;
@@ -139,7 +139,7 @@ html, body {
 }
 
 .joinBtn:hover {
-  background-color: #8a16ea;
+  background-color: #43255c;
 }
 
 /* Upcoming Events section */
@@ -164,7 +164,7 @@ html, body {
   gap: 20px; /* Use gap instead of margin-right for consistent spacing */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   scrollbar-width: thin; /* Show a thin scrollbar in Firefox */
-  scrollbar-color: #8a16ea #f0f0f0; /* Customize scrollbar in Firefox */
+  scrollbar-color: #43255c #f0f0f0; /* Customize scrollbar in Firefox */
 }
 
 /* Styling for Webkit scrollbars (Chrome, Safari, Edge) */
@@ -179,12 +179,12 @@ html, body {
 }
 
 .upcomingEventsContainer::-webkit-scrollbar-thumb {
-  background: #8a16ea;
+  background: #43255c;
   border-radius: 10px;
 }
 
 .upcomingEventsContainer::-webkit-scrollbar-thumb:hover {
-  background: #8a16ea;
+  background: #43255c;
 }
 
 .carouselControls {
@@ -239,7 +239,7 @@ html, body {
 }
 
 .activeDot {
-  background-color: #8a16ea;
+  background-color: #43255c;
   transform: scale(1.2);
 }
 
@@ -283,8 +283,8 @@ html, body {
 
 .detailsBtn {
   background-color: transparent;
-  color: #8a16ea;
-  border: 1px solid #8a16ea;
+  color: #43255c;
+  border: 1px solid #43255c;
   border-radius: 4px;
   padding: 8px 15px;
   font-size: 0.9rem;
@@ -294,7 +294,7 @@ html, body {
 }
 
 .detailsBtn:hover {
-  background-color: #8a16ea;
+  background-color: #43255c;
   color: white;
 }
 
