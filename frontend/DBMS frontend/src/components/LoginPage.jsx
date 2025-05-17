@@ -60,9 +60,9 @@ const LoginPage = () => {
         <div className={styles.loginPageChild}>
           <div className={styles.welcomeToStudentContainer}>
             <p className={styles.login}>
-              <b className={styles.welcomeTo1}>Welcome to</b>
+              <b className={styles.welcomeTo1}>Welcome</b>
             </p>
-            <p className={styles.studentPortal}>student portal</p>
+            {/* <p className={styles.studentPortal}>student portal</p> */}
           </div>
         </div>
         <div>
