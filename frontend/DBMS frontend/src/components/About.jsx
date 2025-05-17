@@ -272,41 +272,49 @@ const About = () => {
         <div className={styles.timeline}>
           <div className={styles.timelineItem}>
             <div className={styles.timelineContent}>
-              <h3>Project Inception</h3>
-              <span className={styles.date}>January 2025</span>
-              <p>Identified the need for a comprehensive campus event platform</p>
+              <h3>Project Kickoff</h3>
+              <span className={styles.date}>End of March 2025</span>
+              <p>Initiated the project with team discussions and goal setting</p>
             </div>
           </div>
           
           <div className={styles.timelineItem}>
             <div className={styles.timelineContent}>
               <h3>Design Phase</h3>
-              <span className={styles.date}>February 2025</span>
-              <p>Created wireframes, mockups and established the visual design system</p>
+              <span className={styles.date}>Late March – Early April 2025</span>
+              <p>Created wireframes and mockups, finalized visual design elements</p>
             </div>
           </div>
           
           <div className={styles.timelineItem}>
             <div className={styles.timelineContent}>
-              <h3>Development</h3>
-              <span className={styles.date}>March 2025</span>
-              <p>Built core functionalities and implemented the front-end interface</p>
+              <h3>Planning & Setup</h3>
+              <span className={styles.date}>Mid April 2025</span>
+              <p>Planned features, set up project structure, and tested with mock data</p>
+            </div>
+          </div>
+          
+          <div className={styles.timelineItem}>
+            <div className={styles.timelineContent}>
+              <h3>Ongoing Development</h3>
+              <span className={styles.date}>April – Present</span>
+              <p>Integrating front-end with back-end and testing core functionalities (40–45% complete)</p>
             </div>
           </div>
           
           <div className={styles.timelineItem}>
             <div className={styles.timelineContent}>
               <h3>Beta Launch</h3>
-              <span className={styles.date}>April 2025</span>
-              <p>Released to select student organizations for initial feedback</p>
+              <span className={styles.date}>July – August 2025</span>
+              <p>Planned release to selected users for feedback and improvement</p>
             </div>
           </div>
           
           <div className={styles.timelineItem}>
             <div className={styles.timelineContent}>
               <h3>Public Release</h3>
-              <span className={styles.date}>May 2025</span>
-              <p>Officially launched campus-wide with full feature set</p>
+              <span className={styles.date}>December 2025 – January 2026</span>
+              <p>Campus-wide launch with complete features and optimizations</p>
             </div>
           </div>
         </div>
