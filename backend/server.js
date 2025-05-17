@@ -11,6 +11,9 @@ import chalk from 'chalk'
 import commonsignup from "./serverRoutes/commonsignup.js";
 import Public from "./serverRoutes/Public/PublicRouter.js";
 import DeleteAccount from "./serverRoutes/Deleteaccount.js";
+import path from 'path';
+import { fileURLToPath } from 'url';
+import uploadrouter from "./serverRoutes/Public/upload.js";
 
 const app = express();
 // authMiddleware(passport)
@@ -18,10 +21,18 @@ app.use(passport.initialize());
 app.use(express.json());
 app.use(cors());
 
+// File upload directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+
 app.use("/api/auth/Student", Studentrouter);
 app.use("/api/auth/Faculty", Facultyrouter);
 app.use("/api/auth/Organiser", OrganizerRouter); // Use authentication routes
 app.use("/api", CommonLoginRouter, commonsignup, Public, DeleteAccount);
+app.use('/api/upload', uploadrouter);
 
 
 mongoose.connect(MongoDB).then(() => {
