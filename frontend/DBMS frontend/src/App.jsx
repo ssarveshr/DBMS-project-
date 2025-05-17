@@ -18,6 +18,7 @@ import NavBar from "./components/navbar/NavBar.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import RegisterEvent from "./components/RegisterEvent.jsx";
 import FacultyDashboard from "./components/FacultyDashboard.jsx";
+import StudentDashboard from "./components/portals/StudentPortal.jsx";
 
 function App() {
   const footerRef = useRef(null);
@@ -45,6 +46,7 @@ function App() {
       <Route path="/createevent" element={<CreateEvent />} />
       <Route path="/Calendar" element={<Calendar />} />
       <Route path="/registerevent" element={<RegisterEvent/>}/>
+      <Route path="/studentdashboard" element={<StudentDashboard />} />
     </Routes>
     <Footer ref={footerRef}/>
     </>

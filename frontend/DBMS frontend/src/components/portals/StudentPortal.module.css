@@ -1,0 +1,274 @@
+.dashboardContainer {
+min-height: 100vh;
+background-color: #f5f7fa;
+}
+.dashboardContent {
+max-width: 1200px;
+margin: 0 auto;
+padding: 2rem 1.5rem;
+}
+/* Profile Section Styles */
+.profileSection {
+margin-bottom: 3rem;
+}
+.profileSection h2 {
+font-size: 1.8rem;
+color: #333;
+margin-bottom: 1.5rem;
+position: relative;
+padding-bottom: 0.5rem;
+}
+.profileSection h2::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 80px;
+height: 3px;
+background-color: #3f51b5;
+}
+.profileCard {
+background-color: white;
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+display: flex;
+padding: 2rem;
+transition: transform 0.3s ease;
+}
+.profileCard:hover {
+transform: translateY(-5px);
+}
+.profilePhoto {
+margin-right: 3rem;
+text-align: center;
+flex-shrink: 0;
+}
+.profilePhoto img {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+object-fit: cover;
+border: 3px solid #eaeaea;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.editPhotoBtn {
+margin-top: 1rem;
+padding: 0.5rem 1rem;
+background-color: transparent;
+border: 1px solid #3f51b5;
+color: #3f51b5;
+border-radius: 20px;
+cursor: pointer;
+transition: all 0.2s ease;
+font-size: 0.85rem;
+}
+.editPhotoBtn:hover {
+background-color: #3f51b5;
+color: white;
+}
+.profileDetails {
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.detailRow {
+margin-bottom: 1rem;
+display: flex;
+align-items: baseline;
+}
+.detailLabel {
+font-weight: 600;
+color: #666;
+width: 80px;
+font-size: 1rem;
+text-decoration:underline solid #3f51b5 ;
+}
+.detailValue {
+color: #333;
+font-size: 1.2rem;
+padding-left: 1rem;
+text-decoration: none;
+}
+.editProfileBtn {
+align-self: flex-start;
+margin-top: 1rem;
+padding: 0.75rem 1.5rem;
+background-color: #3f51b5;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-weight: 600;
+transition: background-color 0.2s ease;
+}
+.editProfileBtn:hover {
+background-color: #303f9f;
+}
+/* Events Section Styles */
+.eventsSection {
+margin-top: 3rem;
+}
+.eventsSection h2 {
+font-size: 1.8rem;
+color: #333;
+margin-bottom: 1.5rem;
+position: relative;
+padding-bottom: 0.5rem;
+}
+.eventsSection h2::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 80px;
+height: 3px;
+background-color: #3f51b5;
+}
+.loadingMessage {
+text-align: center;
+padding: 2rem;
+font-size: 1.2rem;
+color: #666;
+}
+.noEventsMessage {
+text-align: center;
+padding: 3rem;
+background-color: white;
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.noEventsMessage p {
+font-size: 1.2rem;
+color: #666;
+margin-bottom: 1.5rem;
+}
+.browseEventsBtn {
+display: inline-block;
+padding: 0.75rem 1.5rem;
+background-color: #3f51b5;
+color: white;
+text-decoration: none;
+border-radius: 5px;
+font-weight: 600;
+transition: background-color 0.2s ease;
+}
+.browseEventsBtn:hover {
+background-color: #303f9f;
+}
+.eventsGrid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+gap: 2rem;
+}
+.eventCard {
+background-color: white;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+transition: transform 0.3s ease;
+}
+.eventCard:hover {
+transform: translateY(-5px);
+}
+.cardImage {
+height: 180px;
+overflow: hidden;
+}
+.cardImage img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+.eventCard:hover .cardImage img {
+transform: scale(1.05);
+}
+.cardContent {
+padding: 1.5rem;
+}
+.cardContent h3 {
+font-size: 1.3rem;
+margin-bottom: 0.75rem;
+color: #333;
+}
+.eventDate, .eventTime, .eventLocation {
+color: #666;
+font-size: 0.9rem;
+margin-bottom: 0.5rem;
+display: flex;
+align-items: center;
+}
+.eventDate::before, .eventTime::before, .eventLocation::before {
+content: '•';
+margin-right: 0.5rem;
+color: #3f51b5;
+}
+.eventBrief {
+margin: 1rem 0;
+color: #555;
+line-height: 1.5;
+font-size: 0.95rem;
+}
+.cardActions {
+display: flex;
+justify-content: space-between;
+margin-top: 1.5rem;
+}
+.detailsBtn, .cancelBtn {
+padding: 0.6rem 1rem;
+border-radius: 5px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+.detailsBtn {
+background-color: #3f51b5;
+color: white;
+border: none;
+flex: 1;
+margin-right: 0.5rem;
+}
+.detailsBtn:hover {
+background-color: #303f9f;
+}
+.cancelBtn {
+background-color: white;
+color: #f44336;
+border: 1px solid #f44336;
+flex: 1;
+margin-left: 0.5rem;
+}
+.cancelBtn:hover {
+background-color: #f44336;
+color: white;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+.profileCard {
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+.profilePhoto {
+margin-right: 0;
+margin-bottom: 2rem;
+}
+.detailRow {
+flex-direction: column;
+align-items: center;
+}
+.detailLabel {
+width: auto;
+margin-bottom: 0.25rem;
+}
+.detailValue {
+padding-left: 0;
+}
+.editProfileBtn {
+align-self: center;
+}
+.eventsGrid {
+grid-template-columns: 1fr;
+}
+}
