@@ -69,19 +69,21 @@ const Events = () => {
       toast.warning("Please enter a search term!");
       return false;
     }
+    const searchedEvents = [];
 
     events.map((event) => {
       if (event.title.toLowerCase().includes(search.toLowerCase())) {
         console.log("This is the value of event title : ", event.title);
-        setEvents([event]);
+        searchedEvents.push(event);
       }
     });
 
+    setEvents(searchedEvents);
     console.log("Search handle called");
   };
 
   const handleRegisterRedirect = () => {
-    console.log('this is the value selected : ',selectedEvent?.title)
+    console.log("this is the value selected : ", selectedEvent?.title);
     // If you want to carry the chosen event along, pass it in state
     navigate("/registerevent", {
       state: { eventName: selectedEvent?.title || "" },
