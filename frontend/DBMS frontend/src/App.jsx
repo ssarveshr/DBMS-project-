@@ -8,7 +8,7 @@ import SignUpFaculty from "./components/SignUpFaculty.jsx";
 import About from "./components/About.jsx";
 import Event from "./components/Events.jsx";
 import Student from "./components/navbar/StudentNavbar.jsx";
-import Calendar from "./components/navbar/Calender.jsx";
+import Calendar from "./components/navbar/Calendar.jsx";
 import CreateEvent from "./components/CreateEvent.jsx";
 import OrganizerDashboard from "./components/OrganizerDashboard.jsx";
 import "./App.css";
@@ -19,6 +19,7 @@ import Footer from "./components/footer/Footer.jsx";
 import RegisterEvent from "./components/RegisterEvent.jsx";
 import FacultyDashboard from "./components/FacultyDashboard.jsx";
 import StudentDashboard from "./components/portals/StudentPortal.jsx";
+
 
 function App() {
   const footerRef = useRef(null);
