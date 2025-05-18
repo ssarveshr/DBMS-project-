@@ -110,7 +110,7 @@ const StudentDashboard = () => {
           <div className={styles.profileCard}>
             <div className={styles.profilePhoto}>
               <img src={student.image} alt="Student" />
-              <button className={styles.editPhotoBtn}>Edit Photo</button>
+              {/* <button className={styles.editPhotoBtn}>Edit Photo</button> */}
             </div>
 
             <div className={styles.profileDetails}>

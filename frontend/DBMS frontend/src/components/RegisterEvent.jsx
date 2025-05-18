@@ -80,7 +80,7 @@ const RegisterEvent = () => {
       })
       .catch((error) => {
         console.error("Registration failed:", error);
-        toast.error("Registration failed!");
+        toast.error("Registration failed!!! May be you are not the student");
         setIsSubmitting(false);
       });
   };
