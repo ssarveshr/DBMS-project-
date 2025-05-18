@@ -55,6 +55,12 @@ const Events = () => {
     navigate('/about');
   };
 
+  const handleRegisterRedirect = () => {
+  // If you want to carry the chosen event along, pass it in state
+  navigate("/registerevent", {
+    state: { eventName: selectedEvent?.title || "" },
+    });
+  };
   // Format ISO Date to readable format
     const formatDate = (isoDate) => {
       if (!isoDate) return "N/A";
@@ -124,7 +130,7 @@ const Events = () => {
                 </div>
                 
                 <div className={styles.registerCard}>
-                  <button className={styles.registerBtn}>Register Now</button>
+                  <button className={styles.registerBtn} onClick={handleRegisterRedirect}>Register Now</button>
                   <button className={styles.saveBtn}>Save to Calendar</button>
                   <div className={styles.shareOptions}>
                     <span>Share: </span>

@@ -47,6 +47,7 @@ function App() {
       <Route path="/Calendar" element={<Calendar />} />
       <Route path="/registerevent" element={<RegisterEvent/>}/>
       <Route path="/studentdashboard" element={<StudentDashboard />} />
+      <Route path="/registerevent" element={<RegisterEvent />} />
     </Routes>
     <Footer ref={footerRef}/>
     </>
