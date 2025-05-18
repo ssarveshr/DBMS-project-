@@ -51,7 +51,7 @@ Studentrouter.post('/register-event', passport.authenticate('jwt', { session: fa
 			branchName: branchname
 		}
 		const Existing_User = await User.findOne({ email })
-		console.log(Existing_User)
+		// console.log(Existing_User)
 		if (!Existing_User) {
 			return res.status(404).json({
 				message: '404 Not found student'
@@ -64,18 +64,42 @@ Studentrouter.post('/register-event', passport.authenticate('jwt', { session: fa
 				message: 'Event not found'
 			})
 		}
+		// console.log('This is the value of Existing event : ', Existing_event)
+		// console.log('This is the value of Existing event : ', Existing_User)
 
+		//*Below line is used to push the event into the registered Students in the Event
 		Existing_event.registeredStudents.unshift(Existing_User)
+		const Event_details = {
+			id : Existing_event._id,
+			eventName : Existing_event.title,
+			orgname: Existing_event.organiserName,
+			desc: Existing_event.description,
+			loca: Existing_event.location,
+			date: Existing_event.date,
+			image : Existing_event.image || ''
+		}
 
-		//Below line is used to push the event into the student registered events
-		Existing_User.studentInfo.registeredEvents.unshift(Existing_event)
-
-
-		Existing_event.save().then(result => {
-			return res.status(201).json(result)
+		//*Below line is used to push the event into the student registered events
+		Existing_User.studentInfo.registeredEvents.push({
+			event: Event_details,
 		})
+
+		//*Saving Exisitng_event
+		Existing_event.save()
+			.then(result1 => {
+				//*Saving Existing_user
+				Existing_User.save()
+					.then(result2 => {
+						console.log('This is the value os result after saving Exsiting_User : ', result2)
+						// res.json(result2)
+					})
+					.catch(err => {
+						console.log('This is the error from saving Exsiting_user : ', err)
+					})
+				return res.status(201).json(valid)
+			})
 			.catch(err => {
-				console.log(err)
+				console.log('This is the error from saving existing_Event : ', err)
 				return res.status(404).json(err)
 			})
 
@@ -99,7 +123,7 @@ Studentrouter.get('/my-events', passport.authenticate('jwt', { session: false })
 
 		const registeredEvents = student.studentInfo.registeredEvents || [];
 
-		return res.status(200).json({ events: registeredEvents });
+		return res.status(200).json( registeredEvents );
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ error: "Internal server error" });

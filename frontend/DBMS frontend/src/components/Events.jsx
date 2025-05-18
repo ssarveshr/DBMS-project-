@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './Events.module.css';
-import Footer from './footer/Footer.jsx';
-import Navbar from './navbar/NavBar.jsx';
 import axios from 'axios';
 
 const Events = () => {
@@ -15,6 +13,7 @@ const Events = () => {
     axios
       .get("http://localhost:5000/api/events")
       .then((res) => {
+        console.log(res.data)
         setEvents(res.data);
       })
       .catch((err) => console.error(err));
@@ -22,6 +21,7 @@ const Events = () => {
 
   // Get selected event if eventId is provided
   const selectedEvent = eventId ? events.find(event => String(event._id) === String(eventId)) : null;
+  console.log('This is the value of event id : ',eventId)
   
   const footerRef = useRef(null);
   
