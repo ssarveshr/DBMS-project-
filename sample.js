@@ -1,13 +1,24 @@
-const a = {
-    'name':1,
-    'std':2,
-    'class':3
+const array = []
+
+const obj_1 = {
+    "name": "samudra",
+    "usn": "1RN23CS185"
+}
+const obj_2 = {
+    "name": "sai",
+    "usn": "1RN23CS178"
+}
+const obj_3 = {
+    "name": "praveen",
+    "usn": "1RN23CS152"
+}
+const obj_4 = {
+    "name": "ranjitha",
+    "usn": "1RN23CS167"
 }
 
-
-console.log(a.name)
-
-
+console.log(array.push(obj_1,obj_2,obj_3,obj_4))
+console.log(array[0])
 
 
 
@@ -59,6 +70,15 @@ console.log(a.name)
 
 
 
+
+// const a = {
+//     'name':1,
+//     'std':2,
+//     'class':3
+// }
+
+
+// console.log(a.name)
 
 // const a = []
 

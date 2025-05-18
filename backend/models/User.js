@@ -2,9 +2,12 @@
 import { Schema, model } from 'mongoose';
 
 const UserSchema = new Schema({
-	email: { type: String, required: true},
+	email: { type: String, required: true },
 	password: { type: String, required: true },
 	role: { type: String, enum: ['student', 'organizer', 'faculty'], required: true },
+	image: {
+		type: String,
+	},
 	// Add other fields specific to each role
 	studentInfo: {
 		name: {
@@ -13,26 +16,26 @@ const UserSchema = new Schema({
 		usn: {
 			type: String,
 		},
-		registeredEvents:[]
+		registeredEvents: []
 	},
 	organizerInfo: {
 		orgname: {
 			type: String,
-		  },
-		Organiser_ID : {
+		},
+		Organiser_ID: {
 			type: String,
-		  },
+		},
 	},
-	facultyInfo:{
+	facultyInfo: {
 		facultyname: {
 			type: String,
-		  },
-		faculty_ID : {
+		},
+		faculty_ID: {
 			type: String,
-		  },
+		},
 		department: {
 			type: String,
-		  },
+		},
 	}
 });
 
