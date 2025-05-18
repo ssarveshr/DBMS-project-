@@ -199,7 +199,7 @@ const About = () => {
         <div className={styles.sectionHeader}>
           <h2>Meet Our Team</h2>
           <div className={styles.underline}></div>
-          <p>The talented individuals behind Campus Events</p>
+          <p>The talented individuals behind EvoCamp</p>
         </div>
         
         <div className={styles.teamGrid}>

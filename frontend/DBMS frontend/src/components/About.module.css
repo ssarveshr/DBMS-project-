@@ -1,7 +1,7 @@
 /* Base styling */
 .container {
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #f9f6ff;
   opacity: 0;
   transition: opacity 0.5s ease-in;
 }
@@ -17,7 +17,7 @@
   align-items: center;
   padding: 0.5rem 2rem;
   background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(100, 45, 190, 0.15);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -31,7 +31,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
-  color: #43255c;
+  color: #5a2ca0; /* Purple main */
 }
 
 .navLinks {
@@ -59,7 +59,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #8a16ea;
+  background-color: #ff6bb3; /* Pink accent */
   transition: width 0.3s ease;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .navLinks button.active {
-  color: #8a16ea;
+  color: #5a2ca0; /* Purple main */
   font-weight: 600;
 }
 
@@ -88,27 +88,27 @@
 
 .loginBtn {
   background-color: transparent;
-  border: 1px solid #43255c;
-  color: #43255c;
+  border: 1px solid #5a2ca0; /* Purple main */
+  color: #5a2ca0; /* Purple main */
 }
 
 .signupBtn {
-  background-color: #43255c;
-  border: 1px solid #43255c;
+  background-color: #5a2ca0; /* Purple main */
+  border: 1px solid #5a2ca0; /* Purple main */
   color: white;
 }
 
 .loginBtn:hover {
-  background-color: rgba(58, 134, 255, 0.1);
+  background-color: rgba(90, 44, 160, 0.1);
 }
 
 .signupBtn:hover {
-  background-color: #43255c;
+  background-color: #4a228a; /* Darker purple */
 }
 
 /* Hero Section */
 .heroSection {
-  background: linear-gradient(135deg, #43255c 0%, #43255c 100%);
+  background: linear-gradient(135deg, #5a2ca0 0%, #7741cc 100%); /* Purple gradient */
   color: white;
   padding: 4rem 2rem;
   text-align: center;
@@ -126,6 +126,7 @@
   font-size: 2.5rem;
   margin-bottom: 1rem;
   font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .heroContent p {
@@ -142,14 +143,14 @@
 
 .sectionHeader h2 {
   font-size: 2rem;
-  color: #333;
+  color: #5a2ca0; /* Purple main */
   margin-bottom: 0.5rem;
 }
 
 .underline {
   height: 3px;
   width: 60px;
-  background-color: #43255c;
+  background: linear-gradient(to right, #ff6bb3, #ffcc29); /* Pink to gold gradient */
   margin: 0 auto 1rem;
 }
 
@@ -195,14 +196,15 @@
 
 .featureColumn {
   flex: 1;
-  background-color: #f8f9fa;
+  background-color: #f9f6ff; /* Light purple bg */
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px rgba(90, 44, 160, 0.08);
+  border-left: 3px solid #ff6bb3; /* Pink accent border */
 }
 
 .featureColumn h3 {
-  color: #43255c;
+  color: #5a2ca0; /* Purple main */
   font-size: 1.3rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -222,7 +224,7 @@
 
 .featureList li::before {
   content: "•";
-  color: #43255c;
+  color: #ff6bb3; /* Pink accent */
   font-weight: bold;
   font-size: 1.2rem;
   position: absolute;
@@ -239,23 +241,24 @@
 
 .statItem {
   text-align: center;
-  padding: 1rem;
-  background-color: rgba(58, 134, 255, 0.05);
+  padding: 1.2rem;
+  background-color: rgba(255, 107, 179, 0.05); /* Very light pink */
   border-radius: 8px;
   width: 160px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-bottom: 3px solid #ffcc29; /* Gold highlight */
 }
 
 .statItem:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px rgba(90, 44, 160, 0.15);
 }
 
 .statNumber {
   display: block;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #43255c;
+  color: #5a2ca0; /* Purple main */
   margin-bottom: 0.5rem;
 }
 
@@ -267,7 +270,7 @@
 /* Team Section */
 .teamSection {
   padding: 4rem 2rem;
-  background-color: #f8f9fa;
+  background-color: #f9f6ff; /* Light purple bg */
 }
 
 .teamGrid {
@@ -280,7 +283,7 @@
 
 .teamCard {
   perspective: 1500px;
-  height: 400px;
+  height: 420px;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -310,7 +313,7 @@
   height: 100%;
   backface-visibility: hidden;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(90, 44, 160, 0.15);
   overflow: hidden;
 }
 
@@ -334,6 +337,16 @@
   overflow: hidden;
 }
 
+.photoContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  background: linear-gradient(transparent, rgba(90, 44, 160, 0.3));
+}
+
 .memberPhoto {
   margin-top: 0px;
   width: 100%;
@@ -349,6 +362,7 @@
 .frontInfo {
   padding: 1rem;
   text-align: center;
+  border-top: 3px solid #ffcc29; /* Gold highlight */
 }
 
 .frontInfo h2 {
@@ -360,7 +374,7 @@
 .frontInfo h3 {
   margin: 0.3rem 0 0.8rem;
   font-size: 0.9rem;
-  color: #43255c;
+  color: #ff6bb3; /* Pink accent */
   font-weight: 500;
 }
 
@@ -379,7 +393,7 @@
 .cardBack h3 {
   margin: 0 0 1rem;
   font-size: 0.9rem;
-  color: #43255c;
+  color: #ff6bb3; /* Pink accent */
   font-weight: 500;
 }
 
@@ -390,7 +404,7 @@
 .memberDetail h4 {
   margin: 0 0 0.3rem;
   font-size: 0.9rem;
-  color: #555;
+  color: #5a2ca0; /* Purple main */
   font-weight: 600;
 }
 
@@ -409,11 +423,12 @@
 }
 
 .skillBadge {
-  background-color: rgba(58, 134, 255, 0.1);
-  color: #43255c;
+  background-color: rgba(90, 44, 160, 0.1); /* Light purple */
+  color: #5a2ca0; /* Purple main */
   font-size: 0.7rem;
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
+  border-left: 2px solid #ff6bb3; /* Pink accent */
 }
 
 .contactLinks {
@@ -423,15 +438,19 @@
 }
 
 .contactLinks a {
-  color: #43255c;
+  color: #5a2ca0; /* Purple main */
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   transition: color 0.2s ease;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  background-color: #f9f6ff; /* Light purple bg */
 }
 
 .contactLinks a:hover {
-  color: #43255c;
+  color: #ff6bb3; /* Pink accent */
+  background-color: rgba(90, 44, 160, 0.05);
 }
 
 /* Timeline Section */
@@ -458,7 +477,7 @@
   content: '';
   position: absolute;
   width: 4px;
-  background-color: #e0e0e0;
+  background: linear-gradient(to bottom, #5a2ca0, #ff6bb3); /* Purple to pink gradient */
   top: 0;
   bottom: 0;
   left: 50%;
@@ -486,8 +505,8 @@
   width: 20px;
   height: 20px;
   right: -10px;
-  background-color: white;
-  border: 4px solid #43255c;
+  background-color: #ffffff; /* Gold highlight */
+  border: 4px solid #5a2ca0; /* Purple main */
   top: 15px;
   border-radius: 50%;
   z-index: 1;
@@ -502,18 +521,19 @@
   background-color: white;
   position: relative;
   border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(90, 44, 160, 0.1);
+  border-top: 3px solid #ff6bb3; /* Pink accent */
 }
 
 .timelineContent h3 {
   margin: 0;
-  color: #333;
+  color: #5a2ca0; /* Purple main */
   font-size: 1.1rem;
 }
 
 .date {
   display: inline-block;
-  color: #43255c;
+  color: #ff6bb3; /* Pink accent */
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
 }
@@ -524,7 +544,6 @@
   line-height: 1.5;
   color: #555;
 }
-
 
 /* Animation class */
 .animatedSection {
@@ -666,4 +685,88 @@
 .visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Footer styles (assuming there's a footer component) */
+.footer {
+  background-color: #5a2ca0; /* Purple main */
+  color: white;
+  padding: 3rem 2rem;
+}
+
+.footerContent {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footerSection h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.footerSection h3::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #ffcc29; /* Gold highlight */
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 0.5rem;
+}
+
+.footerLinks a {
+  color: #f0f0f0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerLinks a:hover {
+  color: #ffcc29; /* Gold highlight */
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.socialLinks a {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.socialLinks a:hover {
+  background-color: #ff6bb3; /* Pink accent */
+  transform: translateY(-3px);
 }
