@@ -27,7 +27,7 @@ OrganizerRouter.get('/current', passport.authenticate('jwt', { session: false })
 // @access Private
 OrganizerRouter.post('/create-events', passport.authenticate('jwt', { session: false }), checkRole('organizer'), (req, res) => {
 	console.log('This is the value of body : ', req.body)
-	const { Orgname, title, loca, desc, faculty } = req.body
+	const { Orgname, title, loca, desc, faculty, imageUrl } = req.body
 	const { errors, valid, isValid } = EventcreateValidation(req.body)
 	if (!isValid) {
 		return res.status(400).json(errors)
@@ -45,6 +45,7 @@ OrganizerRouter.post('/create-events', passport.authenticate('jwt', { session: f
 			errors.notfound = 'Organiser Not existed please create one'
 			return res.status(404).json(errors)
 		}
+		console.log('This is the value og image : ',imageUrl)
 
 		const NewEvent = {
 			organiserName: Orgname,
@@ -52,7 +53,9 @@ OrganizerRouter.post('/create-events', passport.authenticate('jwt', { session: f
 			description: desc,
 			location: loca,
 			facultyName: faculty,
+			image: imageUrl
 		}
+		console.log('This is the value of the New Event : ',NewEvent)
 
 		Event.create(NewEvent)
 			.then(result => {

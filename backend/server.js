@@ -19,14 +19,16 @@ const app = express();
 // authMiddleware(passport)
 app.use(passport.initialize());
 app.use(express.json());
-app.use(cors());
+app.use(cors())
 
-// File upload directory
+if (process.env.NODE_ENV === 'development') {
+	app.use(morgan('dev'));
+}
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-
 
 app.use("/api/auth/Student", Studentrouter);
 app.use("/api/auth/Faculty", Facultyrouter);

@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./RegisterEvent.module.css";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { toast } from "react-toastify";
 
 const RegisterEvent = () => {
+  const location = useLocation();
   const [name, setName] = useState("");
   const [usn, setUsn] = useState("");
+  const [email, setemail] = useState("");
   const [branch, setBranch] = useState("");
-  const [semester, setSemester] = useState("");
-  const [eventName, setEventName] = useState("");
+  // const [semester, setSemester] = useState("");
+  const [eventName, setEventName] = useState(location.state?.eventName);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [eventSuggestions, setEventSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [token, setToken] = useState("");
+  const nav = useNavigate();
+  // console.log('This is the value of : ',location.state?.eventName)
 
   // Branch options
   const branchOptions = [
@@ -20,54 +29,60 @@ const RegisterEvent = () => {
     "Mechanical Engineering",
     "Civil Engineering",
     "Aerospace Engineering",
-    "Biotechnology"
+    "Biotechnology",
   ];
 
-  const handleEventSearch = (e) => {
-    const value = e.target.value;
-    setEventName(value);
-    
-/*     if (value.trim() !== "") {
-      const filtered = availableEvents.filter(event => 
-        event.toLowerCase().includes(value.toLowerCase())
-      );
-      setEventSuggestions(filtered);
-      setShowSuggestions(true);
-    } else {
-      setEventSuggestions([]);
-      setShowSuggestions(false);
-    } */
-  };
+  useEffect(() => {
+    const TOKEN = sessionStorage.getItem("userAuth");
+    // console.log(TOKEN)
 
-  const selectEvent = (event) => {
-    setEventName(event);
-    setShowSuggestions(false);
-  };
+    if (TOKEN === null || TOKEN === undefined) {
+      nav("/login");
+      toast.error("You must me Loged in as student to register to an event");
+      return;
+    }
+    const payload = jwtDecode(TOKEN);
+    console.log(payload);
+
+    setemail(payload.User_Email);
+    setToken(TOKEN);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const formData = {
-      name,
-      usn,
-      branch,
-      semester,
-      eventName,
+      name: name,
+      email: email,
+      eventname: eventName,
+      branchname: branch,
+      // semester,
     };
 
     console.log("Form Data:", formData);
 
     // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert("Registration successful!");
-      setName("");
-      setUsn("");
-      setBranch("");
-      setSemester("");
-      setEventName("");
-    }, 1000);
+
+    axios
+      .post("http://localhost:5000/api/auth/Student/register-event", formData, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((result) => {
+        console.log(result.data);
+        toast.success("Registration successful!");
+        setName("");
+        setBranch("");
+        setEventName("");
+        nav("/event");
+      })
+      .catch((error) => {
+        console.error("Registration failed:", error);
+        toast.error("Registration failed!");
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -79,7 +94,7 @@ const RegisterEvent = () => {
 
       <section className={styles.registrationSection}>
         <div className={styles.formCard}>
-          <h2>Event Registration Form</h2>
+          <h2>Event Registration Form for {eventName}</h2>
           <form className={styles.registerForm} onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               <label htmlFor="name">Student Name</label>
@@ -128,28 +143,9 @@ const RegisterEvent = () => {
                   ))}
                 </select>
               </div>
-
-              <div className={styles.formGroup}>
-                <label htmlFor="semester">Semester</label>
-                <select
-                  id="semester"
-                  name="semester"
-                  value={semester}
-                  onChange={(e) => setSemester(e.target.value)}
-                  required
-                  className={styles.formSelect}
-                >
-                  <option value="">Select semester</option>
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
-                    <option key={sem} value={sem}>
-                      {sem}
-                    </option>
-                  ))}
-                </select>
-              </div>
             </div>
 
-            <div className={styles.formGroup}>
+            {/* <div className={styles.formGroup}>
               <label htmlFor="eventName">Event Name</label>
               <div className={styles.suggestionContainer}>
                 <input
@@ -177,7 +173,7 @@ const RegisterEvent = () => {
                   </ul>
                 )}
               </div>
-            </div>
+            </div> */}
 
             <button
               type="submit"

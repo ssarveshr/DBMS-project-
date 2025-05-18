@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./CreateEvent.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CreateEvent = () => {
   const [title, setTitle] = useState("");
@@ -9,7 +10,9 @@ const CreateEvent = () => {
   const [desc, setdesc] = useState("");
   const [faculty, setFaculty] = useState("");
   const [Orgname, setOrgName] = useState("");
+  const [imageFile, setImageFile] = useState(null); // State for image file
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const nav = useNavigate()
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -23,12 +26,32 @@ const CreateEvent = () => {
       return;
     }
 
+    let imageUrl = "";
+    if (imageFile) {
+      // TODO: Upload the imageFile to your /upload API here and get the image URL
+      const formData = new FormData();
+      formData.append("image", imageFile);
+      console.log("This is the : ", formData.get("image"));
+      const uploadRes = await axios.post(
+        "http://localhost:5000/api/upload",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      imageUrl = uploadRes.data.url;
+    }
+
     const Data = {
       Orgname,
       title,
       loca,
       desc,
       faculty,
+      imageUrl, // Add imageUrl to event data
     };
 
     console.log("Data:", Data);
@@ -45,6 +68,7 @@ const CreateEvent = () => {
       if (res) {
         console.log("Event Created:", res.data);
         toast.success("Event created successfully!");
+        nav('/organizerdashboard')
 
         // Reset form after successful submission
         setTitle("");
@@ -52,6 +76,7 @@ const CreateEvent = () => {
         setdesc("");
         setFaculty("");
         setOrgName("");
+        setImageFile(null);
       }
     } catch (error) {
       console.error(
@@ -61,6 +86,14 @@ const CreateEvent = () => {
       toast.error(error.response?.data?.message);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  // Handle file input change
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setImageFile(e.target.files[0]);
+      console.log(imageFile)
     }
   };
 
@@ -141,10 +174,25 @@ const CreateEvent = () => {
               required
             />
           </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="eventImage">Event Image</label>
+            <input
+              type="file"
+              id="eventImage"
+              name="eventImage"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+            {imageFile && (
+              <div style={{ marginTop: "8px" }}>
+                <span>Selected: {imageFile.name}</span>
+              </div>
+            )}
+          </div>
           <button
             type="submit"
             className={styles.createEventButton}
-            disabled={isSubmitting}
+            // disabled={isSubmitting}
           >
             {isSubmitting ? "Creating..." : "Create Event"}
           </button>

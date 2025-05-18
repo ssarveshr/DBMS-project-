@@ -8,7 +8,7 @@ const StudentDashboard = () => {
     name: "",
     usn: "",
     email: "",
-    photo: "", // Placeholder image
+    image: "", // Placeholder image
   });
 
   const [registeredEvents, setRegisteredEvents] = useState([]);
@@ -41,7 +41,9 @@ const StudentDashboard = () => {
                 name: Info.studentInfo.name || prevState.name,
                 email: Info.email || prevState.email,
                 usn: Info.studentInfo.usn || prevState.usn,
+                image: Info.image || prevState.photo,
               }));
+              console.log('This is the value of student image : ',res.data.image)
             })
             .catch((err) => {
               console.log("Api failed to fetch data : ", err);
@@ -107,7 +109,7 @@ const StudentDashboard = () => {
 
           <div className={styles.profileCard}>
             <div className={styles.profilePhoto}>
-              <img src={student.photo} alt="Student" />
+              <img src={student.image} alt="Student" />
               <button className={styles.editPhotoBtn}>Edit Photo</button>
             </div>
 
@@ -149,7 +151,7 @@ const StudentDashboard = () => {
               {registeredEvents.map((event) => (
                 <div key={event.event.id} className={styles.eventCard}>
                   <div className={styles.cardImage}>
-                    <img src={event.image} alt={event.title} />
+                    <img src={event.event.image} alt={event.event.title} />
                   </div>
 
                   <div className={styles.cardContent}>
