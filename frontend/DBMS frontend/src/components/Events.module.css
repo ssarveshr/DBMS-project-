@@ -469,6 +469,12 @@
   font-size: 1rem;
 }
 
+span{
+    color: #000000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 /* Footer Styles */
 .footer {
   background-color: #2c3e50;

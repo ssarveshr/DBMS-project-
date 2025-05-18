@@ -55,6 +55,27 @@ const Events = () => {
     navigate('/about');
   };
 
+  // Format ISO Date to readable format
+    const formatDate = (isoDate) => {
+      if (!isoDate) return "N/A";
+      const dateObj = new Date(isoDate);
+      return dateObj.toLocaleDateString("en-US", {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+    };
+
+// Format ISO Date to readable Time
+    const formatTime = (isoDate) => {
+      if (!isoDate) return "N/A";
+      const dateObj = new Date(isoDate);
+      return dateObj.toLocaleTimeString("en-US", {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    };
+
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
@@ -82,11 +103,11 @@ const Events = () => {
                   <h3>Event Details</h3>
                   <div className={styles.detailRow}>
                     <span className={styles.detailLabel}>Date:</span>
-                    <span>{selectedEvent.date}</span>
+                    <span>{formatDate(selectedEvent.date)}</span>
                   </div>
                   <div className={styles.detailRow}>
                     <span className={styles.detailLabel}>Time:</span>
-                    <span>{selectedEvent.time}</span>
+                    <span>{formatTime(selectedEvent.date)}</span>
                   </div>
                   <div className={styles.detailRow}>
                     <span className={styles.detailLabel}>Location:</span>
@@ -158,8 +179,8 @@ const Events = () => {
                   </div>
                   <div className={styles.cardContent}>
                     <h3>{event.title}</h3>
-                    <p className={styles.eventDate}>{event.date}</p>
-                    <p className={styles.eventTime}>{event.time}</p>
+                    <p className={styles.eventDate}>{formatDate(event.date)}</p>
+                    <p className={styles.eventTime}>{formatTime(event.date)}</p>
                     <p className={styles.eventLocation}>{event.location}</p>
                     <p className={styles.eventBrief}>
                       {event.description.length > 120 
