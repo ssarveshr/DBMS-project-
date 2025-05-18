@@ -26,8 +26,12 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
-  color: #43255c;
+  background: linear-gradient(to right, #5a2ca0, #6d2e91, #ff3a78, #ff8a5c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 .navLinks {
   display: flex;
@@ -43,7 +47,7 @@
   font-size: 1rem;
   cursor: pointer;
   padding: 0.5rem 0;
-  color: #333;
+  color: #5a2ca0;
   position: relative;
   transition: color 0.3s ease;
 }
@@ -55,7 +59,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #43255c;
+  background-color: #b67be7;
   transition: width 0.3s ease;
 }
 
@@ -88,13 +92,13 @@
 
 .loginBtn {
   background-color: transparent;
-  border: 1px solid #43255c;
-  color: #43255c;
+  border: 1px solid #5a2ca0;
+  color: #5a2ca0;
 }
 
 .signupBtn {
-  background-color: #43255c;
-  border: 1px solid #43255c;
+  background-color: #5a2ca0;
+  border: 1px solid #5a2ca0;
   color: white;
 }
 
@@ -103,7 +107,7 @@
 }
 
 .signupBtn:hover {
-  background-color: #43255c;
+  background-color: #7420b8;
 }
 
 /* Mobile menu button */

@@ -128,7 +128,7 @@ const NavBar = ({ onContactScroll }) => {
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.logo} onClick={() => handleNavigation("/")}>
-        <h1>Campus Events</h1>
+        <h1>EvoCamp</h1>
       </div>
 
       {/* Mobile menu button */}
