@@ -58,7 +58,7 @@ const About = () => {
     {
       id: 4,
       name: "Praveen Kumar M",
-      role: "Front Developer",
+      role: "Frontend Developer",
       photo: "/members/praveen.png",
       contributions: "Implemented the frontend using React. Integrated the frontend with backend APIs.",
       academic: "B.E. Computer Science, 2nd Year",
