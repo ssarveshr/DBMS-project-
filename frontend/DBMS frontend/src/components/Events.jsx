@@ -1,86 +1,112 @@
-import { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import styles from './Events.module.css';
-import axios from 'axios';
+import { useState, useEffect, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import styles from "./Events.module.css";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Events = () => {
   const { eventId } = useParams();
   const navigate = useNavigate();
-  
-  // Mock data for events - replace with actual API calls in production
+  const [search, setsearch] = useState("");
   const [events, setEvents] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/events")
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         setEvents(res.data);
       })
       .catch((err) => console.error(err));
-  }, [])
+  }, []);
 
   // Get selected event if eventId is provided
-  const selectedEvent = eventId ? events.find(event => String(event._id) === String(eventId)) : null;
-  console.log('This is the value of event id : ',eventId)
-  
+  const selectedEvent = eventId
+    ? events.find((event) => String(event._id) === String(eventId))
+    : null;
+  console.log("This is the value of event id : ", eventId);
+
   const footerRef = useRef(null);
-  
+
   const handleContactScroll = () => {
-    footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+    footerRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-  
+
   const handleEventDetails = (id) => {
-    console.log('This is the events : ',id)
+    console.log("This is the events : ", id);
     navigate(`/event/${id}`);
   };
-  
+
   const handleReturnToAllEvents = () => {
-    navigate('/event');
+    navigate("/event");
   };
 
   // Redirect functions for navigation
   const handleHomeRedirect = () => {
-    navigate('/');
+    navigate("/");
   };
-  
+
   const handleLoginRedirect = () => {
-    navigate('/login');
+    navigate("/login");
   };
-  
+
   const handleSignupRedirect = () => {
-    navigate('/signup');
+    navigate("/signup");
   };
-  
+
   const handleAboutRedirect = () => {
-    navigate('/about');
+    navigate("/about");
+  };
+
+  const searchchange = (search) => {
+    // console.log('This is the value of search box : ',search)
+    setsearch(search);
+  };
+
+  const searchHandle = () => {
+    // Implement search functionality here
+    if (!search) {
+      toast.warning("Please enter a search term!");
+      return false;
+    }
+
+    events.map((event) => {
+      if (event.title.toLowerCase().includes(search.toLowerCase())) {
+        console.log("This is the value of event title : ", event.title);
+        setEvents([event]);
+      }
+    });
+
+    console.log("Search handle called");
   };
 
   const handleRegisterRedirect = () => {
-  // If you want to carry the chosen event along, pass it in state
-  navigate("/registerevent", {
-    state: { eventName: selectedEvent?.title || "" },
+    console.log('this is the value selected : ',selectedEvent?.title)
+    // If you want to carry the chosen event along, pass it in state
+    navigate("/registerevent", {
+      state: { eventName: selectedEvent?.title || "" },
     });
   };
   // Format ISO Date to readable format
-    const formatDate = (isoDate) => {
-      if (!isoDate) return "N/A";
-      const dateObj = new Date(isoDate);
-      return dateObj.toLocaleDateString("en-US", {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
-    };
+  const formatDate = (isoDate) => {
+    if (!isoDate) return "N/A";
+    const dateObj = new Date(isoDate);
+    return dateObj.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
-// Format ISO Date to readable Time
-    const formatTime = (isoDate) => {
-      if (!isoDate) return "N/A";
-      const dateObj = new Date(isoDate);
-      return dateObj.toLocaleTimeString("en-US", {
-        hour: '2-digit',
-        minute: '2-digit',
-      });
-    };
+  // Format ISO Date to readable Time
+  const formatTime = (isoDate) => {
+    if (!isoDate) return "N/A";
+    const dateObj = new Date(isoDate);
+    return dateObj.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -92,18 +118,23 @@ const Events = () => {
           /* Single Event Detail View */
           <section className={styles.eventDetailSection}>
             <div className={styles.eventDetailHeader}>
-              <button className={styles.backButton} onClick={handleReturnToAllEvents}>
+              <button
+                className={styles.backButton}
+                onClick={handleReturnToAllEvents}
+              >
                 &larr; Back to All Events
               </button>
               <h1>{selectedEvent.title}</h1>
             </div>
-            
+
             <div className={styles.eventDetailContent}>
               <div className={styles.eventDetailImage}>
                 <img src={selectedEvent.image} alt={selectedEvent.title} />
-                {selectedEvent.isOngoing && <div className={styles.liveTag}>LIVE</div>}
+                {selectedEvent.is_ongoing && (
+                  <div className={styles.liveTag}>LIVE</div>
+                )}
               </div>
-              
+
               <div className={styles.eventDetailInfo}>
                 <div className={styles.detailCard}>
                   <h3>Event Details</h3>
@@ -121,29 +152,42 @@ const Events = () => {
                   </div>
                   <div className={styles.detailRow}>
                     <span className={styles.detailLabel}>Organizer:</span>
-                    <span>{selectedEvent.organizer}</span>
+                    <span>{selectedEvent.organiserName}</span>
                   </div>
                   <div className={styles.detailRow}>
                     <span className={styles.detailLabel}>Contact:</span>
-                    <span>{selectedEvent.contact}</span>
+                    <span>{selectedEvent.email}</span>
                   </div>
                 </div>
-                
+
                 <div className={styles.registerCard}>
-                  <button className={styles.registerBtn} onClick={handleRegisterRedirect}>Register Now</button>
+                  <button
+                    className={styles.registerBtn}
+                    onClick={handleRegisterRedirect}
+                  >
+                    Register Now
+                  </button>
                   <button className={styles.saveBtn}>Save to Calendar</button>
                   <div className={styles.shareOptions}>
                     <span>Share: </span>
                     <div className={styles.socialIcons}>
-                      <a href="#" aria-label="Share on Facebook">FB</a>
-                      <a href="#" aria-label="Share on Twitter">TW</a>
-                      <a href="#" aria-label="Share on LinkedIn">LI</a>
-                      <a href="#" aria-label="Share via Email">@</a>
+                      <a href="#" aria-label="Share on Facebook">
+                        FB
+                      </a>
+                      <a href="#" aria-label="Share on Twitter">
+                        TW
+                      </a>
+                      <a href="#" aria-label="Share on LinkedIn">
+                        LI
+                      </a>
+                      <a href="#" aria-label="Share via Email">
+                        @
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <div className={styles.eventDescription}>
                 <h3>About This Event</h3>
                 <p>{selectedEvent.description}</p>
@@ -156,8 +200,10 @@ const Events = () => {
             <div className={styles.sectionHeader}>
               <h1>All Campus Events</h1>
               <div className={styles.eventFilters}>
-                <select className={styles.filterDropdown} defaultValue="">
-                  <option value="" disabled>Filter by Category</option>
+                {/* <select className={styles.filterDropdown} defaultValue="">
+                  <option value="" disabled>
+                    Filter by Category
+                  </option>
                   <option value="all">All Categories</option>
                   <option value="academic">Academic</option>
                   <option value="cultural">Cultural</option>
@@ -165,23 +211,34 @@ const Events = () => {
                   <option value="sports">Sports</option>
                 </select>
                 <select className={styles.filterDropdown} defaultValue="">
-                  <option value="" disabled>Sort by Date</option>
+                  <option value="" disabled>
+                    Sort by Date
+                  </option>
                   <option value="newest">Newest First</option>
                   <option value="oldest">Oldest First</option>
-                </select>
+                </select> */}
                 <div className={styles.searchBox}>
-                  <input type="text" placeholder="Search events..." />
-                  <button className={styles.searchBtn}>Search</button>
+                  <input
+                    type="text"
+                    placeholder="Search events..."
+                    onChange={(e) => searchchange(e.target.value)}
+                  />
+                  <button className={styles.searchBtn} onClick={searchHandle}>
+                    Search
+                  </button>
                 </div>
               </div>
             </div>
-            
+
             <div className={styles.eventsGrid}>
               {events.map((event) => (
                 <div key={event._id} className={styles.eventCard}>
                   <div className={styles.cardImage}>
+                    {/* {console.log(event.image)} */}
                     <img src={event.image} alt={event.title} />
-                    {event.isOngoing && <div className={styles.liveTag}>LIVE</div>}
+                    {event.is_ongoing && (
+                      <div className={styles.liveTag}>LIVE</div>
+                    )}
                   </div>
                   <div className={styles.cardContent}>
                     <h3>{event.title}</h3>
@@ -189,12 +246,12 @@ const Events = () => {
                     <p className={styles.eventTime}>{formatTime(event.date)}</p>
                     <p className={styles.eventLocation}>{event.location}</p>
                     <p className={styles.eventBrief}>
-                      {event.description.length > 120 
-                        ? `${event.description.substring(0, 120)}...` 
+                      {event.description.length > 120
+                        ? `${event.description.substring(0, 120)}...`
                         : event.description}
                     </p>
-                    <button 
-                      className={styles.detailsBtn} 
+                    <button
+                      className={styles.detailsBtn}
                       onClick={() => handleEventDetails(event._id)}
                     >
                       View Details
@@ -203,9 +260,11 @@ const Events = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className={styles.pagination}>
-              <button className={`${styles.pageBtn} ${styles.activePageBtn}`}>1</button>
+              <button className={`${styles.pageBtn} ${styles.activePageBtn}`}>
+                1
+              </button>
               <button className={styles.pageBtn}>2</button>
               <button className={styles.pageBtn}>3</button>
               <button className={styles.pageBtn}>Next &rarr;</button>
