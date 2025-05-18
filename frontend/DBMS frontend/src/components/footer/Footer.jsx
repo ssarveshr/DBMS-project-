@@ -9,9 +9,9 @@ const Footer = React.forwardRef((props, ref) => {
           <h3>EvoCamp</h3>
           <p>Your one-stop platform for all campus activities and events.</p>
           <div className={styles.socialIcons}>
-            <a href="#" aria-label="Facebook"><img src="/facebook.svg" alt=""/></a>
+            <a href="https://www.facebook.com/profile.php?id=61576092494024" aria-label="Facebook" target='_blank'><img src="/facebook.svg" alt=""/></a>
             <a href="#" aria-label="Twitter"><img src="/twitter2.svg" alt="" /></a>
-            <a href="#" aria-label="Instagram"><img src="/insta.svg" alt="" /></a>
+            <a href="https://www.instagram.com/_evo_camp_/" aria-label="Instagram" target='_blank'><img src="/insta.svg" alt="" /></a>
             <a href="#" aria-label="LinkedIn"><img src="/linkedin.svg" alt="" /></a>
           </div>
         </div>
