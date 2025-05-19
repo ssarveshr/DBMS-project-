@@ -10,6 +10,9 @@ const Events = () => {
   const [search, setsearch] = useState("");
   const [events, setEvents] = useState([]);
   const [token, setToken] = useState("");
+  const [currentStudent, setCurrentStudent] = useState(null);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [loadingRegistration, setLoadingRegistration] = useState(false);
 
   const GetToken = () => {
     const token = sessionStorage.getItem("userAuth");
@@ -24,35 +27,58 @@ const Events = () => {
     axios
       .get("http://localhost:5000/api/events")
       .then((res) => {
-        // console.log(res.data);
         setEvents(res.data);
       })
       .catch((err) => console.error(err));
     GetToken();
   }, []);
 
-  // console.log(token);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:5000/api/auth/Student/current", {
-  //       headers: {
-  //         Authorization: token,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("This is the error in the useeffect hook 2 : ", err);
-  //     });
-  // }, []);
+  // Fetch current student info when token is available
+  useEffect(() => {
+    if (token) {
+      axios
+        .get("http://localhost:5000/api/auth/Student/current", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          setCurrentStudent(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          setCurrentStudent(null);
+          console.log("Error fetching student data:", err);
+        });
+    }
+  }, [token]);
 
   // Get selected event if eventId is provided
   const selectedEvent = eventId
     ? events.find((event) => String(event._id) === String(eventId))
     : null;
-  console.log("This is the value of event id : ", eventId);
+
+  // Check if the current student is registered for the selected event
+  // useEffect(() => {
+  //   if (selectedEvent && currentStudent) {
+  //     setLoadingRegistration(true);
+  //     // registeredStudents is an array of student objects, not IDs
+  //     const registered =
+  //       Array.isArray(selectedEvent.registeredStudents) &&
+  //       selectedEvent.registeredStudents.some((student) =>
+  //         // student &&
+  //         // student._id &&
+  //         String(student._id) === String(currentStudent._id)
+  //         // console.log(
+  //         //     String(student._id) === String(currentStudent._id)
+  //         // )
+  //       );
+  //     setIsRegistered(registered);
+  //     setLoadingRegistration(false);
+  //   } else {
+  //     setIsRegistered(false);
+  //   }
+  // }, [selectedEvent, currentStudent]);
 
   const footerRef = useRef(null);
 
@@ -194,8 +220,13 @@ const Events = () => {
                   <button
                     className={styles.registerBtn}
                     onClick={handleRegisterRedirect}
+                    disabled={isRegistered || loadingRegistration}
                   >
-                    Register Now
+                    {loadingRegistration
+                      ? "Checking..."
+                      : isRegistered
+                      ? "Already Registered"
+                      : "Register Now"}
                   </button>
                   <button className={styles.saveBtn}>Save to Calendar</button>
                   <div className={styles.shareOptions}>

@@ -17,8 +17,9 @@ const obj_4 = {
     "usn": "1RN23CS167"
 }
 
-console.log(array.push(obj_1,obj_2,obj_3,obj_4))
-console.log(array[0])
+array.push(obj_1,obj_2,obj_3,obj_4)
+
+console.log(array.some((item) => item.name === "samudra"))
 
 
 
