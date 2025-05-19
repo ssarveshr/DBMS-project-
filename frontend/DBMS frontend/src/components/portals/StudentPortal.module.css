@@ -409,3 +409,81 @@ input[type="file"] {
         grid-template-columns: 1fr;
     }
 }
+
+.inputField {
+  width: 100%;
+  max-width: 350px;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #bdbdbd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  background: #f9f9fc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 0.5rem;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(63,81,181,0.04);
+}
+.inputField:focus {
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 2px rgba(63,81,181,0.12);
+  background: #fff;
+}
+
+/* Adjust form row for better spacing */
+.formRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+/* Make form actions more visually appealing */
+.formActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.saveProfileBtn {
+  background: #43a047;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 2.2rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(67,160,71,0.08);
+}
+.saveProfileBtn:hover:not(:disabled) {
+  background: #388e3c;
+}
+.saveProfileBtn:disabled {
+  background: #b0b0b0;
+  cursor: not-allowed;
+}
+
+.cancelProfileBtn {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 2.2rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(229,57,53,0.08);
+}
+.cancelProfileBtn:hover:not(:disabled) {
+  background: #b71c1c;
+}
+.cancelProfileBtn:disabled {
+  background: #b0b0b0;
+  cursor: not-allowed;
+}
