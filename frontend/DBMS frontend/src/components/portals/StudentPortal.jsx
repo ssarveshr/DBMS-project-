@@ -103,15 +103,29 @@ const StudentDashboard = () => {
     window.location.href = `/event/${eventId}`;
   };
 
-  const handleCancelRegistration = (eventId) => {
-    // In production, you would call an API to cancel registration
-    console.log("Cancelling registration for event:", eventId);
+  const handleCancelRegistration = async (eventId) => {
+  const token = sessionStorage.getItem("userAuth");
+  if (!token) {
+    console.error("User is not authenticated.");
+    return;
+  }
 
-    // For demo, just filter out the event
+  try {
+    await axios.delete(`http://localhost:5000/api/auth/Student/cancel-registration/${eventId}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    // Remove event from UI
     setRegisteredEvents(
       registeredEvents.filter((event) => event.event.id !== eventId)
     );
-  };
+  } catch (error) {
+    console.error("Error cancelling registration:", error);
+  }
+};
+
 
   // --- Unified Edit Profile Logic ---
   const handleEditProfileClick = () => {
