@@ -19,6 +19,7 @@ import Footer from "./components/footer/Footer.jsx";
 import RegisterEvent from "./components/RegisterEvent.jsx";
 import FacultyDashboard from "./components/FacultyDashboard.jsx";
 import StudentDashboard from "./components/portals/StudentPortal.jsx";
+import EventDetails from "./components/EventDetails.jsx";
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
       <Route path="/registerevent" element={<RegisterEvent/>}/>
       <Route path="/studentdashboard" element={<StudentDashboard />} />
       <Route path="/registerevent" element={<RegisterEvent />} />
+      <Route path="/events/:id" element={<EventDetails />} />
     </Routes>
     <Footer ref={footerRef}/>
     </>
