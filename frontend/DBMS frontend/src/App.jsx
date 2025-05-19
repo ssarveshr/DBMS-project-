@@ -21,7 +21,6 @@ import FacultyDashboard from "./components/FacultyDashboard.jsx";
 import StudentDashboard from "./components/portals/StudentPortal.jsx";
 import EventDetails from "./components/EventDetails.jsx";
 
-
 function App() {
   const footerRef = useRef(null);
 
@@ -30,29 +29,29 @@ function App() {
   };
   return (
     <>
-    <NavBar onContactScroll={handleContactScroll}/>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage/>}/>
-      <Route path="/loginfaculty" element={<LoginFaculty/>} />
-      <Route path="/signupfaculty" element={<SignUpFaculty/>} />
-      <Route path="/loginorganiser" element={<LoginOrganiser/>} />
-      <Route path="/FacultyDashboard" element={<FacultyDashboard />} />
-      <Route path="/dashboard" element={<DashBoard/>} />
-      <Route path="/about" element={<About />} />
-      <Route path="/event" element={<Event />} />
-      <Route path="/event/:eventId" element={<Event />} />
-      <Route path="/organizerdashboard" element={<OrganizerDashboard />} />
-      <Route path="/facultydashboard" element={<FacultyDashboard />} />
-      <Route path="/createevent" element={<CreateEvent />} />
-      <Route path="/Calendar" element={<Calendar />} />
-      <Route path="/registerevent" element={<RegisterEvent/>}/>
-      <Route path="/studentdashboard" element={<StudentDashboard />} />
-      <Route path="/registerevent" element={<RegisterEvent />} />
-      <Route path="/events/:id" element={<EventDetails />} />
-    </Routes>
-    <Footer ref={footerRef}/>
+      <NavBar onContactScroll={handleContactScroll} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/loginfaculty" element={<LoginFaculty />} />
+        <Route path="/signupfaculty" element={<SignUpFaculty />} />
+        <Route path="/loginorganiser" element={<LoginOrganiser />} />
+        <Route path="/FacultyDashboard" element={<FacultyDashboard />} />
+        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/event" element={<Event />} />
+        <Route path="/event/:eventId" element={<Event />} />
+        <Route path="/organizerdashboard" element={<OrganizerDashboard />} />
+        <Route path="/facultydashboard" element={<FacultyDashboard />} />
+        <Route path="/createevent" element={<CreateEvent />} />
+        <Route path="/Calendar" element={<Calendar />} />
+        <Route path="/registerevent" element={<RegisterEvent />} />
+        <Route path="/studentdashboard" element={<StudentDashboard />} />
+        <Route path="/registerevent" element={<RegisterEvent />} />
+        <Route path="/events/:id" element={<EventDetails />} />
+      </Routes>
+      <Footer ref={footerRef} />
     </>
   );
 }
