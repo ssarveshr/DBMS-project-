@@ -9,16 +9,44 @@ const Events = () => {
   const navigate = useNavigate();
   const [search, setsearch] = useState("");
   const [events, setEvents] = useState([]);
+  const [token, setToken] = useState("");
+
+  const GetToken = () => {
+    const token = sessionStorage.getItem("userAuth");
+    if (token) {
+      setToken(token);
+    } else {
+      navigate("/login");
+    }
+  };
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/events")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setEvents(res.data);
       })
       .catch((err) => console.error(err));
+    GetToken();
   }, []);
+
+  // console.log(token);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:5000/api/auth/Student/current", {
+  //       headers: {
+  //         Authorization: token,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("This is the error in the useeffect hook 2 : ", err);
+  //     });
+  // }, []);
 
   // Get selected event if eventId is provided
   const selectedEvent = eventId
