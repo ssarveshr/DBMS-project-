@@ -130,5 +130,41 @@ Studentrouter.get('/my-events', passport.authenticate('jwt', { session: false })
 	}
 });
 
-export default Studentrouter;
 
+Studentrouter.delete("/cancel-registration/:eventId",passport.authenticate("jwt", { session: false }),checkRole("student"),async (req, res) => {
+    const studentEmail = req.user.User_Email;
+    const eventId = req.params.eventId;
+
+    try {
+      const student = await User.findOne({ email: studentEmail });
+      if (!student) {
+        return res.status(404).json({ message: "Student not found" });
+      }
+
+      const event = await Event.findById(eventId);
+      if (!event) {
+        return res.status(404).json({ message: "Event not found" });
+      }
+
+      // Remove student from event's registeredStudents
+      event.registeredStudents = event.registeredStudents.filter(
+        (stu) => stu.toString() !== student._id.toString()
+      );
+
+      // Remove event from student's registeredEvents
+      student.studentInfo.registeredEvents = student.studentInfo.registeredEvents.filter(
+        (e) => e.event.id.toString() !== eventId
+      );
+
+      await event.save();
+      await student.save();
+
+      return res.status(200).json({ message: "Registration cancelled successfully" });
+    } catch (error) {
+      console.error("Error cancelling registration:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  }
+);
+
+export default Studentrouter;
