@@ -47,10 +47,10 @@ const SignupPage = () => {
             <div className={styles.black}>
                 <div className={styles.loginPageChild}>
                     <div className={styles.welcomeToStudentContainer}>
-                        <p className={styles.login}>
+                        <p className={styles.login1}>
                             <b className={styles.welcomeTo1}>Create your</b>
                         </p>
-                        <p className={styles.studentPortal}>student account</p>
+                        <p className={styles.studentPortal}>account</p>
                     </div>
                 </div>
                 <div>
@@ -80,15 +80,15 @@ const SignupPage = () => {
                    <option value="Faculty">Faculty</option>
                   <option value="Admin">Organiser</option>
               </select>
-                        <div className={styles.formGroup}>
-                            <label className={styles.label}>Full Name</label>
-                            <input
-                                type="text"
-                                className={styles.inputField}
-                                placeholder="Enter your full name"
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                        </div>
+                            <div className={styles.formGroup}>
+                                <label className={styles.label}>Full Name</label>
+                                <input
+                                    type="text"
+                                    className={styles.inputField}
+                                    placeholder="Enter your full name"
+                                    onChange={(e) => setName(e.target.value)}
+                                 />
+                             </div>
 
                             <div className={styles.formGroup}>
                                 <label className={styles.label}>Email</label>
@@ -109,7 +109,16 @@ const SignupPage = () => {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
-
+                             
+                            <div className={styles.formGroup}>
+                                <label className={styles.label}>Confirm Password</label>
+                                <input
+                                    type="password"
+                                    className={styles.inputField}
+                                    placeholder="Confirm your password"
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
+                            </div>
 
                         <button className={styles.loginButton} onClick={HandlerFunction}>
                             Sign Up
