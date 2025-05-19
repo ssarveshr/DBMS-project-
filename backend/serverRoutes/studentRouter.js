@@ -167,4 +167,31 @@ Studentrouter.delete("/cancel-registration/:eventId",passport.authenticate("jwt"
   }
 );
 
+
+// Update profile logic
+Studentrouter.put('/update-profile', passport.authenticate('jwt', { session: false }), checkRole('student'), async (req, res) => {
+  const { name, usn, email, image } = req.body;
+
+  try {
+    const student = await User.findOne({ email: req.user.User_Email });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    // Update main fields
+    student.studentInfo.name = name || student.studentInfo.name;
+    student.studentInfo.usn = usn || student.studentInfo.usn;
+    student.User_Email = email || student.User_Email;
+    student.image = image || student.image;
+
+    await student.save();
+
+    return res.status(200).json({ message: "Profile updated successfully" });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 export default Studentrouter;
