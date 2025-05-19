@@ -19,38 +19,32 @@ const LoginPage = () => {
       password,
     };
 
-    if(Data.email === '' && Data.password === ''){
+    if (Data.email === "" && Data.password === "") {
       toast.warning("Credentials are empty");
     }
 
     console.log(Data);
     setLoading(true);
     axios
-      .post('http://localhost:5000/api/login', Data)
+      .post("http://localhost:5000/api/login", Data)
       .then((res) => {
         const token = res.data.Token;
         const payload = jwtDecode(token);
-        console.log(payload);
+        // console.log(payload);
         if (payload.User_Email === email) {
           sessionStorage.setItem("userAuth", token);
           setLoading(false);
-          const role = payload.Role;
-          console.log(role);
+          // const role = payload.Role;
+          // console.log(role);
           toast.success("login successfull");
-          if(role==="student") {
           navigate("/");
-        } else if(role==="faculty") {
-          navigate("/FacultyDashboard");
-        } else if(role==="organizer") {
-          navigate("/organizerdashboard");
         } else {
-          toast.warning("Invalid Credentials");
-          setLoading(false);
+          toast.warning("Invalid credentials");
         }
-      }
-  })
+      })
       .catch((err) => {
         console.log(err);
+        toast.error("login failed due incorrect credentials" || err);
         setLoading(false);
       });
   };
