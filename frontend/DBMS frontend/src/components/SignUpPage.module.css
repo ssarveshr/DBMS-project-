@@ -125,9 +125,9 @@
 .inputField {
   width: 95%;
   background-color: rgba(255, 255, 255, 0.6);
-  padding: 8px 12px; /* Reduced from 500px to reasonable padding */
+  padding: 8px 12px;
   color: #333;
-  margin: 8px 0 5px 10px; /* combined margin shorthand */
+  margin: 8px 0 5px 10px; 
   border: 1px solid #8a16ea;
   border-radius: 5px;
   font-size: 16px;
