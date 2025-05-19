@@ -13,8 +13,8 @@ CommonLoginRouter.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         await User.findOne({ email: email })
-            .then(async (result) => {
-                // console.log(await bcrypt.compare(password, result.password))
+        .then(async (result) => {
+            // console.log(await bcrypt.compare(password, result.password))
                 // console.log(result.password)
                 if (!(await bcrypt.compare(password, result.password))) {
                     return res.status(401).json({ error: 'Invalid credentials' });

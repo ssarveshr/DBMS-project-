@@ -73,7 +73,7 @@ const Events = () => {
 
     events.map((event) => {
       if (event.title.toLowerCase().includes(search.toLowerCase())) {
-        console.log("This is the value of event title : ", event.title);
+        // console.log("This is the value of event title : ", event.title);
         searchedEvents.push(event);
       }
     });
