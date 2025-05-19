@@ -21,11 +21,14 @@ const SignupPage = () => {
     }
 
     const Data = {
-      name,
-      email,
-      password,
+      email: email,
+      password: password,
+      role: userType,
+      RoleData: {
+        name: name,
+      },
     };
-
+    console.log(Data);
     setLoading(true);
     axios
       .post("http://localhost:5000/api/signup", Data)
@@ -41,7 +44,6 @@ const SignupPage = () => {
         toast.warning(err.response?.data?.message || "Registration failed");
       });
   };
-
   return (
     <div className={styles.loginPage}>
       <div className={styles.black}>
@@ -95,9 +97,9 @@ const SignupPage = () => {
               <option value="" disabled>
                 Role
               </option>
-              <option value="Student">Student</option>
-              <option value="Faculty">Faculty</option>
-              <option value="Admin">Organiser</option>
+              <option value="student">Student</option>
+              <option value="faculty">Faculty</option>
+              <option value="organizer">Organiser</option>
             </select>
             <div className={styles.formGroup}>
               <label className={styles.label}>Full Name</label>
