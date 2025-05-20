@@ -121,35 +121,33 @@ const SignupPage = () => {
               />
             </div>
 
-                            <div className={styles.formGroup}>
-                                <label className={styles.label}>Password</label>
-                                <input
-                                    type="password"
-                                    className={styles.inputField}
-                                    placeholder="Enter your password"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
-                            <div className={styles.formGroup}>
-            <label className={styles.label}>Confirm Password</label>
-                <input
-                    type="password"
-                    className={styles.inputField}
-                    placeholder="Confirm your password"
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-                </div>
-
-
-                        <button className={styles.loginButton} onClick={HandlerFunction}>
-                            Sign Up
-                        </button>
-                        
-                    </div>
-                </div>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Password</label>
+              <input
+                type="password"
+                className={styles.inputField}
+                placeholder="Enter your password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Confirm Password</label>
+              <input
+                type="password"
+                className={styles.inputField}
+                placeholder="Confirm your password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+
+            <button className={styles.loginButton} onClick={HandlerFunction}>
+              Sign Up
+            </button>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default SignupPage;

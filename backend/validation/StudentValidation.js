@@ -5,12 +5,9 @@ const ValidateStudentData = (DATA) => {
     const errors = {}
     const subdata = DATA.RoleData
     
-    console.log(subdata)
-    
     DATA.email = !isEmpty(DATA.email) ? DATA.email :''
     DATA.role = !isEmpty(DATA.role) ? DATA.role :''
     DATA.password = !isEmpty(DATA.password) ? DATA.password :''
-    DATA.password2 = !isEmpty(DATA.password2) ? DATA.password2 :''
     if(DATA.role === 'student'){
         subdata.name = !isEmpty(subdata.name) ? subdata.name :''
         if(validator.isEmpty(subdata.name)){
@@ -40,9 +37,6 @@ const ValidateStudentData = (DATA) => {
     }
     if(validator.isEmpty(DATA.password)){
         errors.password = 'Password field is required'
-    }
-    if(DATA.password !== DATA.password2){
-        errors.password2 = 'Passwords should match'
     }
     if(validator.isEmpty(DATA.role)){
         errors.role = 'role field is required'
