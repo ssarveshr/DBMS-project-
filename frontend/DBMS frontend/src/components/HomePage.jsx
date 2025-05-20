@@ -6,7 +6,7 @@ import axios from "axios";
 const HomePage = () => {
   const footerRef = useRef(null);
   const [events, setEvents] = useState([]);
-  
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/events")
@@ -36,30 +36,33 @@ const HomePage = () => {
   // Format date and time function
   const formatDateTime = (dateStr, timeStr) => {
     if (!dateStr) return "";
-    
+
     try {
       // Create date object from date string
       const date = new Date(dateStr);
-      
+
       // Format date
-      const formattedDate = date.toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
+      const formattedDate = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
       });
-      
+
       // Format time if available
-      const formattedTime = timeStr ? 
-        new Date(`2000-01-01T${timeStr}`).toLocaleTimeString('en-US', {
-          hour: 'numeric',
-          minute: '2-digit',
-          hour12: true
-        }) : '';
-        
-      return formattedTime ? `${formattedDate} • ${formattedTime}` : formattedDate;
+      const formattedTime = timeStr
+        ? new Date(`2000-01-01T${timeStr}`).toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+          })
+        : "";
+
+      return formattedTime
+        ? `${formattedDate} • ${formattedTime}`
+        : formattedDate;
     } catch (error) {
       console.error("Error formatting date/time:", error);
-      return `${dateStr} ${timeStr ? `• ${timeStr}` : ''}`;
+      return `${dateStr} ${timeStr ? `• ${timeStr}` : ""}`;
     }
   };
 
@@ -96,7 +99,7 @@ const HomePage = () => {
 
     // Update current position for tracking
     setCurrentScrollPosition(newPosition);
-    
+
     // Restart auto-scroll after a delay
     setTimeout(() => {
       if (!isUserInteracting) {
@@ -107,12 +110,12 @@ const HomePage = () => {
 
   // Auto-scroll control
   const [isUserInteracting, setIsUserInteracting] = useState(false);
-  
+
   const pauseAutoScroll = () => {
     setIsAutoScrolling(false);
     clearInterval(autoScrollTimerRef.current);
   };
-  
+
   const resumeAutoScroll = () => {
     if (!isUserInteracting) {
       setIsAutoScrolling(true);
@@ -123,33 +126,33 @@ const HomePage = () => {
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
-    
+
     // Clear any existing interval
     if (autoScrollTimerRef.current) {
       clearInterval(autoScrollTimerRef.current);
     }
-    
+
     // Only set up auto-scroll if enabled
     if (isAutoScrolling) {
       autoScrollTimerRef.current = setInterval(() => {
         const container = scrollContainerRef.current;
         if (!container) return;
-        
+
         const maxScroll = container.scrollWidth - container.clientWidth;
         if (maxScroll <= 0) return;
-        
+
         let newPosition = container.scrollLeft + 1;
-        
+
         // Reset when reaching the end
         if (newPosition >= maxScroll) {
           newPosition = 0;
         }
-        
+
         container.scrollLeft = newPosition;
         setCurrentScrollPosition(newPosition);
       }, 30);
     }
-    
+
     return () => {
       if (autoScrollTimerRef.current) {
         clearInterval(autoScrollTimerRef.current);
@@ -166,17 +169,17 @@ const HomePage = () => {
       setIsUserInteracting(true);
       pauseAutoScroll();
     };
-    
+
     const handleMouseLeave = () => {
       setIsUserInteracting(false);
       resumeAutoScroll();
     };
-    
+
     const handleTouchStart = () => {
       setIsUserInteracting(true);
       pauseAutoScroll();
     };
-    
+
     const handleTouchEnd = () => {
       setIsUserInteracting(false);
       // Delay resuming to prevent immediate scrolling after touch
@@ -200,16 +203,20 @@ const HomePage = () => {
   // Calculate active dot index
   const calculateActiveDotIndex = () => {
     if (!scrollContainerRef.current) return 0;
-    
+
     const container = scrollContainerRef.current;
     const cardWidth = 320; // Approximate width of cards including margins
     const visibleCards = Math.floor(container.clientWidth / cardWidth);
     const totalGroups = Math.ceil(upcomingEvents.length / visibleCards);
-    
+
     if (totalGroups <= 1) return 0;
-    
-    const scrollPercentage = container.scrollLeft / (container.scrollWidth - container.clientWidth);
-    return Math.min(Math.floor(scrollPercentage * totalGroups), totalGroups - 1);
+
+    const scrollPercentage =
+      container.scrollLeft / (container.scrollWidth - container.clientWidth);
+    return Math.min(
+      Math.floor(scrollPercentage * totalGroups),
+      totalGroups - 1
+    );
   };
 
   const activeDotIndex = calculateActiveDotIndex();
@@ -234,7 +241,8 @@ const HomePage = () => {
                 </p>
                 <div className={styles.eventDetails}>
                   <p>
-                    <strong>Date:</strong> {formatDateTime(ongoingEvent.date, null)}
+                    <strong>Date:</strong>{" "}
+                    {formatDateTime(ongoingEvent.date, null)}
                   </p>
                   <p>
                     <strong>Time:</strong> {ongoingEvent.time || "All day"}
@@ -307,40 +315,56 @@ const HomePage = () => {
           {/* Carousel dots indicator */}
           {upcomingEvents.length > 0 && (
             <div className={styles.carouselDots}>
-              {[...Array(Math.max(1, Math.ceil(upcomingEvents.length / (scrollContainerRef.current ? 
-                Math.floor(scrollContainerRef.current.clientWidth / 320) : 3))))].map(
-                (_, index) => (
-                  <span
-                    key={index}
-                    className={`${styles.dot} ${
-                      index === activeDotIndex ? styles.activeDot : ""
-                    }`}
-                    onClick={() => {
-                      if (scrollContainerRef.current) {
-                        // Calculate how many cards are visible
-                        const container = scrollContainerRef.current;
-                        const cardWidth = 320;
-                        const visibleCards = Math.floor(container.clientWidth / cardWidth);
-                        
-                        // Calculate new position
-                        const newPosition = index * cardWidth * visibleCards;
-                        
-                        // Scroll to position
-                        container.scrollTo({
-                          left: Math.min(newPosition, container.scrollWidth - container.clientWidth),
-                          behavior: "smooth",
-                        });
-                        
-                        // Pause auto-scroll
-                        pauseAutoScroll();
-                        
-                        // Restart auto-scroll after delay
-                        setTimeout(resumeAutoScroll, 5000);
-                      }
-                    }}
-                  />
-                )
-              )}
+              {[
+                ...Array(
+                  Math.max(
+                    1,
+                    Math.ceil(
+                      upcomingEvents.length /
+                        (scrollContainerRef.current
+                          ? Math.floor(
+                              scrollContainerRef.current.clientWidth / 320
+                            )
+                          : 3)
+                    )
+                  )
+                ),
+              ].map((_, index) => (
+                <span
+                  key={index}
+                  className={`${styles.dot} ${
+                    index === activeDotIndex ? styles.activeDot : ""
+                  }`}
+                  onClick={() => {
+                    if (scrollContainerRef.current) {
+                      // Calculate how many cards are visible
+                      const container = scrollContainerRef.current;
+                      const cardWidth = 320;
+                      const visibleCards = Math.floor(
+                        container.clientWidth / cardWidth
+                      );
+
+                      // Calculate new position
+                      const newPosition = index * cardWidth * visibleCards;
+
+                      // Scroll to position
+                      container.scrollTo({
+                        left: Math.min(
+                          newPosition,
+                          container.scrollWidth - container.clientWidth
+                        ),
+                        behavior: "smooth",
+                      });
+
+                      // Pause auto-scroll
+                      pauseAutoScroll();
+
+                      // Restart auto-scroll after delay
+                      setTimeout(resumeAutoScroll, 5000);
+                    }
+                  }}
+                />
+              ))}
             </div>
           )}
         </section>
