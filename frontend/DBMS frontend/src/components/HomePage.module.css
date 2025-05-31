@@ -192,7 +192,7 @@ html, body {
   scroll-behavior: smooth;
   padding: 10px 0 20px;
   gap: 20px; /* Use gap instead of margin-right for consistent spacing */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch; /*Smooth scrolling on iOS  
   scrollbar-width: thin; /* Show a thin scrollbar in Firefox */
   scrollbar-color: var(--primary-color) #f0f0f0; /* Customize scrollbar in Firefox */
 }
